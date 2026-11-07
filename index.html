@@ -1,327 +1,2543 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="杜绝加密空间 · 报纸导航：中外主流报纸刊物精选，党报、都市晚报、财经报刊、国际大报、文摘周报分类归置，一站直达。">
-<title>报纸导航 · PaperNav｜杜绝加密</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0b10'/%3E%3Ctext x='32' y='43' font-size='30' font-family='serif' font-weight='700' fill='%23ff4d5e' text-anchor='middle'%3E报%3C/text%3E%3C/svg%3E">
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中国报纸名录</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   :root{
-    --bg:#0a0b10;
-    --card:rgba(255,255,255,.045);
-    --card-hover:rgba(255,255,255,.085);
-    --border:rgba(255,255,255,.08);
-    --text:#e9ecf3;
-    --muted:#8b95a8;
-    --accent:#ff4d5e;
+    --bg:#f5f3ee; --card:#fff; --ink:#1f1d1a; --muted:#7c7568;
+    --line:#e6e1d7; --accent:#a6321f; --accent-soft:#f7ebe7;
+    --ok:#2f7d4f; --warn:#b8860b;
   }
-  html{scroll-behavior:smooth}
   body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    min-height:100vh;
-    padding:0 22px 70px;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    background:var(--bg); color:var(--ink); line-height:1.5; -webkit-font-smoothing:antialiased;
   }
-  body::before{
-    content:'';
-    position:fixed;inset:0;z-index:-1;pointer-events:none;
-    background:
-      radial-gradient(900px 520px at 10% -10%, rgba(255,77,94,.20), transparent 62%),
-      radial-gradient(780px 460px at 90% -6%, rgba(255,166,64,.15), transparent 62%),
-      radial-gradient(900px 620px at 50% 112%, rgba(120,90,255,.10), transparent 62%);
-  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit}
 
-  /* ---------- Header ---------- */
-  .back-home{
-    position:fixed;top:16px;left:20px;z-index:30;
-    display:inline-flex;align-items:center;gap:6px;
-    font-size:12.5px;letter-spacing:.06em;color:#a4b0c6;
-    background:rgba(255,255,255,.05);border:1px solid var(--border);
-    border-radius:999px;padding:7px 14px;text-decoration:none;
-    backdrop-filter:blur(8px);transition:.22s ease;
+  /* ---------- 头部 ---------- */
+  header{
+    background:#1f1d1a; color:#f5f3ee;
+    padding:34px 24px 30px;
+    border-bottom:4px solid var(--accent);
   }
-  .back-home:hover{color:#fff;border-color:rgba(255,77,94,.5)}
-  header{max-width:1240px;margin:0 auto;padding:70px 0 0;text-align:center}
-  .badge{
-    display:inline-flex;align-items:center;gap:7px;
-    font-size:12.5px;letter-spacing:.06em;
-    color:#b6a9b2;
-    background:rgba(255,255,255,.05);
-    border:1px solid var(--border);
-    border-radius:999px;padding:6px 14px;
+  .hd{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+  header h1{
+    font-family:"Songti SC","STSong","SimSun",serif;
+    font-size:29px; letter-spacing:2px; font-weight:700;
+  }
+  header .sub{margin-top:8px;font-size:13.5px;color:#b8b0a2;letter-spacing:.4px}
+  header .sub b{color:#f0c9b8;font-weight:600}
+
+  /* ---------- 工具栏（sticky，按钮固定在其右上角） ---------- */
+  .toolbar{
+    position:sticky; top:0; z-index:30;
+    background:rgba(245,243,238,.95);
     backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:12px 24px;
   }
-  h1{
-    font-size:clamp(30px,5vw,46px);
-    font-weight:800;letter-spacing:-.02em;
-    margin-top:20px;
-    background:linear-gradient(180deg,#fff 30%,#a99aa4);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
+  .tb{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:16px}
+  #q{
+    flex:1; min-width:220px; max-width:520px;
+    padding:10px 16px; font-size:14px;
+    border:1px solid var(--line); border-radius:24px;
+    background:#fff; color:var(--ink); outline:none; transition:.2s;
   }
-  .sub{margin-top:12px;color:var(--muted);font-size:14.5px}
-  .sub b{color:#ffb3bb;font-weight:600}
+  #q:focus{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
+  #hint{font-size:13px;color:var(--muted);white-space:nowrap}
 
-  /* ---------- Tabs ---------- */
-  .tabs{
-    display:flex;flex-wrap:wrap;gap:9px;justify-content:center;
-    max-width:900px;margin:36px auto 0;
+  /* ---------- 模式切换按钮（工具栏内右上角，与 hint 同一水平线） ---------- */
+  #modeBtn{
+    flex-shrink:0;
+    margin-left:auto;
+    padding:9px 18px;
+    border-radius:24px;
+    background:var(--ink);
+    border:1px solid var(--ink);
+    color:#f5f3ee;
+    font-size:13.5px;
+    letter-spacing:.5px;
+    white-space:nowrap;
+    cursor:pointer;
+    transition:background .18s,border-color .18s,transform .18s,box-shadow .18s;
   }
-  .tab{
-    font-family:inherit;font-size:13.5px;cursor:pointer;
-    color:#a4b0c6;
-    background:rgba(255,255,255,.04);
-    border:1px solid var(--border);
-    border-radius:999px;
-    padding:8px 16px;
-    transition:.22s ease;
-    display:inline-flex;align-items:center;gap:7px;
+  #modeBtn:hover{
+    background:#3a352d;
+    border-color:#3a352d;
+    transform:translateY(-1px);
+    box-shadow:0 6px 16px rgba(30,26,20,.2);
   }
-  .tab:hover{color:#fff;background:rgba(255,255,255,.085);transform:translateY(-1px)}
-  .tab .n{font-size:11px;opacity:.6}
-  .tab.active{
-    color:#fff;
-    background:linear-gradient(135deg,#ff4d5e,#ff9147);
-    border-color:transparent;
-    box-shadow:0 8px 22px -10px rgba(255,77,94,.9);
+  #modeBtn.on{
+    background:var(--accent);
+    border-color:var(--accent);
   }
-  .tab.active .n{opacity:.85}
+  #modeBtn.on:hover{
+    background:#8d2919;
+    border-color:#8d2919;
+    box-shadow:0 6px 16px rgba(120,40,20,.3);
+  }
 
-  /* ---------- Grid ---------- */
+  /* 编辑提示条 */
+  #editbar{
+    display:none;
+    background:#fff8ec;
+    border-bottom:1px solid #e8d9b8;
+    padding:10px 24px;
+  }
+  #editbar.show{display:block}
+  #editbar .inner{
+    max-width:1400px;margin:0 auto;
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    font-size:13px;color:#7a6224;
+  }
+  #editbar .inner b{color:var(--accent)}
+  #editbar .sp{flex:1}
+  #editbar button{
+    padding:6px 14px;border-radius:18px;font-size:12.5px;cursor:pointer;
+    border:1px solid #d9c9a3;background:#fff;color:#7a6224;transition:.16s;
+  }
+  #editbar button:hover{background:#fdf3dd}
+  #editbar button.warn{border-color:#d9b88f;color:#8a5a1a}
+  #editbar button.warn:hover{background:#fdf0dd}
+  #editbar button.html{border-color:#b8c9a3;color:#4a6a2a}
+  #editbar button.html:hover{background:#eef5e2}
+
+  /* ---------- 布局 ---------- */
+  .wrap{max-width:1400px;margin:0 auto;padding:0 24px 90px}
+  .layout{display:grid;grid-template-columns:190px minmax(0,1fr);gap:32px;align-items:start}
+
+  /* ---------- 侧栏 ---------- */
+  aside{
+    position:sticky; top:74px;
+    max-height:calc(100vh - 100px); overflow-y:auto;
+    padding:20px 0; border-right:1px solid var(--line);
+    scrollbar-width:thin;
+  }
+  aside h2{
+    font-size:11px;letter-spacing:2px;color:var(--muted);
+    text-transform:uppercase;margin-bottom:10px;padding-left:12px;font-weight:600;
+  }
+  aside a{
+    display:flex;justify-content:space-between;align-items:center;gap:6px;
+    padding:6px 12px;font-size:13.5px;color:#4a453d;
+    border-left:3px solid transparent;border-radius:0 6px 6px 0;transition:.15s;
+  }
+  aside a:hover{background:#fff;color:var(--accent)}
+  aside a .n{font-size:11px;color:#a9a294;font-variant-numeric:tabular-nums}
+  aside a.active{border-left-color:var(--accent);background:#fff;color:var(--accent);font-weight:600}
+  aside a.active .n{color:var(--accent)}
+
+  /* ---------- 区域 ---------- */
+  .region{margin-bottom:44px;scroll-margin-top:80px}
+  .region-hd{
+    display:flex;align-items:baseline;gap:12px;
+    padding-bottom:10px;margin-bottom:16px;
+    border-bottom:2px solid var(--ink);
+  }
+  .region-hd h3{
+    font-family:"Songti SC","STSong","SimSun",serif;
+    font-size:22px;letter-spacing:1px;
+  }
+  .region-hd .count{font-size:12px;color:var(--muted)}
+  .region-hd .add{
+    margin-left:auto;
+    padding:4px 14px;border-radius:16px;font-size:12px;cursor:pointer;
+    border:1px dashed #c9b995;background:#fff;color:#8a7a4f;transition:.16s;
+  }
+  .region-hd .add:hover{background:#fdf6e6;border-color:var(--accent);color:var(--accent)}
+
+  /* ---------- 卡片 ---------- */
   .grid{
-    max-width:1240px;margin:38px auto 0;
-    display:grid;gap:14px;
-    grid-template-columns:repeat(auto-fill,minmax(272px,1fr));
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));
+    gap:12px;
   }
   .card{
-    --c:#ff4d5e;
-    position:relative;overflow:hidden;
-    display:flex;gap:13px;align-items:flex-start;
-    padding:16px;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:16px;
-    text-decoration:none;color:inherit;
-    transition:transform .22s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease;
-    animation:rise .5s cubic-bezier(.22,1,.36,1) backwards;
+    background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:14px 16px 12px;transition:.16s;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;
   }
-  .card::after{
-    content:'';position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(420px 130px at 0% 0%, var(--c), transparent 72%);
-    opacity:0;transition:opacity .3s ease;
+  .card::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--accent);opacity:0;transition:.16s;
   }
-  .card:hover{
-    transform:translateY(-4px);
-    background:var(--card-hover);
-    border-color:rgba(255,255,255,.17);
-    box-shadow:0 16px 38px -18px rgba(0,0,0,.85);
+  .card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(60,45,25,.09);border-color:#d9d1c2}
+  .card:hover::before{opacity:1}
+  .card.hide{display:none}
+  .card:not(.editing){cursor:pointer}
+
+  .c-top{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+  .code{
+    font-size:11.5px;font-weight:600;letter-spacing:.3px;
+    background:var(--accent-soft);color:var(--accent);
+    padding:2px 7px;border-radius:5px;font-variant-numeric:tabular-nums;
   }
-  .card:hover::after{opacity:.09}
-  .logo{
-    flex:0 0 42px;width:42px;height:42px;border-radius:12px;
-    display:grid;place-items:center;
-    font-size:16px;font-weight:700;letter-spacing:-.02em;
-    color:var(--c);
-    background:rgba(255,255,255,.055);
-    background:color-mix(in srgb, var(--c) 17%, rgba(255,255,255,.03));
-    border:1px solid rgba(255,255,255,.08);
-    border-color:color-mix(in srgb, var(--c) 32%, transparent);
-    transition:transform .22s ease;
+  .period{
+    font-size:11.5px;color:var(--muted);
+    padding:2px 7px;border-radius:5px;background:#f3f0ea;
   }
-  .logo.two{font-size:14px;letter-spacing:-.05em}
-  .card:hover .logo{transform:scale(1.06) rotate(-3deg)}
-  .body{min-width:0;flex:1}
-  .name{
-    font-size:15px;font-weight:650;line-height:1.35;
-    display:flex;align-items:center;gap:6px;flex-wrap:wrap;
-  }
-  .name .cn{color:#7f8aa0;font-weight:400;font-size:12.5px}
-  .name .en{
-    font-size:9.5px;font-weight:700;letter-spacing:.08em;
-    color:#9aa5b8;background:rgba(255,255,255,.07);
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:4px;padding:1px 4px;line-height:1.4;
-  }
-  .arrow{
-    font-size:11px;color:var(--muted);
-    opacity:0;transform:translateX(-5px);
-    transition:.22s ease;
-  }
-  .card:hover .arrow{opacity:1;transform:none}
-  .desc{
-    margin-top:5px;font-size:12.5px;line-height:1.55;color:var(--muted);
-    overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  .c-name{font-size:15px;font-weight:600;line-height:1.35;margin-bottom:9px;letter-spacing:.2px}
+  .c-meta{display:flex;gap:14px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;margin-bottom:8px}
+  .c-meta b{color:#3d3830;font-weight:600}
+  .c-cat{
+    font-size:11.5px;color:#8a8376;
+    border-top:1px dashed #ebe6dc;padding-top:7px;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
   }
 
-  @keyframes rise{
-    from{opacity:0;transform:translateY(14px)}
-    to{opacity:1;transform:none}
+  /* 卡片底部动作 */
+  .c-foot{
+    display:flex;justify-content:flex-end;align-items:center;gap:14px;
+    margin-top:8px;min-height:22px;
   }
-
-  /* ---------- Empty ---------- */
-  .empty{
-    grid-column:1/-1;text-align:center;padding:70px 0;color:var(--muted);
+  .c-link{
+    font-size:11.5px;opacity:.75;
+    display:inline-flex;align-items:center;gap:3px;transition:.15s;
+    cursor:pointer;
   }
-  .empty .big{font-size:38px;margin-bottom:14px;opacity:.5}
-  .empty p{font-size:14px}
-
-  /* ---------- Footer ---------- */
-  footer{
-    max-width:1240px;margin:64px auto 0;
-    padding-top:26px;border-top:1px solid rgba(255,255,255,.07);
-    text-align:center;font-size:12.5px;color:#5f6a80;line-height:1.9;
+  .card:hover .c-link{opacity:1}
+  .c-link:hover{text-decoration:underline}
+  .c-link-web{color:var(--accent)}
+  .c-link-ep{color:var(--ok)}
+  .c-actions{display:flex;gap:6px}
+  .mini{
+    padding:3px 11px;border-radius:12px;font-size:11.5px;cursor:pointer;
+    border:1px solid #e0d9cc;background:#fff;color:#6b6459;transition:.15s;
   }
-  footer a{color:#8b7f88;text-decoration:none;border-bottom:1px dashed rgba(139,127,136,.4)}
-  footer a:hover{color:var(--accent);border-color:var(--accent)}
+  .mini:hover{background:#f6f2ea;border-color:#cdc3b1}
+  .mini.del{color:#a6321f;border-color:#e8cfc9}
+  .mini.del:hover{background:#fdeceb}
 
-  @media (max-width:520px){
-    body{padding:0 16px 50px}
-    header{padding-top:48px}
-    .grid{grid-template-columns:1fr;margin-top:28px}
+  /* ---------- 弹窗 ---------- */
+  .modal{
+    display:none;position:fixed;inset:0;z-index:100;
+    background:rgba(30,26,20,.5);backdrop-filter:blur(3px);
+    align-items:center;justify-content:center;padding:20px;
+  }
+  .modal.show{display:flex}
+  .mbox{
+    background:#fff;border-radius:14px;padding:26px 28px;
+    width:100%;max-width:380px;
+    box-shadow:0 20px 60px rgba(0,0,0,.28);
+    animation:pop .18s ease-out;
+  }
+  .mbox.wide{max-width:480px}
+  @keyframes pop{from{transform:translateY(12px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+  .mbox h3{font-size:17px;margin-bottom:6px;letter-spacing:.5px}
+  .mbox .desc{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+  .mbox input,.mbox textarea{
+    width:100%;padding:10px 13px;font-size:14px;
+    border:1px solid var(--line);border-radius:9px;outline:none;
+    background:#fbfaf7;color:var(--ink);transition:.16s;
+    font-family:inherit;
+  }
+  .mbox input:focus,.mbox textarea:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px var(--accent-soft)}
+  .mbox .err{font-size:12px;color:#c0392b;margin-top:10px;min-height:16px}
+  .mact{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+  .mact button{
+    padding:8px 20px;border-radius:20px;font-size:13.5px;cursor:pointer;
+    border:1px solid var(--line);background:#fff;color:#5d564b;transition:.16s;
+  }
+  .mact button:hover{background:#f6f2ea}
+  .mact button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .mact button.primary:hover{background:#8d2919}
+
+  /* 表单 */
+  .form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .form label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted)}
+  .form label.full{grid-column:1 / -1}
+  .form input{font-size:13.5px;padding:8px 11px}
+
+  /* ---------- toast ---------- */
+  #toast{
+    position:fixed;left:50%;bottom:36px;transform:translate(-50%,16px);
+    background:#2b2620;color:#f5f3ee;padding:10px 22px;border-radius:22px;
+    font-size:13px;letter-spacing:.4px;opacity:0;pointer-events:none;
+    transition:.25s;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.25);
+  }
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+
+  /* ---------- 回到顶部 ---------- */
+  #top{
+    position:fixed;right:26px;bottom:26px;width:42px;height:42px;
+    border-radius:50%;background:var(--ink);color:#fff;border:none;
+    font-size:16px;cursor:pointer;opacity:0;pointer-events:none;
+    transition:.25s;box-shadow:0 4px 14px rgba(0,0,0,.2);z-index:40;
+  }
+  #top.show{opacity:1;pointer-events:auto}
+  #top:hover{background:var(--accent)}
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:900px){
+    .layout{grid-template-columns:1fr;gap:0}
+    aside{
+      position:static;max-height:none;overflow:visible;
+      border-right:none;border-bottom:1px solid var(--line);
+      margin-bottom:24px;padding:14px 0;
+      display:flex;gap:8px;overflow-x:auto;flex-wrap:nowrap;
+    }
+    aside h2{display:none}
+    aside a{
+      border-left:none;border:1px solid var(--line);border-radius:20px;
+      padding:5px 12px;white-space:nowrap;background:#fff;font-size:13px;flex-shrink:0;
+    }
+    aside a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    aside a.active .n{color:#f7d9cf}
+    header h1{font-size:22px}
+    .grid{grid-template-columns:1fr}
+    .form{grid-template-columns:1fr}
+    .tb{gap:10px}
+    #hint{display:none}
+    #modeBtn{padding:8px 14px;font-size:12.5px}
   }
 </style>
 </head>
 <body>
 
-<a class="back-home" href="https://mydjjm.cn/" aria-label="返回杜绝加密主页">← 返回主页</a>
-
 <header>
-  <div class="badge">PaperNav · 报纸索引</div>
-  <h1>报纸导航</h1>
-  <p class="sub">中外主流报纸刊物精选 · <b>官方站点直达</b> · 不转载、不存储</p>
+  <div class="hd">
+    <div>
+      <h1>中国报纸名录</h1>
+      <p class="sub">按发报刊省局分类 · 共 <b id="total">1,233</b> 种报纸 · <b id="rcount">31</b> 个地区</p>
+    </div>
+  </div>
 </header>
 
-<nav class="tabs" id="tabs"></nav>
+<div class="toolbar">
+  <div class="tb">
+    <input id="q" type="search" placeholder="搜索报刊名称 / 邮发代号 / 分类…">
+    <span id="hint">支持模糊匹配</span>
+    <!-- 模式切换按钮：固定在工具栏右上角，与“支持模糊匹配”同一水平线，sticky 保证滚屏不消失 -->
+    <button id="modeBtn" class="">🔒 进入编辑模式</button>
+  </div>
+</div>
 
-<main class="grid" id="grid"></main>
+<div id="editbar" class="">
+  <div class="inner">
+    <span>✎ <b>编辑模式已开启</b> —— 点击卡片可修改，标题右上角可新增</span>
+    <span class="sp"></span>
+    <button id="importBtn" class="warn">⬇ 导入数据</button>
+    <button id="exportBtn" class="warn">⬆ 导出数据</button>
+    <button id="exportHtmlBtn" class="html">⬇ 导出HTML</button>
+    <button id="exitBtn">退出编辑</button>
+  </div>
+</div>
 
-<footer>
-  <div>所有链接均指向各媒体的官方网站，本站不转载、不存储任何新闻内容。</div>
-  <div><a href="https://mydjjm.cn/">← 返回杜绝加密主页</a></div>
-  <div>© <span id="year">2026</span> PaperNav</div>
-</footer>
+<div class="wrap">
+  <div class="layout">
+    <aside id="nav"><h2>地区导航</h2></aside>
+    <main id="app"></main>
+  </div>
+</div>
+
+<button id="top" title="回到顶部" class="">↑</button>
+<div id="toast" class="">编辑模式已开启</div>
+
+<!-- 密码弹窗 -->
+<div class="modal" id="pwdModal">
+  <div class="mbox">
+    <h3>管理员验证</h3>
+    <p class="desc">请输入编辑模式密码后继续</p>
+    <input type="password" id="pwdInput" placeholder="输入密码" autocomplete="off">
+    <p class="err" id="pwdErr"></p>
+    <div class="mact">
+      <button id="pwdCancel">取消</button>
+      <button class="primary" id="pwdOk">确认</button>
+    </div>
+  </div>
+</div>
+
+<!-- 编辑弹窗 -->
+<div class="modal" id="editModal">
+  <div class="mbox wide">
+    <h3 id="emTitle">编辑报刊</h3>
+    <p class="desc" id="emDesc">归属地区：天津市</p>
+    <div class="form">
+      <label class="full">报刊名称<input id="f_name" maxlength="80"></label>
+      <label>邮发代号<input id="f_code" maxlength="20"></label>
+      <label>刊期<input id="f_period" maxlength="20"></label>
+      <label>单价（元）<input id="f_price" maxlength="12"></label>
+      <label>年价（元）<input id="f_year" maxlength="12"></label>
+      <label class="full">产品分类<input id="f_cat" maxlength="60"></label>
+      <label class="full">官网链接<input id="f_url" placeholder="https://…（留空则自动搜索官网）"></label>
+      <label class="full">数字报链接<input id="f_epaper" placeholder="https://…（留空则自动搜索数字报）"></label>
+    </div>
+    <p class="err" id="emErr"></p>
+    <div class="mact">
+      <button id="emCancel">取消</button>
+      <button class="primary" id="emSave">保存</button>
+    </div>
+  </div>
+</div>
 
 <script>
-/* ================= 数据 ================= */
-/* en: true 表示英文站点，用于标识 */
-const SITES = [
-  /* ---------------- 党政大报 ---------------- */
-  { name:'人民日报', cn:'',   cat:'党政大报', color:'#c9242b', icon:'人', url:'http://www.people.com.cn',            desc:'中共中央机关报，政策与时政权威解读', kw:'中央 机关报 政策' },
-  { name:'光明日报', cn:'',   cat:'党政大报', color:'#b8232f', icon:'光', url:'https://www.gmw.cn',                  desc:'知识分子与思想文化领域大报', kw:'文化 思想 学术' },
-  { name:'经济日报', cn:'',   cat:'党政大报', color:'#c0392b', icon:'经', url:'http://www.ce.cn',                   desc:'国务院主办，宏观经济与产业政策', kw:'经济 政策 产业' },
-  { name:'解放军报', cn:'',   cat:'党政大报', color:'#1f4e9c', icon:'军', url:'http://www.81.cn',                  desc:'中央军委机关报，国防与军事', kw:'军队 国防 军事' },
-  { name:'学习时报', cn:'',   cat:'党政大报', color:'#8c1c13', icon:'学', url:'https://www.studytimes.cn',          desc:'中央党校主办，理论与干部读物', kw:'理论 党校 干部' },
-  { name:'法治日报', cn:'',   cat:'党政大报', color:'#2f5fa8', icon:'法', url:'http://www.legaldaily.com.cn',       desc:'政法领域中央大报，法治建设报道', kw:'法律 政法 法治' },
-  { name:'工人日报', cn:'',   cat:'党政大报', color:'#d23c22', icon:'工', url:'http://www.workercn.cn',            desc:'全国总工会主办，劳动者权益视角', kw:'工会 劳动者 职场' },
-  { name:'中国青年报', cn:'', cat:'党政大报', color:'#1d6fb8', icon:'青', url:'https://www.cyol.com',              desc:'共青团中央机关报，青年与冰点特稿', kw:'青年 冰点 特稿' },
+/* =========================================================================
+   数据格式：[报刊名称, 邮发代号, 刊期, 订阅单价(元), 年价(元), 产品分类, 官网链接?, 数字报链接?]
+   后两个字段可选，用于承载编辑后的链接数据
+   ========================================================================= */
 
-  /* ---------------- 都市晚报 ---------------- */
-  { name:'北京晚报', cn:'',   cat:'都市晚报', color:'#d7262e', icon:'京', url:'https://bjwb.bjd.com.cn',            desc:'北京日报社旗下，古都市井与民生', kw:'北京 民生 市井' },
-  { name:'新民晚报', cn:'',   cat:'都市晚报', color:'#c8102e', icon:'新', url:'https://www.xinmin.cn',              desc:'上海老牌晚报，海派都市生活', kw:'上海 海派 都市' },
-  { name:'羊城晚报', cn:'',   cat:'都市晚报', color:'#e2231a', icon:'羊', url:'https://www.ycwb.com',              desc:'广州岭南风格，华南民生与时评', kw:'广州 岭南 华南' },
-  { name:'今晚报',   cn:'',   cat:'都市晚报', color:'#b8232f', icon:'今', url:'https://www.jwb.com.cn',            desc:'天津晚报，津味市井与文化', kw:'天津 津味 市井' },
-  { name:'扬子晚报', cn:'',   cat:'都市晚报', color:'#c0392b', icon:'扬', url:'http://www.yangtse.com',            desc:'江苏发行量最大晚报，长三角视角', kw:'江苏 南京 长三角' },
-  { name:'钱江晚报', cn:'',   cat:'都市晚报', color:'#1f7a5c', icon:'钱', url:'https://qjwb.thehour.cn',           desc:'浙江日报旗下，杭州与浙江民生', kw:'浙江 杭州 民生' },
-  { name:'楚天都市报', cn:'', cat:'都市晚报', color:'#e8531f', icon:'楚', url:'https://ctdsb.cnhubei.com',          desc:'湖北门户都市报，华中民生', kw:'湖北 武汉 华中' },
-  { name:'南方都市报', cn:'南都', cat:'都市晚报', color:'#e2231a', icon:'南', url:'https://www.oeeee.com',         desc:'深度调查与舆论监督见长', kw:'调查 社会 监督' },
-
-  /* ---------------- 财经证券 ---------------- */
-  { name:'中国证券报', cn:'中证报', cat:'财经证券', color:'#c9242b', icon:'中', url:'https://www.cs.com.cn',        desc:'证监会指定信披媒体，股市权威', kw:'股票 信披 证券' },
-  { name:'上海证券报', cn:'上证报', cat:'财经证券', color:'#1d6fb8', icon:'上', url:'https://www.cnstock.com',     desc:'证监会指定信披媒体，上证所背景', kw:'股票 信披 上证' },
-  { name:'证券时报', cn:'',   cat:'财经证券', color:'#1f4e9c', icon:'证', url:'https://www.stcn.com',              desc:'资本市场与上市公司深度报道', kw:'证券 上市 公司' },
-  { name:'证券日报', cn:'',   cat:'财经证券', color:'#2f5fa8', icon:'日', url:'http://www.zqrb.cn',               desc:'资本市场政策与监管动向', kw:'证券 监管 政策' },
-  { name:'中国经营报', cn:'', cat:'财经证券', color:'#b03a2e', icon:'经', url:'https://www.cb.com.cn',             desc:'老牌财经周报，商业案例与趋势', kw:'商业 周报 案例' },
-  { name:'第一财经日报', cn:'', cat:'财经证券', color:'#d94f2b', icon:'第', url:'https://www.yicai.com',            desc:'上海第一财经，宏观与公司新闻', kw:'宏观 公司 财经' },
-  { name:'21世纪经济报道', cn:'21经济', cat:'财经证券', color:'#e07b39', icon:'21', url:'https://www.21jingji.com', desc:'产业与区域经济分析', kw:'产业 经济 区域' },
-  { name:'经济观察报', cn:'', cat:'财经证券', color:'#8e6cd8', icon:'观', url:'https://www.eeo.com.cn',             desc:'商业评论与深度产业观察', kw:'商业 评论 观察' },
-
-  /* ---------------- 文摘周刊 ---------------- */
-  { name:'参考消息', cn:'',   cat:'文摘周刊', color:'#c8102e', icon:'参', url:'https://www.cankaoxiaoxi.com',      desc:'新华社主办，外媒报道中文译介', kw:'外媒 译介 国际' },
-  { name:'环球时报', cn:'',   cat:'文摘周刊', color:'#d2001f', icon:'环', url:'https://www.huanqiu.com',            desc:'国际时政与民族视角评论', kw:'国际 时政 评论' },
-  { name:'南方周末', cn:'',   cat:'文摘周刊', color:'#c9222b', icon:'周', url:'https://www.infzm.com',              desc:'老牌深度周报，特稿与年度策划', kw:'特稿 深度 周报' },
-  { name:'瞭望',     cn:'',   cat:'文摘周刊', color:'#b8232f', icon:'瞭', url:'http://www.lwgcw.com',              desc:'新华社主办时政新闻周刊', kw:'时政 周刊 新华社' },
-  { name:'半月谈',   cn:'',   cat:'文摘周刊', color:'#8c1c13', icon:'半', url:'http://www.banyuetan.org',           desc:'中宣部委托新华社主办通俗刊物', kw:'通俗 政策 基层' },
-  { name:'中国新闻周刊', cn:'', cat:'文摘周刊', color:'#d13b3b', icon:'新', url:'https://www.inewsweek.cn',         desc:'时政社会深度报道与专题策划', kw:'时政 专题 社会' },
-  { name:'三联生活周刊', cn:'', cat:'文摘周刊', color:'#e84c3d', icon:'三', url:'https://www.lifeweek.com.cn',     desc:'文化、社会与生活方式长文', kw:'文化 生活 长文' },
-  { name:'瞭望东方周刊', cn:'东方', cat:'文摘周刊', color:'#1f4e9c', icon:'东', url:'http://www.dfweekly.com',     desc:'新华社旗下，城市与财经观察', kw:'城市 财经 观察' },
-
-  /* ---------------- 地方党报 ---------------- */
-  { name:'解放日报', cn:'',   cat:'地方党报', color:'#c9242b', icon:'解', url:'https://www.jfdaily.com',            desc:'上海市委机关报，长三角权威', kw:'上海 市委 长三角' },
-  { name:'南方日报', cn:'',   cat:'地方党报', color:'#c0392b', icon:'南', url:'http://www.nfdaily.cn',              desc:'广东省委机关报，华南政经', kw:'广东 省委 华南' },
-  { name:'广州日报', cn:'',   cat:'地方党报', color:'#d7262e', icon:'广', url:'https://gzdaily.dayoo.com',         desc:'广州市委机关报，华南都市政经', kw:'广州 市委 都市' },
-  { name:'北京日报', cn:'',   cat:'地方党报', color:'#b8232f', icon:'北', url:'https://bjd.bjd.com.cn',            desc:'北京市委机关报，首都政经', kw:'北京 市委 首都' },
-  { name:'天津日报', cn:'',   cat:'地方党报', color:'#1f4e9c', icon:'津', url:'https://epaper.tianjinwe.com',      desc:'天津市委机关报，京津冀视角', kw:'天津 市委 京津冀' },
-  { name:'新华日报', cn:'',   cat:'地方党报', color:'#8c1c13', icon:'华', url:'https://xh.xhby.net',               desc:'江苏省委机关报，历史悠久', kw:'江苏 省委 历史' },
-
-  /* ---------------- 国际大报 ---------------- */
-  { name:'纽约时报', cn:'NYT', cat:'国际大报', color:'#5b5b5b', icon:'N', url:'https://www.nytimes.com', en:true,    desc:'美国旗舰大报，国际时政与文化', kw:'美国 时政 文化' },
-  { name:'华尔街日报', cn:'WSJ', cat:'国际大报', color:'#1a1a1a', icon:'W', url:'https://www.wsj.com', en:true,    desc:'全球财经与商业权威大报', kw:'财经 商业 全球' },
-  { name:'金融时报', cn:'FT',  cat:'国际大报', color:'#fceea1', icon:'F', url:'https://www.ft.com', en:true,       desc:'英国伦敦，全球金融与政策', kw:'金融 伦敦 政策' },
-  { name:'卫报',     cn:'Guardian', cat:'国际大报', color:'#0b5aa5', icon:'G', url:'https://www.theguardian.com', en:true, desc:'英国左翼大报，国际调查', kw:'英国 调查 评论' },
-  { name:'每日电讯报', cn:'Telegraph', cat:'国际大报', color:'#c41e3a', icon:'T', url:'https://www.telegraph.co.uk', en:true, desc:'英国保守派大报，时政评论', kw:'英国 时政 评论' },
-  { name:'朝日新闻', cn:'',   cat:'国际大报', color:'#e60012', icon:'朝', url:'https://www.asahi.com',             desc:'日本三大报之一，稳健左派', kw:'日本 报纸 左派' },
-  { name:'读卖新闻', cn:'',   cat:'国际大报', color:'#c9242b', icon:'读', url:'https://www.yomiuri.co.jp',          desc:'日本发行量最大报，保守派', kw:'日本 报纸 保守' },
-  { name:'经济学人', cn:'The Economist', cat:'国际大报', color:'#c8102e', icon:'E', url:'https://www.economist.com', en:true, desc:'英国深度周刊，全球政经视角', kw:'周刊 政经 全球' }
+/* ===DATA_START=== */
+const DATA = [
+["北京市",[
+["中国新闻","1-85","日报","2","456","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["工人日报","1-5","日报","1.12","352","老年、妇女、青年、工会","http://www.workercn.cn/","http://www.workercn.cn/"],
+["中国妇女报（含手机客户端）","1-7","日报","1.5","396","老年、妇女、青年、工会","http://www.cnwomen.com.cn/","http://www.cnwomen.com.cn/"],
+["中国计算机报（含手机客户端）","1-132","周报","10","519.6","电子，信息、IT","",""],
+["中国电子报（含手机客户端）","1-29","周2报","4.5","420","电子，信息、IT","",""],
+["通信产业报（含手机客户端）","1-145","周报","10","519.6","电子，信息、IT","",""],
+["健康报（含手机客户端）","1-20","周5报","1.87","456","医药、卫生、保健","http://www.jkb.com.cn/","http://www.jkb.com.cn/"],
+["金融时报（含手机报）","1-124","周5报","2","456","财务、会计、财政、金融","https://www.financialnews.com.cn/","https://www.financialnews.com.cn/"],
+["中国红十字报（含手机客户端）","1-152","周2报","1.5","153","医药、卫生、保健","https://www.redcross.org.cn/","https://www.redcross.org.cn/"],
+["中国旅游报","1-40","周5报","1.43","360","广播电视、新闻出版","",""],
+["经济日报","1-68","日报","1","365","中央、省、直辖市、自治区级中共机关报","http://www.ce.cn/","http://paper.ce.cn/"],
+["中国贸易报","1-79","周报","3.6","180","贸易、经济、商业、管理","",""],
+["中国食品报","1-81","周5报","1.15","288","综合类","",""],
+["中国医学论坛报","81-2","周报","3","150","医药、卫生、保健","",""],
+["中国船舶报","1-196","周2报","2.8","268.8","交通、铁道、航空、邮政","",""],
+["中国人口报（含手机客户端）","1-60","周报","7.2","360","医药、卫生、保健","",""],
+["中国社会报","1-116","周5报","1.48","368","劳动、人事及其他行业管理","http://www.mca.gov.cn/","http://www.mca.gov.cn/"],
+["中国劳动保障报","1-106","周4报","1.3","260","劳动、人事及其他行业管理","http://www.clssn.com/","http://www.clssn.com/"],
+["中国花卉报","1-98","周报","6","294","农、林、牧、渔","",""],
+["中国航天报","1-183","周5报","1","261","工业、矿业及其他产业经济","",""],
+["光明日报","1-16","日报","1","360","中央、省、直辖市、自治区级中共机关报","https://www.gmw.cn/","https://epaper.gmw.cn/gmrb/"],
+["文摘报（赠送数字报）","1-4","周2报","2","198","综合类","",""],
+["中国企业报","1-128","周报","6","288","贸易、经济、商业、管理","",""],
+["中国老年报","1-133","周4报","1.5","300","老年、妇女、青年、工会","",""],
+["人民政协报（赠送手机客户端）","1-2","周6报","1.3","384","各级人大、政协、侨务、民族事务、民主党派机关报","http://www.rmzxb.com.cn/","http://www.rmzxb.com.cn/"],
+["中国化工报","1-44","周4报","1.5","282","工业、矿业及其他产业经济","",""],
+["中国教育报（含手机客户端）","1-10","日报","1.2","432","教育、教学类","http://www.jyb.cn/","http://paper.jyb.cn/"],
+["中国教育报学前教育周刊","81-10","周报","1.2","57.6","教育、教学类","",""],
+["中国石油报","1-78","周5报","0.72","187.2","综合类","",""],
+["中国建设报（含手机客户端）","1-77","周5报","1.5","360","劳动、人事及其他行业管理","http://www.chinajsb.cn/","http://www.chinajsb.cn/"],
+["中国绿色时报（含手机报）","1-122","周5报","1.6","388.8","农、林、牧、渔","http://www.greentimes.com/","http://www.greentimes.com/"],
+["中国电视报","1-21","周报","1","51","广播电视、新闻出版","",""],
+["中国邮政快递报","1-46","周5报","1.5","363","交通、铁道、航空、邮政","",""],
+["中国消费者报","1-107","周5报","1.2","290","综合类","",""],
+["经济参考报","1-31","周5报","1.5","360","贸易、经济、商业、管理","http://www.jjckb.cn/","http://jjckb.xinhuanet.com/"],
+["参考消息","1-38","日报","0.8","288","时政新闻","https://www.cankaoxiaoxi.com/","https://www.cankaoxiaoxi.com/"],
+["参考消息+","1-95","日报","1.1","388","时政新闻","",""],
+["参考消息（大字版）","1-67","日报","4","1200","时政新闻","",""],
+["团结报","1-27","周3报","0.82","128","各级人大、政协、侨务、民族事务、民主党派机关报","http://www.tuanjiewang.cn/","http://www.tuanjiewang.cn/"],
+["农民日报（含手机客户端）","1-39","周6报","1.35","420","农、林、牧、渔","http://www.farmer.com.cn/","http://www.farmer.com.cn/"],
+["中国汽车报","1-129","周报","7.8","390","工业、矿业及其他产业经济","",""],
+["消费日报(含手机报）","81-9","周5报","2","396","贸易、经济、商业、管理","",""],
+["中国工业报","1-34","周报","8","396","工业、矿业及其他产业经济","",""],
+["中国农机化导报","1-329","周报","2.5","120","农、林、牧、渔","",""],
+["中国青年报","1-9","日报","1.08","396","综合类","http://www.cyol.com/","http://zqb.cyol.com/"],
+["中国少年报","1-12","周报","2.5","130","婴幼儿、中小学生、少儿类","",""],
+["人民日报","1-1","日报","1.8","288","中央、省、直辖市、自治区级中共机关报","http://www.people.com.cn/","http://paper.people.com.cn/rmrb/"],
+["人民日报海外版","1-96","周6报","3","420","中央、省、直辖市、自治区级中共机关报","http://www.people.com.cn/","http://paper.people.com.cn/rmrbhwb/"],
+["讽刺与幽默","1-70","周报","2","96","家庭休闲、生活信息、文学文艺","",""],
+["中国能源报","1-6","周报","10","480","能源（含水利、电力、石化、煤炭、环保等）","http://www.cnenergynews.cn/","http://www.cnenergynews.cn/"],
+["中国冶金报（含手机报）","1-32","周4报","1.1","223.92","工业、矿业及其他产业经济","",""],
+["华夏时报","1-33","周报","6","300","贸易、经济、商业、管理","",""],
+["中国少年英语报（5-6年级版）","1-310","月报","12.5","150","婴幼儿、中小学生、少儿类","",""],
+["中国少年英语报（1-2年级版）","1-356","月报","12.5","150","婴幼儿、中小学生、少儿类","",""],
+["中国少年英语报（4年级版）","1-369","月报","12.5","150","婴幼儿、中小学生、少儿类","",""],
+["中国少年英语报（3年级版）","1-370","月报","12.5","150","婴幼儿、中小学生、少儿类","",""],
+["中国航空报","81-183","周2报","3","288","交通、铁道、航空、邮政","",""],
+["中国电力报（含手机客户端）","1-52","周5报","2","459","能源（含水利、电力、石化、煤炭、环保等）","http://www.cpnn.com.cn/","http://www.cpnn.com.cn/"],
+["语言文字报","1-278","周报","4","200","教育、教学类","",""],
+["中国摄影报","1-126","周2报","1.5","150","家庭休闲、生活信息、文学文艺","",""],
+["中国体育报","1-47","周5报","1.04","264","体育类","http://www.sport.gov.cn/","http://www.sport.gov.cn/"],
+["中国科学报","1-82","周5报","0.9","218","科技报","http://www.sciencenet.cn/","http://www.sciencenet.cn/"],
+["中国环境报","1-59","周5报","1.5","390","能源（含水利、电力、石化、煤炭、环保等）","http://www.cenews.com.cn/","http://www.cenews.com.cn/"],
+["中国煤炭报","1-53","周3报","1.9","276","能源（含水利、电力、石化、煤炭、环保等）","http://www.ccoalnews.com/","http://www.ccoalnews.com/"],
+["中国纺织报","1-112","周报","5.5","268","劳动、人事及其他行业管理","",""],
+["中国商报","1-18","周4报","1.5","294","贸易、经济、商业、管理","",""],
+["中国文化报（含手机客户端）","1-115","日报","1.05","360","劳动、人事及其他行业管理","",""],
+["人民公安报","1-71","日报","1.2","396","法制、纪检、监察、公安、武警、军队","",""],
+["人民公安报.交通安全周刊","1-147","周2报","0.9","90","法制、纪检、监察、公安、武警、军队","",""],
+["中国日报（英文版）","1-3","周6报","2","600","中央、省、直辖市、自治区级中共机关报","https://www.chinadaily.com.cn/",""],
+["文艺报","1-102","周3报","1.5","174","家庭休闲、生活信息、文学文艺","",""],
+["中国民航报","1-331","周4报","2.1","436","交通、铁道、航空、邮政","",""],
+["民主与法制时报","1-366","周4报","1","192","法制、纪检、监察、公安、武警、军队","",""],
+["中国渔业报","1-289","周报","2","108","农、林、牧、渔","",""],
+["中国矿业报（纸版含手机客户端）","1-185","周5报","1.55","380","工业、矿业及其他产业经济","",""],
+["北京日报","1-13","日报","1.5","540","中央、省、直辖市、自治区级中共机关报","https://www.bjd.com.cn/","https://www.bjd.com.cn/"],
+["北京青年报","1-86","周5报","2","480","老年、妇女、青年、工会","",""],
+["北京商报","1-110","周5报","1.48","360","贸易、经济、商业、管理","",""],
+["北京晚报","1-14","日报","1.5","480","都市报(含早报、晚报)","https://www.bjd.com.cn/","https://www.bjd.com.cn/"],
+["优惠.北京晚报","1-5063","日报","1.2","384","都市报(含早报、晚报)","",""],
+["音乐周报","1-25","周报","3","150","家庭休闲、生活信息、文学文艺","",""],
+["保健时报","1-219","周报","2.36","118","医药、卫生、保健","",""],
+["中国证券报周末版","81-175","周报","4","150","财务、会计、财政、金融","",""],
+["中国有色金属报（含手机客户端）","1-101","周3报","1.32","198","工业、矿业及其他产业经济","",""],
+["人民邮电","1-11","周4报","1.25","246.25","交通、铁道、航空、邮政","",""],
+["二十一世纪学生英文报.初一（英文版）","1-343","周报","3.2","160","教育、教学类","",""],
+["二十一世纪学生英文报.初二（英文版）","1-344","周报","3.2","160","教育、教学类","",""],
+["二十一世纪学生英文报.初三（英文版）","1-345","周报","3.2","160","教育、教学类","",""],
+["二十一世纪学生英文报.高一（英文版）","1-346","周报","3.2","160","教育、教学类","",""],
+["二十一世纪学生英文报.高二（英文版）","1-347","周报","3.2","160","教育、教学类","",""],
+["二十一世纪学生英文报.高三（英文版）","1-348","周报","3.2","160","教育、教学类","",""],
+["二十一世纪学生英文报.小学（英文版）","1-349","周报","3","120","教育、教学类","",""],
+["国际商报","1-30","周5报","2","450","贸易、经济、商业、管理","",""],
+["中国县域经济报","1-37","周2报","4","396","综合类","",""],
+["中国交通报（含手机数字报）","1-72","周5报","1.89","460","交通、铁道、航空、邮政","",""],
+["中国信息报","1-135","周5报","1.22","298","时政新闻","",""],
+["综艺报","1-108","半月报","20","480","综合类","",""],
+["学习时报","1-267","周3报","2.5","360","中央、省、直辖市、自治区级中共机关报","",""],
+["中国医药报","1-127","周3报","2.8","300","医药、卫生、保健","",""],
+["中国石化报","1-136","周5报","0.8","198","能源（含水利、电力、石化、煤炭、环保等）","",""],
+["法治周末","1-198","周报","6","300","法制、纪检、监察、公安、武警、军队","",""],
+["中国电影报","1-139","周报","3","150","家庭休闲、生活信息、文学文艺","",""],
+["中国经营报","1-76","周报","4.8","240","贸易、经济、商业、管理","https://www.cb.com.cn/","https://www.cb.com.cn/"],
+["中国房地产报","1-187","周报","5","240","贸易、经济、商业、管理","",""],
+["中国中医药报+手机客户端","1-140","周4报","1.83","348","医药、卫生、保健","",""],
+["农资导报","1-45","周2报","1.6","156","农、林、牧、渔","",""],
+["中国水利报（含手机客户端）","1-137","周5报","1.6","390","能源（含水利、电力、石化、煤炭、环保等）","",""],
+["中国气象报","1-141","周5报","1.1","278.4","劳动、人事及其他行业管理","",""],
+["中华读书报","1-201","周报","4.5","225","广播电视、新闻出版","",""],
+["中国知识产权报","1-158","周2报","2","192","贸易、经济、商业、管理","",""],
+["中国质量报（含手机数字报）","1-148","周5报","1.61","420","综合类","https://www.cqn.com.cn/","https://www.cqn.com.cn/"],
+["中华工商时报（含手机报）","1-146","周5报","2","488","贸易、经济、商业、管理","",""],
+["中国文物报（含手机数字报）","1-151","周3报","2","300","劳动、人事及其他行业管理","",""],
+["中国税务报","1-150","周4报","1.46","290","贸易、经济、商业、管理","","https://www.ctaxnews.net.cn/"],
+["中国纪检监察报","1-204","日报","0.95","336","法制、纪检、监察、公安、武警、军队","https://www.ccdi.gov.cn/","https://www.ccdi.gov.cn/"],
+["中国食品安全报","1-222","周3报","2","280","工业、矿业及其他产业经济","",""],
+["中国改革报","1-209","周4报","2","372","综合类","",""],
+["中国教师报","1-192","周报","4","180","教育、教学类","",""],
+["教育文摘周报（含手机客户端）","81-11","周报","5","260","文摘类","",""],
+["中学时事报","1-207","周报","2","100","教育、教学类","",""],
+["中国黄金报","1-157","周2报","2","192","工业、矿业及其他产业经济","",""],
+["中国畜牧兽医报","1-155","周报","3","141","农、林、牧、渔","",""],
+["中国财经报","1-153","周4报","2","336","贸易、经济、商业、管理","",""],
+["检察日报（含手机客户端）","1-154","日报","1.2","398","法制、纪检、监察、公安、武警、军队","https://www.spp.gov.cn/","https://www.spp.gov.cn/"],
+["中国民族报","1-236","周2报","3","288","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["人民法院报（含手机客户端）","1-174","日报","1.1","380","法制、纪检、监察、公安、武警、军队","https://www.chinacourt.org/","https://www.chinacourt.org/"],
+["法制文萃报","1-163","周报","6","300","文摘类","",""],
+["中国经济时报（含手机数字报）","1-218","周4报","2","360","贸易、经济、商业、管理","http://www.cet.com.cn/","http://www.cet.com.cn/"],
+["中国证券报","1-175","周6报","2.4","600","财务、会计、财政、金融","https://www.cs.com.cn/","https://www.cs.com.cn/"],
+["新华每日电讯","1-19","日报","0.9","324","时政新闻","http://www.news.cn/","http://www.news.cn/mrdx/"],
+["环球时报","1-180","周6报","1.58","450","时政新闻","https://www.globaltimes.cn/",""],
+["健康时报","1-51","周2报","2.7","258","医药、卫生、保健","",""],
+["健康时报.老年文摘专刊","1-235","周2报","2.7","188.76","文摘类","",""],
+["机电商报","1-197","周报","3","114","工业、矿业及其他产业经济","",""],
+["劳动午报","1-376","周6报","1.15","336","老年、妇女、青年、工会","",""],
+["作家文摘（含手机客户端）","1-190","周2报","3","300","文摘类","",""],
+["中国铁道建筑报","1-57","周报","1.5","78","交通、铁道、航空、邮政","",""],
+["精品购物指南","1-80","周报","10","510","家庭休闲、生活信息、文学文艺","",""],
+["音乐生活报","1-191","周报","2.8","140","家庭休闲、生活信息、文学文艺","",""],
+["首都建设报","1-328","周5报","1.1","259","工业、矿业及其他产业经济","",""],
+["中国经济导报","1-184","周3报","2","320","贸易、经济、商业、管理","",""],
+["中国档案报（含手机客户端）","1-221","周3报","1.5","228","劳动、人事及其他行业管理","",""],
+["证券日报","1-286","周6报","3","762","贸易、经济、商业、管理","http://www.zqrb.cn/","http://www.zqrb.cn/"],
+["中国高新技术产业导报（含手机报）","1-206","周报","5","240","科技报","",""],
+["中国电视报（北京版）","1-15","周报","1","51","广播电视、新闻出版","",""],
+["中国艺术报","1-220","周3报","1","144","老年、妇女、青年、工会","",""],
+["中国组织人事报","1-223","周5报","1.3","252","劳动、人事及其他行业管理","","https://www.zuzhirenshi.com/"],
+["中华建筑报","1-239","周报","8","396","工业、矿业及其他产业经济","",""],
+["中华合作时报","1-230","周2报","3.6","360","农、林、牧、渔","",""],
+["中国国门时报","1-232","周5报","1.45","350","劳动、人事及其他行业管理","",""],
+["中国审计报（含手机客户端）","1-256","周3报","2.1","300","劳动、人事及其他行业管理","",""],
+["医药养生保健报(含手机客户端)","1-257","日报","10.91","3980","医药、卫生、保健","",""],
+["现代教育报（含手机客户端）","1-258","周报","5.4","270","教育、教学类","",""],
+["慈善公益报","1-194","周2报","4","360","综合类","",""],
+["国家电网报","1-338","周5报","1.35","330.75","能源（含水利、电力、石化、煤炭、环保等）","",""],
+["生命时报","1-109","周2报","3","288","医药、卫生、保健","",""],
+["中国会计报","1-358","周报","6","252","财务、会计、财政、金融","",""],
+["环球时报(英文版)/GLOBAL TIMES","1-181","周6报","1.85","528","时政新闻","",""],
+["政府采购信息报（含手机报客户端）","1-303","周报","6","266","财务、会计、财政、金融","",""],
+["中国社会科学报","1-287","周5报","1.2","296","综合类","",""],
+["人民日报（藏文版）","1-83","日报","0.4","144","中央、省、直辖市、自治区级中共机关报","",""],
+["中国政府采购报","1-388","周2报","3","276","贸易、经济、商业、管理","",""],
+["企业观察报","1-160","周报","6","288","贸易、经济、商业、管理","",""],
+["中国信息化周报","1-170","周报","10","420","电子，信息、IT","","http://www.ciweek.com/"],
+["中国出版传媒商报","1-217","周报","6","298.8","广播电视、新闻出版","",""],
+["中国书法报","1-237","周报","4","200","家庭休闲、生活信息、文学文艺","",""],
+["中国家庭报","1-172","周2报","4","384","家庭休闲、生活信息、文学文艺","",""],
+["中国禁毒报","1-119","周报","3.75","180","法制、纪检、监察、公安、武警、军队","",""],
+["中国美术报","1-171","周报","6","258","家庭休闲、生活信息、文学文艺","",""],
+["中国新闻出版广电报（含手机客户端）","1-50","周5报","1.37","328.8","广播电视、新闻出版","https://www.chinaxwcb.com/","https://www.chinaxwcb.com/"],
+["信息支援报（禁止窗口订阅）","1-397","周报","0.5","25.5","法制、纪检、监察、公安、武警、军队","",""],
+["科普时报","1-178","周报","3","150","科技报","http://www.kepu.gov.cn/","http://www.kepu.gov.cn/"],
+["学生健康报","1-24","周报","1.92","96","医药、卫生、保健","",""],
+["中国应急管理报","1-99","周6报","1.4","432","劳动、人事及其他行业管理","",""],
+["中国自然资源报（含手机客户端）","1-22","周5报","1.9","456","劳动、人事及其他行业管理","",""],
+["中国市场监管报（含手机客户端）","1-92","周5报","2","420","法制、纪检、监察、公安、武警、军队","",""],
+["中国移民管理报","1-307","周2报","0.8","83.2","法制、纪检、监察、公安、武警、军队","",""],
+["中国银行保险报（含手机报）","1-212","周5报","1.8","426","财务、会计、财政、金融","",""],
+["石油金秋报","81-78","周报","0.4","20.4","综合类","",""],
+["老年健康报","1-159","周报","1.92","96","医药、卫生、保健","",""],
+["法治日报（含手机客户端）","1-41","日报","1.3","480","法制、纪检、监察、公安、武警、军队","http://www.legaldaily.com.cn/","http://www.legaldaily.com.cn/"],
+["法治日报社区版","1-399","周报","1.2","60","法制、纪检、监察、公安、武警、军队","",""],
+["科技日报（含手机客户端）","1-97","周5报","1.52","396","劳动、人事及其他行业管理","",""],
+["中国社会工作报","1-117","周5报","2.1","386","时政新闻","",""],
+["语文导报.一年级","1-389","旬报","4","156","教辅类","",""],
+["语文导报.二年级","1-390","旬报","4","156","教辅类","",""],
+["语文导报.三年级","1-391","旬报","4","156","教辅类","",""],
+["语文导报.四年级","1-394","旬报","4","156","教辅类","",""],
+["语文导报.五年级","1-392","旬报","4","156","教辅类","",""],
+["语文导报.六年级","1-396","旬报","4","156","教辅类","",""],
+["语文导报.初中版","1-393","旬报","4","156","教辅类","",""],
+["语文导报.高中","1-395","旬报","4","156","教辅类","",""],
+["大公报","1-3014","日报","11","3927","时政新闻","",""],
+["香港文汇报","1-3015","日报","11","3927","时政新闻","",""],
+["世界金属导报","1-241","周报","6","288","工业、矿业及其他产业经济","",""],
+["医师报（含手机报客户端）","1-351","周报","6","288","医药、卫生、保健","",""],
+["长寿养生报","1-48","周2报","3","300","医药、卫生、保健","",""],
+["长寿养生报.退休周刊","1-400","周报","4","200","医药、卫生、保健","",""],
+["中国三峡工程报","1-202","周报","0.6","38.4","能源（含水利、电力、石化、煤炭、环保等）","",""],
+["英语学习辅导报.七年级.新目标综合","1-316","周报","3.89","201.96","教育、教学类","",""],
+["英语学习辅导报.八年级.新目标综合","1-317","周报","3.89","201.96","教育、教学类","",""],
+["英语学习辅导报.九年级.新目标综合","1-318","周报","3.89","201.96","教育、教学类","",""],
+["英语学习辅导报高一综合（课标全国）","1-319","周报","3.89","201.96","教育、教学类","",""],
+["英语学习辅导报.高二综合（课标全国）","1-320","周报","3.89","201.96","教育、教学类","",""],
+["英语学习辅导报.高三综合（课标全国）","1-321","周报","3.89","201.96","教育、教学类","",""],
+["英语学习辅导报.教研版","1-324","周报","5.07","264","教育、教学类","",""],
+["解放军报","1-26","日报","0.69","249.6","中央、省、直辖市、自治区级中共机关报","http://www.81.cn/","http://www.81.cn/"],
+["中国国防报","1-188","周5报","0.57","150","法制、纪检、监察、公安、武警、军队","",""]
+]],
+["天津市",[
+["今晚报","5-4","日报","1.3","428","都市报(含早报、晚报)","http://www.jwb.com.cn/","https://jinwanbaoepaper.enorth.com.cn/jwb"],
+["红领巾报","5-48","周报","2.5","130","婴幼儿、中小学生、少儿类","",""],
+["健康周报","5-13","周报","1","50","医药、卫生、保健","",""],
+["中国书画报","5-10","周报","4","200","家庭休闲、生活信息、文学文艺","",""],
+["中老年时报","5-24","日报","0.8","288","老年、妇女、青年、工会","","https://jinwanbaoepaper.enorth.com.cn/zlnsb"],
+["书报文摘（朋友）","5-17","周报","1.5","75","文摘类","",""],
+["滨城时报","5-6","日报","1.5","438","时政新闻","",""]
+]],
+["河北省",[
+["河北日报","17-1","日报","1.5","536","中央、省、直辖市、自治区级中共机关报","http://hbrb.hebnews.cn/","http://hbrb.hebnews.cn/"],
+["河北工人报","17-2","周6报","0.95","280","老年、妇女、青年、工会","",""],
+["承德日报","17-53","日报","2","534","地（市）、县级中共机关报","",""],
+["河北经济日报","17-4","周6报","2","528","时政新闻","",""],
+["河北青年报","17-124","周5报","1.5","246","都市报(含早报、晚报)","",""],
+["燕赵老年报","17-103","周3报","0.8","120","老年、妇女、青年、工会","",""],
+["现代物流报","17-67","周2报","3.9","360","工业、矿业及其他产业经济","",""],
+["石油管道报","17-96","周3报","0.5","25","能源（含水利、电力、石化、煤炭、环保等）","",""],
+["燕赵晚报","17-97","日报","1","336","都市报(含早报、晚报)","",""],
+["藏书报","17-102","周报","3","150","综合类","",""],
+["人物周报","17-57","周报","3","150","文摘类","",""],
+["少年素质教育报（教师版）","17-121","周报","2","104","教育、教学类","",""],
+["燕赵都市报","17-92","日报","1","360","都市报(含早报、晚报)","",""],
+["时代书画报","17-168","周报","6","300","家庭休闲、生活信息、文学文艺","",""],
+["医院管理论坛报","17-18","周3报","1.5","198","医药、卫生、保健","",""],
+["燕赵农村报","17-39","周3报","1.3","180","综合类","",""],
+["初中生周报（七年级）","17-99","周报","4","72","教育、教学类","",""],
+["初中生周报（八年级）","17-100","周报","4","68","教育、教学类","",""],
+["初中生周报（九年级）","17-101","周报","4","68","教育、教学类","",""],
+["语文周报（七年级）","17-89","周报","2.5","130","教辅类","",""],
+["语文周报（高一年级）","17-90","周报","2.5","130","教辅类","",""],
+["语文周报（八年级）","17-104","周报","2.5","130","教辅类","",""],
+["语文周报（中考）","17-105","周报","2.5","130","教辅类","",""],
+["语文周报（高二年级）","17-106","周报","2.5","130","教辅类","",""],
+["语文周报（高考）","17-107","周报","2.5","130","教辅类","",""]
+]],
+["山西省",[
+["山西日报","21-1","日报","2","528","中央、省、直辖市、自治区级中共机关报","http://epaper.sxrb.com/","http://epaper.sxrb.com/"],
+["山西农民报","21-11","周2报","2.15","198","农、林、牧、渔","",""],
+["山西工人报","21-10","日报","0.86","288","老年、妇女、青年、工会","",""],
+["山西工人报.星期天","21-25","周报","0.86","41.28","家庭休闲、生活信息、文学文艺","",""],
+["山西妇女报","21-31","周2报","2.5","258","老年、妇女、青年、工会","",""],
+["山西政协报","21-9","周2报","1.83","189.8","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["山西法治报","21-7","周5报","2","480","法制、纪检、监察、公安、武警、军队","",""],
+["山西经济日报","21-35","日报","2","498","综合类","",""],
+["山西科技报","21-17","周2报","3.8","380","科技报","",""],
+["健康生活报.科普版","21-16","周2报","1.2","120","医药、卫生、保健","",""],
+["科学导报","21-27","周2报","4.5","396","科技报","",""],
+["科学导报.文明山西","21-293","周报","8.25","396","科技报","",""],
+["科学导报.煤炭周刊","21-294","周报","9","396","能源（含水利、电力、石化、煤炭、环保等）","",""],
+["科学导报.生态山西","21-462","周报","8.5","396","科技报","",""],
+["市场信息报","21-13","周3报","4","480","电子，信息、IT","",""],
+["市场信息报.乡村振兴","21-36","周报","3","288","农、林、牧、渔","",""],
+["人民摄影报","21-2","周报","2.62","136","家庭休闲、生活信息、文学文艺","",""],
+["太谷报","21-56","周2报","1.85","180","地（市）、县级中共机关报","",""],
+["人民代表报","21-42","周3报","1.6","249.6","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["生活文摘报","21-60","周2报","1.91","198","文摘类","",""],
+["山西晚报","21-196","周5报","1.5","386","都市报(含早报、晚报)","",""],
+["德育报.现代德育与创新","21-33","周2报","1.85","185.04","教辅类","",""],
+["德育报.小学生金色童年版","21-38","周报","4","160","教辅类","",""],
+["德育报.中学生青春岁月版","21-39","周报","4","160","教辅类","",""],
+["德育报","21-85","周报","4","180","教辅类","",""],
+["德育报.家庭教育版","21-99","周报","4","160","教辅类","",""],
+["德育报.家庭教育版（中学）","21-100","周报","3.5","","教辅类","",""],
+["山西市场导报","21-61","周2报","4","398","贸易、经济、商业、管理","",""],
+["山西青年报","21-23","周5报","1.1","396","综合类","",""],
+["良友周报","21-6","周2报","1.91","198","文摘类","",""],
+["老友导报","21-173","周2报","0.96","86","老年、妇女、青年、工会","",""],
+["山西联通","21-4","周报","0.35","16.45","交通、铁道、航空、邮政","",""],
+["智慧生活报","21-87","周3报","2.8","396","都市报(含早报、晚报)","",""],
+["青少年科技创新报","21-466","周报","8.25","396","婴幼儿、中小学生、少儿类","",""],
+["作文周刊.一年级版","21-242","月报","7","84","教辅类","",""],
+["作文周刊.二年级版","21-243","月报","7","84","教辅类","",""],
+["作文周刊.三年级版","21-244","月报","7","84","教辅类","",""],
+["作文周刊.四年级版","21-245","月报","7","84","教辅类","",""],
+["作文周刊.五年级版","21-246","月报","7","84","教辅类","",""],
+["作文周刊.六年级版","21-247","月报","7","84","教辅类","",""],
+["作文周刊（七年级版）","21-537","周报","3","144","教辅类","",""],
+["作文周刊（七年级读写版）","21-538","周报","1.5","72","教辅类","",""],
+["作文周刊（八年级版）","21-539","周报","3","144","教辅类","",""],
+["作文周刊.八年级读写版","21-540","周报","1.5","72","教辅类","",""],
+["作文周刊.中考版","21-541","周报","3","144","教辅类","",""],
+["作文周刊（高一版）","21-542","周报","3","144","教辅类","",""],
+["作文周刊（高一读写版）","21-543","周报","1.5","72","教辅类","",""],
+["作文周刊.高二版","21-544","周报","3","144","教辅类","",""],
+["作文周刊（高二读写版）","21-545","周报","1.5","72","教辅类","",""],
+["作文周刊（高考版）","21-546","周报","3","144","教辅类","",""],
+["学英语五年级课标","21-115","周报","1.5","60","教辅类","",""],
+["学英语新课程外研高二版","21-122","周报","3","144","教辅类","",""],
+["学英语高一读写版","21-123","周报","1.5","72","教辅类","",""],
+["学英语新课程课标高二版","21-124","周报","3","144","教辅类","",""],
+["学英语高二读写版","21-133","周报","1.5","72","教辅类","",""],
+["学英语.教学研究","21-152","周报","2.6","135.2","教辅类","",""],
+["学英语.初级课标","21-153","周报","1.5","60","教辅类","",""],
+["学英语四年级课标","21-182","周报","1.5","60","教辅类","",""],
+["学英语.高考读写版","21-183","周报","1.5","72","教辅类","",""],
+["学英语新课程北师大高一版","21-185","周报","1.5","84","教辅类","",""],
+["学英语新课程北师大高二版","21-186","周报","1.5","84","教辅类","",""],
+["学英语新课程牛津高一版","21-190","周报","3","144","教辅类","",""],
+["学英语新课程牛津高二版","21-192","周报","3","144","教辅类","",""],
+["学英语新课程牛津高三版","21-194","周报","3","144","教辅类","",""],
+["学英语六年级课标","21-210","周报","1.5","60","教辅类","",""],
+["学英语牛津七年级版","21-213","周报","3","96","教辅类","",""],
+["学英语牛津八年级版","21-214","周报","3","96","教辅类","",""],
+["学英语人教七年级版","21-215","周报","3","96","教辅类","",""],
+["学英语人教八年级版","21-216","周报","3","96","教辅类","",""],
+["学英语新课程课标高一版","21-223","周报","3","144","教辅类","",""],
+["学英语新课程外研高一版","21-224","周报","3","144","教辅类","",""],
+["学英语牛津九年级版","21-291","周报","3","96","教辅类","",""],
+["学英语人教九年级版","21-292","周报","3","96","教辅类","",""],
+["学英语外研初级","21-831","周报","1.5","60","教辅类","",""],
+["学英语外研四年级","21-832","周报","1.5","60","教辅类","",""],
+["学英语外研五年级","21-833","周报","1.5","60","教辅类","",""],
+["学英语外研六年级","21-834","周报","1.5","60","教辅类","",""],
+["语文报.高中版","21-3","周报","2","96","教辅类","",""],
+["语文报.高考版大读写系列","21-12","周报","2","96","教辅类","",""],
+["语文报.中考版","21-14","周报","2","96","教辅类","",""],
+["语文报八年级版","21-15","周报","2","96","教辅类","",""],
+["语文报·小学版","21-40","周报","2","96","教辅类","",""],
+["语文报·初中版","21-41","周报","2","96","教辅类","",""],
+["语文报.二年级版","21-65","半月报","4","96","教辅类","",""],
+["语文报高中教研版","21-74","月报","8","96","教辅类","",""],
+["语文报初中教研版","21-75","月报","8","96","教辅类","",""],
+["语文报.小学教研版","21-76","月报","8","96","教辅类","",""],
+["语文报.四年级16版","21-79","半月报","2","24","教辅类","",""],
+["语文报.六年级16版","21-93","半月报","2","24","教辅类","",""],
+["语文报·七年级版","21-94","周报","2","96","教辅类","",""],
+["语文报·高一版统编版","21-170","周报","2","96","教辅类","",""],
+["语文报·高二版统编版","21-171","周报","2","96","教辅类","",""],
+["语文报.高一版深度读写版","21-274","周报","2","96","教辅类","",""],
+["语文报.高二版深度读写版","21-275","周报","2","96","教辅类","",""],
+["语文报.高一版月报","21-276","月报","10","120","教辅类","",""],
+["语文报.书法版","21-277","半月报","3","72","教辅类","",""],
+["语文报.青春阅读版","21-279","月报","12","144","教辅类","",""],
+["语文报.五年级32版","21-452","半月报","4","96","教辅类","",""],
+["语文报.六年级32版","21-453","半月报","4","96","教辅类","",""],
+["语文报高考版全考练系列","21-549","周报","2","48","教辅类","",""],
+["语文报.一年级版","21-551","半月报","4","96","教辅类","",""],
+["语文报.三年级16版","21-896","半月报","2","24","教辅类","",""],
+["语文报.五年级16版","21-898","半月报","2","24","教辅类","",""],
+["语文报.三年级32版","21-900","半月报","4","96","教辅类","",""],
+["语文报.四年级32版","21-901","半月报","4","96","教辅类","",""],
+["小学生拼音报","21-72","周报","1.75","84","教辅类","",""],
+["《小学生拼音报-读写中年级》","21-174","周报","1.75","84","教辅类","",""],
+["小学生拼音报.读写高年级","21-175","周报","1.75","84","教辅类","",""],
+["英语周报.义教版","21-53","周报","1.5","60","教辅类","",""],
+["英语周报.高中教师","21-54","周报","1.5","60","教辅类","",""],
+["英语周报.人教版七年级","21-105","周报","2.6","134","教辅类","",""],
+["英语周报.八年级人教版","21-106","周报","2.6","134","教辅类","",""],
+["英语周报.高一课标","21-108","周报","1","90","教辅类","",""],
+["英语周报.高二课标","21-109","周报","1","90","教辅类","",""],
+["英语周报.高考","21-110","周报","1","90","教辅类","",""],
+["英语周报.初中阅读七年级","21-840","周报","1.5","60","教辅类","",""],
+["英语周报.初中阅读八年级","21-841","周报","1.5","60","教辅类","",""],
+["英语周报.七年级外研","21-843","周报","2.8","142","教辅类","",""],
+["英语周报.八年级外研","21-844","周报","2.8","142","教辅类","",""],
+["英语周报.九年级外研","21-845","周报","2.8","142","教辅类","",""],
+["英语周报.高一课标综合","21-846","周报","2.6","165.2","教辅类","",""],
+["英语周报.高二课标综合","21-847","周报","2.6","165.2","教辅类","",""],
+["英语周报.高考.综合","21-848","周报","2.6","165.2","教辅类","",""],
+["英语周报.高一北师大综合","21-849","周报","2","134","教辅类","",""],
+["英语周报.高二北师大综合","21-850","周报","2","134","教辅类","",""],
+["英语周报.高一北师大","21-852","周报","1","90","教辅类","",""],
+["英语周报.高二北师大","21-853","周报","1","90","教辅类","",""],
+["英语周报.高一外研综合","21-855","周报","2.6","165.2","教辅类","",""],
+["英语周报.高二外研综合","21-856","周报","2.6","165.2","教辅类","",""],
+["英语周报.高一外研","21-858","周报","1","90","教辅类","",""],
+["英语周报.高二外研","21-859","周报","1","90","教辅类","",""],
+["学习方法报.幼教版","21-70","周报","1.3","52","教辅类","",""],
+["学习方法报.语文周刊.七年级","21-140","周报","1.5","72","教辅类","",""],
+["学习方法报.语文周刊八年级","21-141","周报","1.5","72","教辅类","",""],
+["学习方法报语文周刊.中考版","21-142","周报","1.5","72","教辅类","",""],
+["学习方法报数学周刊人教七年级","21-360","周报","1.5","72","教辅类","",""],
+["学习方法报.数学周刊北师大七年级","21-361","周报","1.5","72","教辅类","",""],
+["学习方法报.数学周刊人教八年级","21-362","周报","1.5","72","教辅类","",""],
+["学习方法报数学周刊北师大八年级","21-363","周报","1.5","72","教辅类","",""],
+["学习方法报数学周刊人教中考版","21-364","周报","1.5","72","教辅类","",""],
+["学习方法报数学周刊北师大中考版","21-365","周报","1.5","72","教辅类","",""],
+["学习方法报.生物周刊.人教七年级","21-368","周报","1.5","72","教辅类","",""],
+["学习方法报.地理周刊人教七年级","21-369","周报","1.5","72","教辅类","",""],
+["学习方法报.物理周刊人教八年级","21-372","周报","1.5","72","教辅类","",""],
+["学习方法报.物理周刊人教中考版","21-373","周报","1.5","72","教辅类","",""],
+["学习方法报.化学周刊人教中考版","21-374","周报","1.5","72","教辅类","",""],
+["学习方法报.时政周刊.中考版","21-381","周报","1.5","72","教辅类","",""],
+["学习方法报.教学研究（理）","21-456","周报","3","156","教辅类","",""],
+["学习方法报语文周刊.七年级单元新写作","21-457","周报","1.5","72","教辅类","",""],
+["学习方法报语文周刊读写拍档新高考版","21-458","周报","3.2","160","教辅类","",""],
+["学习方法报语文周刊.八年级单元新写作","21-459","周报","1.5","72","教辅类","",""],
+["《学习方法报》小学语文一年级","21-553","周报","1.5","60","教辅类","",""],
+["《学习方法报》小学语文.二年级","21-556","周报","1.5","60","教辅类","",""],
+["《学习方法报》小学语文三年级","21-557","周报","1.5","60","教辅类","",""],
+["《学习方法报》小学语文四年级","21-558","周报","1.5","60","教辅类","",""],
+["《学习方法报》小学语文五年级","21-559","周报","1.5","60","教辅类","",""],
+["《学习方法报》小学语文六年级","21-560","周报","1.5","60","教辅类","",""],
+["学习方法报语文周刊初中升格作文","21-561","周报","1.5","72","教辅类","",""],
+["学习方法报语文周刊初中美文","21-562","周报","1.5","","教辅类","",""],
+["学习方法报语文周刊读写拍档高中版","21-563","周报","3.2","160","教辅类","",""],
+["<学习方法报>小学数学人教一年级","21-925","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学人教二年级","21-926","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学人教三年级","21-927","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学人教四年级","21-928","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学人教五年级","21-929","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学人教六年级","21-930","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学苏教一年级","21-931","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学苏教二年级","21-932","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学苏教三年级","21-933","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学苏教四年级","21-934","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学苏教五年级","21-935","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学苏教六年级","21-936","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学北师大一年级","21-937","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学北师大二年级","21-938","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学北师大三年级","21-939","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学北师大四年级","21-940","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学北师大五年级","21-941","周报","1.5","60","教辅类","",""],
+["<学习方法报>小学数学北师大六年级","21-942","周报","1.5","60","教辅类","",""],
+["学习方法报.数学周刊.华师大七年级","21-968","周报","1.5","72","教辅类","",""],
+["学习方法报.数学周刊.华师大八年级","21-969","周报","1.5","72","教辅类","",""],
+["学习方法报.数学周刊.华师大中考版","21-970","周报","1.5","72","教辅类","",""],
+["学习方法报.教学研究（文）","21-983","周报","3","156","教辅类","",""],
+["学习方法报.时政周刊.七年级","21-984","周报","1.5","72","教辅类","",""],
+["学习方法报.时政周刊.八年级","21-985","周报","1.5","72","教辅类","",""],
+["学习方法报.语文周刊.中考新写作","21-986","周报","1.5","72","教辅类","",""],
+["学习方法报历史周刊七年级","21-988","周报","1.5","72","教辅类","",""],
+["学习方法报历史周刊.八年级","21-989","周报","1.5","72","教辅类","",""],
+["学习方法报历史周刊.中考版","21-990","周报","1.5","72","教辅类","",""],
+["学习方法报.地理周刊.人教初中会考","21-3023","周报","1.5","72","教辅类","",""],
+["学习方法报.生物周刊.人教初中会考","21-3028","周报","1.5","72","教辅类","",""],
+["数理报.七年级数学北师大版","21-43","周报","1.5","78","教辅类","",""],
+["数理报.七年级数学华东师大版","21-44","周报","1.5","78","教辅类","",""],
+["数理报.七年级数学人教版","21-155","周报","1.5","72","教辅类","",""],
+["数理报.八年级数学人教版","21-156","周报","1.5","72","教辅类","",""],
+["数理报.中考数学人教版","21-157","周报","1.5","75","教辅类","",""],
+["数理报.高一物理人教版","21-169","周报","1.5","78","教辅类","",""],
+["数理报.高一数学人教A版","21-201","周报","1.5","78","教辅类","",""],
+["数理报.高二生物人教版","21-202","周报","1.5","72","教辅类","",""],
+["数理报.八年级数学北师大教版","21-204","周报","1.5","78","教辅类","",""],
+["数理报.中考数学北师大版","21-205","周报","1.5","78","教辅类","",""],
+["数理报.八年级数学华东师大版","21-206","周报","1.5","78","教辅类","",""],
+["数理报.中考数学华东师大版","21-207","周报","1.5","78","教辅类","",""],
+["数理报.高考化学版","21-208","周报","1.5","78","教辅类","",""],
+["数理报.八年级物理人教版","21-209","周报","1.5","78","教辅类","",""],
+["数理报.中考化学版","21-280","周报","1.5","78","教辅类","",""],
+["数理报.中考物理人教版","21-281","周报","1.5","78","教辅类","",""],
+["数理报.高一化学人教版（新教材）","21-282","周报","1.5","78","教辅类","",""],
+["数理报.高一生物人教版","21-283","周报","1.5","78","教辅类","",""],
+["数理报.高考数学版","21-284","周报","1.5","78","教辅类","",""],
+["数理报.高二物理人教版","21-285","周报","1.5","72","教辅类","",""],
+["数理报.高二数学人教A版","21-289","周报","1.5","72","教辅类","",""],
+["数理报.高二化学人教版","21-355","周报","1.5","75","教辅类","",""],
+["数理报.高考生物版","21-357","周报","1.5","78","教辅类","",""],
+["数理报.高考物理版","21-359","周报","1.5","78","教辅类","",""],
+["学习报.七年级语文（中文版）","21-130","周报","1.5","72","教辅类","",""],
+["学习报八年级语文（中文版）","21-131","周报","1.5","72","教辅类","",""],
+["学习报九年级语文(中文版）","21-132","周报","1.5","72","教辅类","",""],
+["学习报.七年级数学北师大版（中文版）","21-143","周报","1.5","72","教辅类","",""],
+["学习报八年级数学北师大（中文版）","21-144","周报","1.5","72","教辅类","",""],
+["学习报中考数学北师大版（中文版）","21-145","周报","1.5","72","教辅类","",""],
+["学习报七年级数学人教版（中文版）","21-146","周报","1.5","72","教辅类","",""],
+["学习报八年级数学人教版","21-147","周报","1.5","72","教辅类","",""],
+["学习报.中考数学人教(中文版）","21-148","周报","1.5","72","教辅类","",""],
+["学习报.七年级英语人教（中文版）","21-149","周报","1.5","72","教辅类","",""],
+["学习报.八年级英语人教（中文版）","21-150","周报","1.5","72","教辅类","",""],
+["学习报.中考英语人教","21-151","周报","1.5","72","教辅类","",""],
+["学习报.教育研究(中文版）中央级","21-344","周报","1.5","78","教辅类","",""],
+["学习报小学一年级语文","21-417","周报","1.8","72","教辅类","",""],
+["学习报小学一年级数学人教","21-418","周报","1.8","72","教辅类","",""],
+["学习报小学二年级语文人教","21-419","周报","1.8","72","教辅类","",""],
+["学习报.二年级数学人教","21-420","周报","1.8","72","教辅类","",""],
+["学习报.三年级语文","21-421","周报","1.8","72","教辅类","",""],
+["学习报小学四年级语文","21-422","周报","1.8","72","教辅类","",""],
+["学习报五年级语文","21-423","周报","1.8","72","教辅类","",""],
+["学习报六年级语文人教(中文版）中央级","21-424","周报","1.8","72","教辅类","",""],
+["学习报三年级数学人教","21-427","周报","1.8","72","教辅类","",""],
+["学习报.四年级数学人教","21-428","周报","1.8","72","教辅类","",""],
+["学习报.五年级数学人教","21-429","周报","1.8","72","教辅类","",""],
+["学习报.六年级数学人教","21-430","周报","1.8","72","教辅类","",""],
+["学习报三年级英语人教","21-431","周报","1.8","72","教辅类","",""],
+["学习报四年级英语人教","21-432","周报","1.8","72","教辅类","",""],
+["学习报.五年级英语人教","21-433","周报","1.8","72","教辅类","",""],
+["学习报六年级英语人教","21-434","周报","1.8","72","教辅类","",""],
+["学习报八年级物理人教","21-435","周报","1.5","72","教辅类","",""],
+["学习报九年级物理人教","21-436","周报","1.5","72","教辅类","",""],
+["学习报九年级化学人教（中文版）","21-440","周报","1.5","72","教辅类","",""],
+["学习报七年级道德与法治人教","21-487","周报","1.5","66","教辅类","",""],
+["学习报八年级道德与法治","21-488","周报","1.5","66","教辅类","",""],
+["学习报中考道德与法制人教（中文版）","21-489","周报","1.5","66","教辅类","",""],
+["学习报七年级历史","21-490","周报","1.5","66","教辅类","",""],
+["学习报八年级历史","21-491","周报","1.5","66","教辅类","",""],
+["学习报中考历史人教","21-492","周报","1.5","66","教辅类","",""],
+["学习周报.物理.人教八年级","21-299","周报","2","88","教辅类","",""],
+["学习周报.物理.人教中考版","21-300","周报","2","88","教辅类","",""],
+["学习周报.化学.人教中考版","21-303","周报","2","88","教辅类","",""],
+["学习周报.数学.苏教一年级","21-306","周报","1.5","78","教辅类","",""],
+["学习周报.数学.人教七年级","21-307","周报","2","88","教辅类","",""],
+["学习周报.数学.人教八年级","21-308","周报","2","88","教辅类","",""],
+["学习周报.数学.人教中考版","21-309","周报","2","88","教辅类","",""],
+["学习周报.数学.北师大七年级","21-310","周报","2","88","教辅类","",""],
+["学习周报.数学.北师大八年级","21-311","周报","2","88","教辅类","",""],
+["学习周报.数学.北师大中考版","21-312","周报","2","88","教辅类","",""],
+["学习周报.数学.沪科七年级","21-316","周报","2","88","教辅类","",""],
+["学习周报.数学.沪科八年级","21-317","周报","2","88","教辅类","",""],
+["学习周报.数学.沪科中考版","21-318","周报","2","88","教辅类","",""],
+["学习周报.语文.读写七年级","21-319","周报","2","88","教辅类","",""],
+["学习周报.语文.读写八年级","21-320","周报","2","88","教辅类","",""],
+["学习周报.语文.读写中考版","21-321","周报","2","88","教辅类","",""],
+["学习周报.数学.苏教二年级","21-322","周报","1.5","78","教辅类","",""],
+["学习周报.数学.苏教三年级","21-323","周报","1.5","78","教辅类","",""],
+["学习周报.数学.苏教四年级","21-324","周报","1.5","78","教辅类","",""],
+["学习周报.数学.苏教五年级","21-325","周报","1.5","78","教辅类","",""],
+["学习周报.数学.苏教六年级","21-330","周报","1.5","78","教辅类","",""],
+["学习周报.语文.人教七年级","21-331","周报","2","88","教辅类","",""],
+["学习周报.语文.人教八年级","21-332","周报","2","88","教辅类","",""],
+["学习周报.语文.人教中考版","21-335","周报","2","88","教辅类","",""],
+["学习周报.语文.人教一年级","21-337","周报","1.5","78","教辅类","",""],
+["学习周报.语文.人教二年级","21-340","周报","1.5","78","教辅类","",""],
+["学习周报.语文.人教三年级","21-496","周报","1.5","78","教辅类","",""],
+["学习周报.语文.人教四年级","21-497","周报","1.5","78","教辅类","",""],
+["学习周报.语文.人教五年级","21-498","周报","1.5","78","教辅类","",""],
+["学习周报.语文.人教六年级","21-499","周报","1.5","78","教辅类","",""],
+["学习周报.数学.人教一年级","21-801","周报","1.5","78","教辅类","",""],
+["学习周报.数学.人教二年级","21-802","周报","1.5","78","教辅类","",""],
+["学习周报.数学.人教三年级","21-803","周报","1.5","78","教辅类","",""],
+["学习周报.数学.人教四年级","21-804","周报","1.5","78","教辅类","",""],
+["学习周报.数学.人教五年级","21-805","周报","1.5","78","教辅类","",""],
+["学习周报.数学.人教六年级","21-806","周报","1.5","78","教辅类","",""],
+["学习周报.数学.北师大一年级","21-813","周报","1.5","78","教辅类","",""],
+["学习周报.数学.北师大二年级","21-814","周报","1.5","78","教辅类","",""],
+["学习周报.数学.北师大三年级","21-815","周报","1.5","78","教辅类","",""],
+["学习周报.数学.北师大四年级","21-816","周报","1.5","78","教辅类","",""],
+["学习周报.数学.北师大五年级","21-817","周报","1.5","78","教辅类","",""],
+["学习周报.数学.北师大六年级","21-818","周报","1.5","78","教辅类","",""],
+["学习周报·教研·综合版","21-819","周报","2","104","教辅类","",""],
+["学习周报·教研版","21-820","周报","2","104","教辅类","",""],
+["学习周报.物理.沪科版八年级","21-890","周报","2","88","教辅类","",""],
+["学习周报.物理.沪科中考版","21-891","周报","2","88","教辅类","",""],
+["学习周报.物理.沪粤中考版","21-892","周报","2","88","教辅类","",""],
+["学习周报.物理.沪粤八年级","21-893","周报","2","88","教辅类","",""],
+["学习周报.英语.人教PEP三年级","21-3002","周报","1.5","78","教辅类","",""],
+["学习周报.英语.人教PEP四年级","21-3003","周报","1.5","78","教辅类","",""],
+["学习周报.英语.人教PEP五年级","21-3004","周报","1.5","78","教辅类","",""],
+["学习周报.英语.人教PEP六年级","21-3005","周报","1.5","78","教辅类","",""]
+]],
+["内蒙古自治区",[
+["内蒙古日报（蒙）","15-2","日报","1.5","516","中央、省、直辖市、自治区级中共机关报","",""],
+["内蒙古日报","15-1","日报","2","516","中央、省、直辖市、自治区级中共机关报","http://szb.northnews.cn/","http://szb.northnews.cn/"],
+["内蒙古法制报（汉）","15-6","周4报","1.8","360","法制、纪检、监察、公安、武警、军队","",""],
+["作文报（中学版）","15-100","半月报","2","48","教辅类","",""],
+["作文报（小学版）","15-101","半月报","2","48","教辅类","",""],
+["北方新报（汉）","15-21","周5报","1.1","278","都市报(含早报、晚报)","",""],
+["内蒙古电力报（汉）","15-41","周报","2","60","能源（含水利、电力、石化、煤炭、环保等）","",""],
+["内蒙古少年报（蒙）","15-60","周报","0.75","39","文摘类","",""]
+]],
+["辽宁省",[
+["辽宁朝鲜文报(朝文）","7-3","周2报","1.8","170","少数民族文字报","",""],
+["大连日报","7-906","日报","1.45","520","综合类","",""],
+["半岛晨报","7-37","日报","0.5","180","都市报(含早报、晚报)","",""],
+["辽沈晚报","7-126","周5报","1.2","300","都市报(含早报、晚报)","https://www.lswb.com.cn/","https://www.lswb.com.cn/"],
+["大连晚报","7-38","日报","1","336","都市报(含早报、晚报)","",""],
+["小学生报(低年级版)","7-91","周报","1.5","78","教辅类","",""],
+["小学生报(中年级版)","7-92","周报","1.5","78","教辅类","",""],
+["小学生报(高年级版)","7-95","周报","1.5","78","教辅类","",""],
+["小学生报作文评改版（三、四年级）","7-96","周报","1.5","78","教辅类","",""],
+["小学生报作文评改版（五、六年级）","7-97","周报","1.5","78","教辅类","",""],
+["英语辅导报(人教PEP小学三年级版)","7-101","周报","1.3","67.6","教辅类","",""],
+["英语辅导报(人教PEP小学四年级版)","7-102","周报","1.3","67.6","教辅类","",""],
+["英语辅导报(人教PEP小学五年级版)","7-103","周报","1.3","67.6","教辅类","",""],
+["英语辅导报(人教PEP小学六年级版)","7-104","周报","1.3","67.6","教辅类","",""],
+["英语辅导报(新目标七年级版)","7-105","周报","2.4","124.8","教辅类","",""],
+["英语辅导报(新目标八年级版)","7-106","周报","2.4","124.8","教辅类","",""],
+["英语辅导报(新目标九年级版)","7-107","周报","2.4","124.8","教辅类","",""],
+["英语辅导报(新课标高一版)","7-108","周报","1.2","62.4","教辅类","",""],
+["英语辅导报(新课标高二版)","7-109","周报","1.2","62.4","教辅类","",""],
+["英语辅导报(高考版)","7-110","周报","1.2","62.4","教辅类","",""],
+["英语辅导报（教师版）","7-170","周报","2.4","96","教辅类","",""],
+["少年科普报（小学版）","7-93","周报","2","104","教育、教学类","",""],
+["少年科普报（中学版）","7-94","周报","2","104","教育、教学类","",""],
+["少年科普报（教研论坛）","7-319","周报","7","364","教育、教学类","",""],
+["少年科普报（经典阅读）","7-320","周报","7","364","婴幼儿、中小学生、少儿类","",""],
+["数学周报（北师大版七年级）","7-201","周报","1.5","72","教辅类","",""],
+["数学周报（北师大版八年级）","7-202","周报","1.5","72","教辅类","",""],
+["数学周报（北师大版九年级）","7-203","周报","1.5","72","教辅类","",""],
+["数学周报（人教版七年级）","7-207","周报","1.5","72","教辅类","",""],
+["数学周报（人教版八年级）","7-208","周报","1.5","72","教辅类","",""],
+["数学周报（人教版九年级）","7-209","周报","1.5","72","教辅类","",""],
+["数学周报（人教A版高一）","7-213","周报","1.5","72","教辅类","",""],
+["数学周报（人教A版高二）","7-214","周报","1.5","72","教辅类","",""],
+["数学周报（高考版）","7-215","周报","1.5","72","教辅类","",""],
+["数学周报（教研版）","7-234","周报","1.5","72","教辅类","",""]
+]],
+["吉林省",[
+["吉林日报","11-1","日报","1","360","中央、省、直辖市、自治区级中共机关报","http://jlrbszb.cnjiwang.com/","http://jlrbszb.cnjiwang.com/"],
+["吉林农村报","11-2","周3报","1.5","192","时政新闻","",""],
+["图们江报","11-60","周5报","1","216","综合类","",""],
+["《作文评点报》（低幼版）","11-15","周报","2","96","教辅类","",""],
+["《作文评点报》（小学三、四年级版）","11-16","周报","2","96","教辅类","",""],
+["《作文评点报》（初中版）","11-17","周报","2","96","教辅类","",""],
+["《作文评点报》（高中版）","11-18","周报","2","96","教辅类","",""],
+["《作文评点报》（小学五、六年级版）","11-117","周报","2","96","教辅类","",""],
+["城市晚报","11-23","周5报","1.6","360","都市报(含早报、晚报)","",""],
+["吉林朝鲜文报","11-13","周3报","1.25","180","中央、省、直辖市、自治区级中共机关报","",""],
+["文摘旬刊","11-51","周2报","1.5","200","文摘类","",""],
+["劳动新闻","11-39","周2报","0.5","48","老年、妇女、青年、工会","",""]
+]],
+["黑龙江省",[
+["黑龙江日报","13-1","日报","1.5","539","中央、省、直辖市、自治区级中共机关报","https://www.hljnews.cn/","https://www.hljnews.cn/"],
+["北大荒日报","13-27","周5报","1","288","综合类","",""],
+["生活报","13-37","日报","1","298","综合类","",""],
+["老年日报","13-18","日报","0.7","228","老年、妇女、青年、工会","",""],
+["黑龙江新闻（朝鲜文）","13-26","周2报","3.5","168","少数民族文字报","",""],
+["家庭教育报","13-8","周报","1.6","83.2","教育、教学类","",""],
+["远东经贸导报(俄文版）","13-92","周报","2","102","综合类","",""],
+["育才报(英语周刊七年级）","13-181","周报","2.2","114.4","教育、教学类","",""],
+["育才报（学英语八年级）","13-182","周报","2.2","114.4","教育、教学类","",""],
+["育才报（学英语九年级新目标版）","13-183","周报","2.2","114.4","教育、教学类","",""],
+["青少年书法报（少年版）","13-68","周报","3.2","160","家庭休闲、生活信息、文学文艺","",""],
+["青少年书法报（青年版）","13-69","周报","3.2","160","家庭休闲、生活信息、文学文艺","",""],
+["哈尔滨房地产周报","13-302","周报","0.5","26","家庭休闲、生活信息、文学文艺","",""]
+]],
+["上海市",[
+["解放日报","3-1","日报","1.2","432","中央、省、直辖市、自治区级中共机关报","https://www.jfdaily.com/","https://www.jfdaily.com/"],
+["文汇报","3-3","日报","1","360","综合类","https://www.whb.cn/","https://www.whb.cn/"],
+["新民晚报","3-5","日报","1","360","都市报(含早报、晚报)","https://www.xinmin.cn/","https://www.xinmin.cn/"],
+["上海日报（英文版）","3-96","周3报","2","288","外文报","",""],
+["劳动报","3-16","日报","1","340","老年、妇女、青年、工会","",""],
+["青年报","3-6","日报","1.1","396","老年、妇女、青年、工会","",""],
+["少年日报","3-20","周报","3.75","180","婴幼儿、中小学生、少儿类","",""],
+["上海科技报","3-29","周2报","1.5","150","科技报","",""],
+["上海法治报","3-30","周5报","1.6","400","法制、纪检、监察、公安、武警、军队","",""],
+["语言文字周报","3-13","半月报","1.5","36","教育、教学类","",""],
+["国际金融报","3-93","周报","5.96","298","财务、会计、财政、金融","",""],
+["联合时报","3-39","周2报","1.3","140.4","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["青少年科技报（小学）","3-86","周报","3","90","婴幼儿、中小学生、少儿类","",""],
+["青少年科技报（中学）","3-87","周报","3","90","婴幼儿、中小学生、少儿类","",""],
+["第一财经日报","3-21","周5报","2.4","576","贸易、经济、商业、管理","https://www.yicai.com/","https://www.yicai.com/"],
+["上海老年报","3-61","周3报","0.5","78","老年、妇女、青年、工会","",""],
+["社会科学报","3-62","周报","1.5","72","综合类","",""],
+["组织人事报","3-31","周2报","1.5","156","劳动、人事及其他行业管理","",""],
+["东方城乡报","3-24","周3报","0.77","120","农、林、牧、渔","",""],
+["上海学生英文报（初中进阶版）","3-102","周报","3","170","教育、教学类","",""],
+["上海学生英文报（高中进阶版）","3-103","周报","3","170","教育、教学类","",""],
+["上海学生英文报（初中基础版）","3-202","周报","3","170","教育、教学类","",""],
+["上海学生英文报（高中基础版）","3-203","周报","3","170","教育、教学类","",""],
+["上海大众卫生报","3-23","周2报","1","97","医药、卫生、保健","",""],
+["建筑时报","3-82","周2报","1.5","150","工业、矿业及其他产业经济","",""],
+["新民晚报社区版","3-81","周报","1.2","60","家庭休闲、生活信息、文学文艺","",""],
+["IT时报","3-74","周报","0.5","25.2","电子，信息、IT","",""],
+["上海中医药报","3-68","周报","1.5","78","医药、卫生、保健","",""],
+["动手做报","3-104","周报","1.2","36","婴幼儿、中小学生、少儿类","",""],
+["旅游时报","3-70","周报","3","153","家庭休闲、生活信息、文学文艺","",""],
+["报刊文摘","3-15","周3报","1.2","180","文摘类","",""],
+["党史信息报","3-91","周报","1","50","文摘类","",""],
+["上海证券报","3-98","日报","2","600","贸易、经济、商业、管理","https://www.cnstock.com/","https://www.cnstock.com/"],
+["上海东方体育日报","3-77","周3报","2","290","体育类","",""],
+["浦东时报","3-88","周5报","1","138","贸易、经济、商业、管理","",""],
+["中国远洋海运报","3-207","周报","0.5","24","交通、铁道、航空、邮政","",""]
+]],
+["江苏省",[
+["江苏农业科技报","27-5","周2报","0.7","66","农、林、牧、渔","",""],
+["江苏教育报","27-56","周2报","1.8","180","教育、教学类","",""],
+["江苏教育报·高中生周刊","27-60","周报","1.2","60","教育、教学类","",""],
+["江苏工人报","27-45","周6报","0.7","216","老年、妇女、青年、工会","",""],
+["老年周报","27-58","周报","2.05","98","老年、妇女、青年、工会","",""],
+["江苏经济报","27-50","周5报","2","498","贸易、经济、商业、管理","",""],
+["江苏科技报","27-2","周2报","1.6","168","科技报","",""],
+["周末","27-6","周报","2","104","综合类","",""],
+["苍梧晚报","27-116","日报","0.8","288","都市报(含早报、晚报)","",""],
+["新华日报","27-1","日报","1.5","532","中央、省、直辖市、自治区级中共机关报","http://xh.xhby.net/","http://xh.xhby.net/"],
+["扬子晚报","27-59","日报","1.35","486","都市报(含早报、晚报)","",""],
+["现代家庭报","27-38","周报","2","96","老年、妇女、青年、工会","",""],
+["江南晚报","27-92","日报","1.1","396","都市报(含早报、晚报)","",""],
+["亮报","27-68","周报","2","100","能源（含水利、电力、石化、煤炭、环保等）","",""],
+["时代英语报（小学三年级译林版）","27-161","月报","6","78","教辅类","",""],
+["时代英语报（小学四年级译林版)","27-162","月报","6","78","教辅类","",""],
+["时代英语报（小学五年级译林版）","27-163","月报","6","78","教辅类","",""],
+["时代英语报（小学六年级译林版)","27-164","月报","6","78","教辅类","",""],
+["时代英语报（七年级译林版）","27-165","月报","5.2","78","教辅类","",""],
+["时代英语报（八年级译林版）","27-167","月报","5.2","78","教辅类","",""],
+["时代英语报（九年级译林版）","27-169","月报","5.2","78","教辅类","",""],
+["时代英语报（小学二年级译林版)","27-171","月报","6","78","教辅类","",""],
+["大众证券报","27-117","周5报","2","480","财务、会计、财政、金融","",""],
+["大众证券报·周六金刊","27-118","周报","4","180","财务、会计、财政、金融","",""],
+["江南时报","27-120","周5报","1.6","388","综合类","",""],
+["江苏商报","27-128","周2报","1.8","180","财务、会计、财政、金融","",""],
+["家教周报","27-146","周报","1","50","综合类","",""],
+["乡村干部报","27-99","周报","1","52","综合类","",""],
+["江苏法治报","27-28","周5报","1.55","380","法制、纪检、监察、公安、武警、军队","",""],
+["剪报","27-64","周2报","1.5","150","文摘类","",""],
+["小学生数学报（一年级）","27-130","周报","2","80","教育、教学类","",""],
+["小学生数学报（三年级）","27-132","周报","2","80","教辅类","",""],
+["小学生数学报（四年级）","27-133","周报","2","80","教辅类","",""],
+["小学生数学报（二年级）","27-135","周报","2","80","教辅类","",""],
+["小学生数学报（六年级）","27-136","周报","2","80","教辅类","",""],
+["小学生数学报（五年级）","27-137","周报","2","80","教辅类","",""]
+]],
+["浙江省",[
+["浙江日报","31-1","日报","1.5","520","中央、省、直辖市、自治区级中共机关报","https://www.zjol.com.cn/","https://www.zjol.com.cn/"],
+["浙江教育报","31-27","周2报","2","160","教育、教学类","",""],
+["浙江法治报","31-25","周5报","1.5","320","法制、纪检、监察、公安、武警、军队","",""],
+["交通旅游导报","31-3","周4报","0.97","200","交通、铁道、航空、邮政","",""],
+["钱江晚报","31-43","日报","1.1","396","都市报(含早报、晚报)","",""],
+["生活与健康报","31-6","周2报","1.8","168","医药、卫生、保健","",""],
+["少年儿童故事报","31-38","周报","1","52","婴幼儿、中小学生、少儿类","",""],
+["少年儿童故事报（低段版）","31-39","周报","1","52","婴幼儿、中小学生、少儿类","",""],
+["江南游报","31-42","周报","3.6","180","家庭休闲、生活信息、文学文艺","",""],
+["温州晚报","31-80","日报","0.75","258","都市报(含早报、晚报)","",""],
+["美术报","31-10","周报","5.73","298","家庭休闲、生活信息、文学文艺","",""],
+["美术报·少儿美育读本","31-11","月报","13.17","158","教育、教学类","",""],
+["市场导报","31-12","周2报","1.8","180","贸易、经济、商业、管理","",""],
+["义乌商报","31-78","日报","0.83","298","地（市）、县级中共机关报","",""],
+["都市快报","31-81","日报","1.1","396","都市报(含早报、晚报)","",""],
+["科技金融时报","31-7","周2报","2","228","科技报","",""]
+]],
+["安徽省",[
+["安徽日报","25-1","日报","1.5","498","中央、省、直辖市、自治区级中共机关报","http://ah.anhuinews.com/","http://ah.anhuinews.com/"],
+["合肥晚报","25-16","日报","1","360","都市报(含早报、晚报)","",""],
+["安庆日报","25-28","周6报","1.3","398","地（市）、县级中共机关报","",""],
+["皖西日报","25-29","已接办","1.5","420","","",""],
+["安徽青年报","25-2","周3报","1.5","216","老年、妇女、青年、工会","",""],
+["安徽工人日报","25-36","周5报","0.9","216","老年、妇女、青年、工会","",""],
+["安徽法治报","25-7","周5报","1.3","340","法制、纪检、监察、公安、武警、军队","",""],
+["安徽经济报","25-33","周4报","2","324","贸易、经济、商业、管理","",""],
+["安徽科技报","25-5","周2报","2.5","220","科技报","",""],
+["新安晚报","25-58","日报","0.7","240","都市报(含早报、晚报)","",""],
+["江淮晨报","25-115","周5报","1","240","都市报(含早报、晚报)","",""],
+["文摘周刊","25-6","周2报","1.98","198","文摘类","",""],
+["益寿文摘报","25-38","周3报","1.28","192","医药、卫生、保健","",""],
+["安徽商报","25-47","日报","1","240","都市报(含早报、晚报)","",""],
+["铜陵有色报","25-52","周3报","0.66","100","工业、矿业及其他产业经济","",""],
+["安徽老年报","25-42","旬2报","1.3","90","医药、卫生、保健","",""],
+["江淮时报","25-53","周2报","1.8","180","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["市场星报","25-50","周6报","1","240","都市报(含早报、晚报)","",""],
+["工商导报","25-44","周2报","2","200","贸易、经济、商业、管理","",""],
+["安徽日报.农村版","25-121","周2报","1.2","120","农、林、牧、渔","",""]
+]],
+["福建省",[
+["福建日报","33-1","日报","2","539","中央、省、直辖市、自治区级中共机关报","https://www.fjdaily.com/","https://www.fjdaily.com/"],
+["东南早报","33-98","周6报","1","298","综合类","",""],
+["学生周报（小学）综合","33-11","周报","1","52","教育、教学类","",""],
+["学生周报（中学）综合","33-39","周报","1","52","教育、教学类","",""],
+["福州晚报","33-8","日报","0.82","298","都市报(含早报、晚报)","",""],
+["福建老年报","33-32","周4报","1","168","老年、妇女、青年、工会","",""],
+["通信信息报","33-20","周报","2","100.2","电子，信息、IT","",""],
+["闽南日报","33-29","日报","1.33","480","地（市）、县级中共机关报","",""],
+["每周文摘","33-2","周报","1.92","96","文摘类","",""],
+["海峡人才报","33-37","半月报","0.6","13.2","劳动、人事及其他行业管理","",""],
+["海峡导报","33-34","周6报","1","298","都市报(含早报、晚报)","",""],
+["宁德晚报","33-14","周4报","0.9","216","都市报(含早报、晚报)","",""],
+["侨乡科技报","33-22","周报","1","52.8","科技报","",""],
+["平潭时报","33-33","日报","0.83","300","地（市）、县级中共机关报","",""],
+["福建法治报","33-12","周5报","2","450","法制、纪检、监察、公安、武警、军队","",""],
+["城市捷报","33-80","周报","2","100","广播电视、新闻出版","",""]
+]],
+["江西省",[
+["江西日报","43-1","日报","1.5","516","中央、省、直辖市、自治区级中共机关报","https://www.jxnews.com.cn/","https://www.jxnews.com.cn/"],
+["南昌日报","43-4","日报","1.2","420","地（市）、县级中共机关报","",""],
+["上饶日报","43-8","日报","1.34","480","地（市）、县级中共机关报","",""],
+["致富快报","43-3","周2报","1.2","120","农、林、牧、渔","",""],
+["经济晚报","43-24","周5报","2.5","360","贸易、经济、商业、管理","",""],
+["东方女报","43-23","周报","2.5","129.96","老年、妇女、青年、工会","",""],
+["信息日报","43-15","周6报","1","360","都市报(含早报、晚报)","",""],
+["摇篮﹒校园版（小学）","43-25","半月报","2.5","60","婴幼儿、中小学生、少儿类","",""],
+["摇篮﹒校园版（中学）","43-62","半月报","2.5","60","婴幼儿、中小学生、少儿类","",""],
+["摇篮﹒艺术版","43-63","半月报","4.5","108","婴幼儿、中小学生、少儿类","",""],
+["家庭医生报","43-21","周报","1.9","98.8","医药、卫生、保健","",""],
+["新参考文摘报","43-61","周2报","4","360","文摘类","",""],
+["江西工人报","43-14","周4报","1.2","198","老年、妇女、青年、工会","",""],
+["江西政协报","43-28","周报","1.05","50.4","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["新法治报","43-13","周5报","2","460","法制、纪检、监察、公安、武警、军队","",""]
+]],
+["山东省",[
+["大众日报","23-1","日报","1.48","540","中央、省、直辖市、自治区级中共机关报","https://www.dzwww.com/","https://www.dzwww.com/"],
+["农村大众","23-2","周5报","0.7","180","中央、省、直辖市、自治区级中共机关报","",""],
+["齐鲁晚报","23-55","周6报","1.2","360","都市报(含早报、晚报)","",""],
+["经济导报","23-134","周3报","0","288","财务、会计、财政、金融","",""],
+["山东科技报","23-112","周报","1.1","57.2","科技报","",""],
+["山东工人报","23-138","周4报","1","180","老年、妇女、青年、工会","",""],
+["山东法制报","23-137","周5报","1.38","360","法制、纪检、监察、公安、武警、军队","",""],
+["山东商报","23-330","周6报","0.84","252","都市报(含早报、晚报)","",""],
+["当代健康报","23-135","周报","1.5","59","医药、卫生、保健","",""],
+["山东教育报","23-336","周报","2.5","130","教育、教学类","",""],
+["济南日报","23-5","日报","2","600","地（市）、县级中共机关报","",""],
+["济南时报","23-308","日报","0.8","288","都市报(含早报、晚报)","",""],
+["经济观察报","23-327","周报","6","288","贸易、经济、商业、管理","",""],
+["半岛都市报","23-325","周6报","0.7","252","都市报(含早报、晚报)","",""],
+["联合日报","23-175","周6报","1","298","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["青岛晚报","23-343","周6报","0.5","180","都市报(含早报、晚报)","",""],
+["东方烟草报","23-217","日报","0.5","168","劳动、人事及其他行业管理","",""],
+["东方烟草报·金周刊","23-227","周报","0.65","30","劳动、人事及其他行业管理","",""],
+["老年生活报","23-207","周3报","1","126","老年、妇女、青年、工会","",""],
+["青岛早报","23-311","周6报","0.6","216","都市报(含早报、晚报)","",""],
+["青岛财经日报","23-232","周5报","1.6","396","贸易、经济、商业、管理","",""],
+["北方蔬菜报","23-319","周报","1.2","60","农、林、牧、渔","",""]
+]],
+["河南省",[
+["河南日报","35-1","日报","2","540","中央、省、直辖市、自治区级中共机关报","https://www.henandaily.cn/","https://www.henandaily.cn/"],
+["郑州晚报","35-4","周6报","2","468","都市报(含早报、晚报)","",""],
+["大河健康报","35-299","周3报","2","258","医药、卫生、保健","",""],
+["医药卫生报","35-49","周3报","1.6","220","医药、卫生、保健","",""],
+["教育时报·数学导刊（七年级）","35-350","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["教育时报·数学导刊（八年级）","35-351","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["教育时报·数学导刊（九年级）","35-352","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["教育时报","35-44","周2报","3","276","教育、教学类","",""],
+["教育时报·教研导刊","35-76","周报","3","138","教育、教学类","",""],
+["河南商报","35-62","周5报","1.2","360","都市报(含早报、晚报)","",""],
+["黄河报","35-88","周3报","2.5","369","能源（含水利、电力、石化、煤炭、环保等）","",""],
+["郑州日报","35-3","日报","1.5","528","地（市）、县级中共机关报","",""],
+["郑州广播电视报","35-99","周报","3","156","广播电视、新闻出版","",""],
+["河南经济报","35-92","周3报","2","260","贸易、经济、商业、管理","",""],
+["粮油市场报","35-17","周3报","1.92","300","贸易、经济、商业、管理","",""],
+["期货日报","35-42","周5报","2","488","财务、会计、财政、金融","",""],
+["大河报","35-18","周5报","2","498","都市报(含早报、晚报)","",""],
+["河南工人日报","35-75","周5报","1","240","老年、妇女、青年、工会","",""],
+["快乐学习报（综合素质版）","35-291","周报","1","52","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报·大语文知识画报一年级","35-920","周报","4","208","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报·大语文知识画报二年级","35-921","周报","4","208","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报·大语文知识画报三年级","35-922","周报","4","208","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报·大语文知识画报四年级","35-923","周报","4","208","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报·大语文知识画报五年级","35-924","周报","4","208","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报·大语文知识画报六年级","35-925","周报","4","208","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报人教版数学一年级","35-926","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报人教版数学二年级","35-927","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报人教版数学三年级","35-929","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报人教版数学四年级","35-930","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报人教版数学五年级","35-931","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报人教版数学六年级","35-932","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报英语人教PEP版三年级","35-933","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报英语人教PEP版四年级","35-934","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报英语人教PEP版五年级","35-935","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["快乐学习报英语人教PEP版六年级","35-936","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["河南日报农村版","35-2","周5报","1.62","396","中央、省、直辖市、自治区级中共机关报","",""],
+["河南青年时报","35-101","周报","5","240","婴幼儿、中小学生、少儿类","",""],
+["快乐少年报","35-103","周报","2.95","118","婴幼儿、中小学生、少儿类","",""],
+["大河美术报","35-510","周报","5","248","家庭休闲、生活信息、文学文艺","",""],
+["阳光少年报","35-666","周报","4","169","婴幼儿、中小学生、少儿类","",""],
+["小学生学习报（低年级）","35-13","周报","1.62","84","婴幼儿、中小学生、少儿类","",""],
+["小学生学习报（中年级）","35-14","周报","1.62","84","婴幼儿、中小学生、少儿类","",""],
+["小学生学习报（高年级）","35-15","周报","1.62","84","婴幼儿、中小学生、少儿类","",""],
+["河南法治报","35-40","周5报","1.9","460","法制、纪检、监察、公安、武警、军队","",""],
+["河南法治报·安全专刊","35-565","月报","17.5","210","法制、纪检、监察、公安、武警、军队","",""],
+["中学生学习报.美文读写周刊·高考版","35-36","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊苏科中考版","35-117","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊人教课标中考版","35-118","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·语文周刊人教课标·高考版","35-119","周报","2","96","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·时政导航人教课标中考版","35-131","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·生物周刊新课标·高考版","35-132","周报","2","96","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊北师大七年级","35-133","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊北师大八年级","35-134","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊北师大中考版","35-135","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊华东师大七年级","35-137","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊华东师大八年级","35-138","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·语文周刊人教课标七年级","35-139","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·语文周刊人教课标八年级","35-140","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·物理周刊人教课标八年级","35-143","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·物理周刊人教课标中考版","35-144","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报.历史周刊人教课标七年级","35-145","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·物理周刊苏科八年级","35-146","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·物理周刊沪科八年级","35-147","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊人教课标七年级","35-160","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·化学周刊人教课标中考版","35-162","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·语文周刊人教课标中考版","35-164","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊华东师大中考版","35-167","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊人教课标八年级","35-168","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊高中人教A版必修第一册、必修第二册","35-169","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊苏科七年级","35-176","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊苏科八年级","35-177","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·物理周刊北师大八年级","35-186","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·物理周刊北师大中考版","35-187","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·物理周刊粤教沪科八年级","35-188","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·物理周刊粤教沪科中考版","35-189","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·物理周刊沪科中考版","35-190","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·物理周刊苏科中考版","35-191","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·物理周刊高中人教必修第一册、必修第二册、必修第三册","35-192","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·化学周刊上教中考版","35-195","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·化学周刊高中人教必修第一册、必修第二册","35-198","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·时政导航新课标·高考版","35-204","周报","2","96","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊浙教七年级","35-209","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·语文周刊高中必修上册、必修下册","35-232","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊浙教八年级","35-237","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·物理周刊教科八年级","35-244","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·化学周刊科学粤教中考","35-250","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·生物周刊·高中人教必修1，必修2","35-252","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·时政导航人教课标七年级","35-261","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·时政导航人教课标八年级","35-262","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊浙教中考版","35-263","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·美文读写周刊七年级","35-267","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·美文读写周刊八年级","35-269","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·历史周刊高中必修·中外历史纲要（上）（下）","35-270","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·美文读写周刊中考版","35-272","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·生物周刊中考版","35-274","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·历史周刊人教课标中考版","35-275","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·地理周刊中考版","35-277","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·地理周刊高中人教课标第一册、第二册","35-279","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·数学周刊新课标·高考理科","35-282","周报","2","96","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·三悦文摘高中版","35-283","月报","12","144","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·三悦文摘初中版","35-284","月报","12","144","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·物理周刊新课标·高考版","35-288","周报","2","96","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·化学周刊新课标·高考版","35-289","周报","2","96","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·美文读写周刊高一","35-341","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·美文读写周刊高二","35-342","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·历史周刊人教课标八年级","35-505","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·历史周刊新课标·高考版","35-511","周报","2","96","婴幼儿、中小学生、少儿类","",""],
+["中学生学习报·地理周刊新课标·高考版","35-512","周报","2","96","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（小学六年级）","35-26","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（七年级A）","35-212","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（八年级A）","35-213","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（九年级A）","35-214","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（高一A）","35-215","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（高二A）","35-216","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（高三)","35-217","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（七年级B）","35-218","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（八年级B）","35-219","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（高二B）","35-220","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（九年级B）","35-258","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（高一B）","35-303","周报","1.16","60","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（小学三年级）","35-353","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（小学四年级）","35-354","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["学生英语报（小学五年级）","35-355","周报","1.5","72","婴幼儿、中小学生、少儿类","",""],
+["中学生时事政治报（高二）","35-56","周报","1.5","60","婴幼儿、中小学生、少儿类","",""],
+["中学生时事政治报（高三）","35-57","周报","1.5","60","婴幼儿、中小学生、少儿类","",""],
+["中学生时事政治报（九年级）","35-89","周报","1.5","60","婴幼儿、中小学生、少儿类","",""],
+["中学生时事政治报（七年级）","35-96","周报","1.5","60","婴幼儿、中小学生、少儿类","",""],
+["中学生时事政治报（八年级）","35-98","周报","1.5","60","婴幼儿、中小学生、少儿类","",""],
+["中学生时事政治报（高一）","35-223","周报","1.5","60","婴幼儿、中小学生、少儿类","",""],
+["中学生时事政治报（九年级·历史）","35-356","周报","1.5","60","婴幼儿、中小学生、少儿类","",""],
+["中学生时事政治报（高三·历史）","35-357","周报","1.5","60","婴幼儿、中小学生、少儿类","",""],
+["今日消费","35-136","周报","5","220","家庭休闲、生活信息、文学文艺","",""]
+]],
+["湖北省",[
+["湖北日报","37-1","日报","1.5","496","中央、省、直辖市、自治区级中共机关报","https://www.hubeidaily.net/","https://www.hubeidaily.net/"],
+["长江日报","37-209","日报","2","636","地（市）、县级中共机关报","",""],
+["湖北广播电视报","37-48","半月报","3.5","84","广播电视、新闻出版","",""],
+["人民长江报","37-84","周报","2","100","能源（含水利、电力、石化、煤炭、环保等）","",""],
+["农村新报","37-38","周2报","1.75","168","中央、省、直辖市、自治区级中共机关报","",""],
+["第1生活.理财版(第1彩票)","37-69","周3报","3","447","家庭休闲、生活信息、文学文艺","",""],
+["长江商报（全国版）","37-5","周报","1","150","贸易、经济、商业、管理","",""],
+["中国水运报","37-45","周4报","1.5","300","交通、铁道、航空、邮政","",""],
+["书法报","37-9","周报","6","300","家庭休闲、生活信息、文学文艺","",""],
+["书法报.书画天地","37-28","周报","8","400","家庭休闲、生活信息、文学文艺","",""],
+["书法报.书画教育","37-137","半月报","6","144","家庭休闲、生活信息、文学文艺","",""],
+["书法报.硬笔书法","37-138","半月报","6","144","家庭休闲、生活信息、文学文艺","",""],
+["大家文摘报","37-116","半月报","10","240","文摘类","",""],
+["新周报","37-18","周报","4","200","文摘类","",""],
+["新周报.经典","37-128","月报","15","180","文摘类","",""],
+["老年文汇报","37-68","周报","4","200","老年、妇女、青年、工会","",""],
+["三峡商报","37-120","周5报","2","288","都市报(含早报、晚报)","",""],
+["新闻信息报.长寿探秘","37-59","月报","10","120","老年、妇女、青年、工会","",""],
+["围棋报","37-88","周报","5","250","体育类","",""],
+["围棋报.弈趣少儿围棋","37-91","半月报","10","240","体育类","",""],
+["大健康报","37-206","半月报","10","240","文摘类","",""],
+["学语文报","37-39","周报","1","52","教辅类","",""],
+["大众生活报","37-77","周2报","3.6","360","文摘类","",""],
+["大众生活报.经典故事","37-79","周报","4","200","老年、妇女、青年、工会","",""],
+["《帅作文》1-2年级","37-70","月报","8","96","教辅类","",""],
+["《帅作文》小学3-4年级","37-71","月报","8","96","教辅类","",""],
+["《帅作文》小学5-6年级","37-72","月报","8","96","教辅类","",""],
+["《帅作文》初中","37-73","月报","8","96","教辅类","",""],
+["《帅作文》高中","37-74","月报","8","96","教辅类","",""]
+]],
+["湖南省",[
+["湖南日报","41-1","日报","1.5","524","中央、省、直辖市、自治区级中共机关报","https://hnrb.voc.com.cn/","https://hnrb.voc.com.cn/"],
+["长沙晚报","41-139","日报","2","420","地（市）、县级中共机关报","",""],
+["岳阳日报","41-56","日报","1.04","380","都市报(含早报、晚报)","",""],
+["今日女报","41-7","周报","4","198","老年、妇女、青年、工会","",""],
+["湘声报","41-62","周2报","1.7","180","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["张家界日报","41-85","日报","1","415","地（市）、县级中共机关报","",""],
+["快乐老人报","41-178","周2报","1.56","156","老年、妇女、青年、工会","",""],
+["体坛周报","41-25","周2报","3","392","体育类","",""],
+["文萃报","41-13","周2报","1.62","168","文摘类","",""],
+["湖南工人报","41-72","周2报","1.56","156","老年、妇女、青年、工会","",""],
+["湖南科技报","41-5","周2报","1.36","136","科技报","",""],
+["大众卫生报","41-26","周报","4","168","医药、卫生、保健","",""],
+["常德日报","41-81","日报","1.2","398","地（市）、县级中共机关报","",""],
+["娄底广播电视报","41-124","周报","1.85","96","老年、妇女、青年、工会","",""],
+["科教新报","41-8","周报","3.2","168","综合类","",""],
+["永州日报","41-78","周6报","1","360","地（市）、县级中共机关报","",""],
+["益阳日报","41-76","日报","1.08","388","地（市）、县级中共机关报","",""],
+["人才就业社保信息报","41-145","周报","3.81","198","劳动、人事及其他行业管理","",""],
+["潇湘晨报","41-160","日报","1","360","都市报(含早报、晚报)","",""],
+["小天使报.写作与阅读（初中版）","41-130","月报","10","120","教辅类","",""],
+["小天使报·一二年级（低年级）","41-131","月报","10","120","教辅类","",""],
+["小天使报.聪聪画刊","41-132","月报","10","120","教辅类","",""],
+["小天使报·三四年级（中年级）","41-133","月报","10","120","教辅类","",""],
+["小天使报·五六年级（高年级）","41-156","月报","10","120","教辅类","",""],
+["知识博览报","41-114","周2报","1.8","180","文摘类","",""],
+["知识博览报.国防教育周刊","41-115","周报","2.89","150","法制、纪检、监察、公安、武警、军队","",""],
+["岳阳晚报","41-135","周5报","2","396","家庭休闲、生活信息、文学文艺","",""],
+["湖南法治报","41-73","周3报","2.68","420","综合类","",""]
+]],
+["广东省",[
+["南方周末","45-36","周报","8","424","时政新闻","https://www.infzm.com/","https://www.infzm.com/"],
+["《南方周末阅读新火种》","45-426","周报","8","424","时政新闻","",""],
+["羊城晚报","45-6","日报","1.5","540","都市报(含早报、晚报)","https://www.ycwb.com/","https://www.ycwb.com/"],
+["广州日报","45-2","日报","1.89","680","综合类","https://www.gzdaily.cn/","https://www.gzdaily.cn/"],
+["信息时报","45-43","日报","1.89","680","综合类","",""],
+["足球","45-15","周报","4","196","体育类","",""],
+["诗词","45-64","半月报","2","144","家庭休闲、生活信息、文学文艺","",""],
+["舞台与银幕","45-123","周报","4","208","家庭休闲、生活信息、文学文艺","",""],
+["深圳特区报","45-20","日报","2.5","750","地（市）、县级中共机关报","http://www.sznews.com/","http://www.sznews.com/"],
+["南方教育时报","45-27","周报","3","150","教育、教学类","",""],
+["汕头日报","45-23","日报","1.5","540","地（市）、县级中共机关报","",""],
+["21世纪经济报道","45-118","周5报","2.5","600","贸易、经济、商业、管理","https://www.21jingji.com/","https://www.21jingji.com/"],
+["美食导报","45-76","周报","4","188","家庭休闲、生活信息、文学文艺","",""],
+["医药经济报","45-18","周报","2.6","130","医药、卫生、保健","",""],
+["老人报","45-68","周2报","2.2","220","老年、妇女、青年、工会","",""],
+["广州文摘报","45-116","周2报","2.5","250","文摘类","",""],
+["广东科技报","45-4","周报","4.8","240","科技报","",""],
+["广东建设报","45-80","周2报","3","288","工业、矿业及其他产业经济","",""],
+["时代周报","45-28","周报","3","144","时政新闻","",""],
+["深圳晚报","45-87","周5报","2.48","640","综合类","",""],
+["南方农村报","45-7","周3报","1","150","综合类","",""],
+["南方农村报.合订本","45-313","月报","25","300","综合类","",""],
+["现代中小学生报（小星星）一、二年级","45-429","周报","3","150","婴幼儿、中小学生、少儿类","",""],
+["现代中小学生报（星星）三、四年级","45-430","周报","3","150","婴幼儿、中小学生、少儿类","",""],
+["现代中小学生报（星星）五、六年级","45-431","周报","3","150","婴幼儿、中小学生、少儿类","",""],
+["证券时报","45-91","周6报","2","600","财务、会计、财政、金融","https://www.stcn.com/","https://www.stcn.com/"],
+["可乐生活","45-155","月报","5","60","家庭休闲、生活信息、文学文艺","",""],
+["深圳日报.英文","45-113","周5报","1.5","360","外文报","",""],
+["新快报","45-9","日报","1.5","540","都市报(含早报、晚报)","",""],
+["中国基金报","45-22","周报","4","196","财务、会计、财政、金融","",""],
+["南沙新区报","45-413","周报","1","49","地（市）、县级中共机关报","",""]
+]],
+["广西壮族自治区",[
+["南方科技报","47-19","周2报","2","126","科技报","http://www.gxnews.com.cn/","http://www.gxnews.com.cn/"],
+["南方科技报·医药星期三","47-66","周报","2","90","医药、卫生、保健","",""],
+["广西农垦报","47-3","周报","1","50","农、林、牧、渔","",""],
+["南方电网报","47-47","周2报","2.2","220","劳动、人事及其他行业管理","",""],
+["民族医药报","47-44","周2报","1","104","医药、卫生、保健","",""],
+["广西政协报","47-52","周3报","1","156","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["小博士报·中年级版","47-21","周报","2.78","100","综合类","",""],
+["小博士报·高年级版","47-22","周报","2.78","100","教辅类","",""],
+["小博士报·科学与奥秘版","47-70","周报","2.78","100","综合类","",""],
+["小博士报·低幼版","47-74","周报","2.78","100","教辅类","",""]
+]],
+["海南省",[
+["海南日报","83-1","日报","1.5","540","中央、省、直辖市、自治区级中共机关报","https://www.hinews.cn/","https://www.hinews.cn/"],
+["海南声屏报","83-8","周报","3","150","广播电视、新闻出版","",""],
+["海南农垦报","83-2","周报","2.5","120","农、林、牧、渔","",""],
+["法治时报","83-16","周5报","1","396","法制、纪检、监察、公安、武警、军队","",""]
+]],
+["重庆市",[
+["重庆日报","77-1","日报","1.5","496","中央、省、直辖市、自治区级中共机关报","https://www.cqrb.cn/","https://www.cqrb.cn/"],
+["重庆晚报","77-12","周5报","2","252","都市报(含早报、晚报)","",""],
+["重庆晨报","77-13","周5报","2","360","都市报(含早报、晚报)","",""],
+["重庆商报","77-10","周报","4","180","都市报(含早报、晚报)","",""],
+["电脑报","77-19","周报","8","400","电子，信息、IT","",""],
+["电脑报·少年派","77-42","周报","8","384","婴幼儿、中小学生、少儿类","",""],
+["新女报","77-5","月报","15","180","家庭休闲、生活信息、文学文艺","",""],
+["医药导报","77-21","周报","2","100","医药、卫生、保健","",""],
+["健康人报·健康科普","77-905","周报","10","480","医药、卫生、保健","",""],
+["《健康人报》（青少年心理）","77-906","半月报","10","240","婴幼儿、中小学生、少儿类","",""],
+["《健康人报》（青少年身理）","77-907","半月报","10","240","婴幼儿、中小学生、少儿类","",""],
+["少年先锋报·好少年五年级以上","77-3","月报","15","180","婴幼儿、中小学生、少儿类","",""],
+["少年先锋报·好少年一二年级","77-103","月报","15","180","婴幼儿、中小学生、少儿类","",""],
+["少年先锋报·好少年三四年级","77-104","月报","15","180","婴幼儿、中小学生、少儿类","",""],
+["少年先锋报·好宝贝","77-106","月报","15","180","婴幼儿、中小学生、少儿类","",""],
+["少年先锋报·悦读","77-113","月报","15","180","婴幼儿、中小学生、少儿类","",""],
+["重庆法治报","77-36","周3报","1.85","288","法制、纪检、监察、公安、武警、军队","",""],
+["《科普周报》（少年与法）","77-24","月报","20","240","婴幼儿、中小学生、少儿类","",""],
+["重庆政协报","77-38","周2报","1.1","110","各级人大、政协、侨务、民族事务、民主党派机关报","",""]
+]],
+["四川省",[
+["四川日报","61-1","日报","1.36","496","中央、省、直辖市、自治区级中共机关报","https://www.scdaily.cn/","https://www.scdaily.cn/"],
+["四川农村日报","61-3","周5报","0.64","160","中央、省、直辖市、自治区级中共机关报","",""],
+["成都日报","61-39","日报","2","496","地（市）、县级中共机关报","",""],
+["阿坝日报","61-64","周6报","1","264","地（市）、县级中共机关报","",""],
+["阿坝日报(藏)","61-72","周2报","1","96","少数民族文字报","",""],
+["四川工人日报","61-2","周6报","0.8","240","老年、妇女、青年、工会","",""],
+["四川政协报","61-17","周3报","1.78","260","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["四川石油报","61-134","周3报","0.2","30","能源（含水利、电力、石化、煤炭、环保等）","",""],
+["华西都市报","61-602","周5报","1.5","396","都市报(含早报、晚报)","",""],
+["消费质量报","61-652","周2报","2","198","综合类","",""],
+["金融投资报","61-102","周3报","1","288","财务、会计、财政、金融","",""],
+["金融投资报.周末证券","61-146","周报","3","150","财务、会计、财政、金融","",""],
+["四川经济日报","61-6","周5报","1.4","360","综合类","",""],
+["读者报.旧闻","61-76","周报","5","260","文摘类","",""],
+["读者报.家校共育","61-97","周报","5","180","婴幼儿、中小学生、少儿类","",""],
+["读者报","61-98","周报","3","150","综合类","",""],
+["四川科技报","61-71","周2报","2","198","科技报","",""],
+["四川广播电视报","61-28","周报","1.92","99.84","广播电视、新闻出版","",""],
+["教育导报","61-30","周2报","2","160","教育、教学类","",""],
+["教育导报.家教周刊","61-141","周报","2","80","教育、教学类","",""],
+["精神文明报","61-19","周5报","1.7","398","时政新闻","",""],
+["晚霞报","61-18","周4报","0.95","198","老年、妇女、青年、工会","",""],
+["出版商务周报","61-132","双周报","19","475","广播电视、新闻出版","",""],
+["少年百科知识报","61-4","周报","1.6","80","婴幼儿、中小学生、少儿类","",""],
+["少年百科知识报(童心乐园)","61-40","周报","2","80","婴幼儿、中小学生、少儿类","",""],
+["人力资源报","61-140","周报","3.88","186","劳动、人事及其他行业管理","",""],
+["西南商报","61-41","周3报","2.5","318","贸易、经济、商业、管理","",""],
+["成都商报","61-604","周5报","1.5","360","都市报(含早报、晚报)","",""],
+["大众健康报","61-26","周3报","2.32","348","医药、卫生、保健","",""],
+["文摘周报","61-10","周2报","2","198","文摘类","",""],
+["国防时报","61-137","周3报","2.5","375","文摘类","",""],
+["企业家日报","61-85","日报","1.33","450","贸易、经济、商业、管理","",""],
+["每日经济新闻","61-149","周5报","2","480","贸易、经济、商业、管理","",""],
+["华西社区报","61-605","周2报","2","198","综合类","",""],
+["四川法治报","61-7","周4报","2","360","法制、纪检、监察、公安、武警、军队","",""]
+]],
+["贵州省",[
+["贵州法治报","65-12","周5报","1","348","法制、纪检、监察、公安、武警、军队","",""],
+["贵州政协报","65-18","周4报","1.83","362.34","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["贵州民族报","65-16","周5报","2.6","261","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["劳动时报","65-9","周5报","0.8","216","时政新闻","",""],
+["贵州日报","65-1","日报","1.5","536","中央、省、直辖市、自治区级中共机关报","http://szb.gzrbs.com.cn/","http://szb.gzrbs.com.cn/"],
+["健康之友","65-4","周报","1.35","70","医药、卫生、保健","",""],
+["少年时代报五、六年级版","65-10","月报","12.5","150","婴幼儿、中小学生、少儿类","",""],
+["少年时代报一、二年级版","65-11","月报","12.5","150","婴幼儿、中小学生、少儿类","",""],
+["少年时代报三、四年级版","65-45","月报","12.5","150","婴幼儿、中小学生、少儿类","",""],
+["贵阳日报","65-2","日报","1.5","536","地（市）、县级中共机关报","",""],
+["贵州体育报","65-77","周报","3.8","190","体育类","",""],
+["贵州健康报","65-23","周报","4","198","综合类","",""]
+]],
+["云南省",[
+["云南日报","63-1","日报","2","490","中央、省、直辖市、自治区级中共机关报","https://www.yndaily.com/","https://www.yndaily.com/"],
+["蜜蜂报（低年级版）1-2年级","63-7","月报","15","180","婴幼儿、中小学生、少儿类","",""],
+["蜜蜂报（高年级版）3-6年级","63-8","月报","15","180","婴幼儿、中小学生、少儿类","",""],
+["春城晚报","63-26","周5报","1.7","399","都市报(含早报、晚报)","",""],
+["云南老年报","63-60","周3报","1.2","168","老年、妇女、青年、工会","",""],
+["学生新报（一二年级）","63-21","月报","8","80","婴幼儿、中小学生、少儿类","",""],
+["学生新报（三四年级）","63-22","月报","10","100","婴幼儿、中小学生、少儿类","",""],
+["学生新报（五六年级）","63-23","月报","10","100","婴幼儿、中小学生、少儿类","",""],
+["民族时报","63-61","周2报","3.4","360","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["云南法制报","63-70","周4报","2","396","法制、纪检、监察、公安、武警、军队","",""]
+]],
+["西藏自治区",[
+["西藏日报(藏)","67-2","日报","0.4","144","少数民族文字报","",""],
+["西藏日报(汉)","67-1","日报","0.6","216","中央、省、直辖市、自治区级中共机关报","http://www.xzxw.com/","http://www.xzxw.com/"],
+["西藏青年报(藏)","67-12","周报","0.5","25.37","少数民族文字报","",""],
+["西藏青年报(汉)","67-11","周报","0.5","25.37","老年、妇女、青年、工会","",""],
+["西藏科技报(藏)","67-4","周2报","0.1","10.34","少数民族文字报","",""],
+["西藏科技报(汉)","67-3","周2报","0.2","20.55","科技报","",""],
+["西藏商报","67-20","周6报","0.58","172.44","都市报(含早报、晚报)","",""],
+["日喀则日报(汉)","67-13","日报","0.6","216","地（市）、县级中共机关报","",""],
+["日喀则日报(藏)","67-14","日报","0.6","216","少数民族文字报","",""],
+["西藏法制报（汉）","67-31","周2报","1.5","136.83","法制、纪检、监察、公安、武警、军队","",""],
+["西藏法制报(藏)","67-32","周报","1","45","少数民族文字报","",""],
+["昌都报(汉)","67-17","周2报","1","104.04","地（市）、县级中共机关报","",""],
+["昌都报(藏)","67-18","周2报","1","104.04","地（市）、县级中共机关报","",""],
+["山南报(汉)","67-21","周3报","0.6","78.86","地（市）、县级中共机关报","",""],
+["山南报(藏)","67-22","周3报","0.6","78.86","少数民族文字报","",""],
+["林芝报(汉)","67-23","周2报","0.5","52.08","地（市）、县级中共机关报","",""],
+["林芝报(藏)","67-24","周2报","0.5","52.08","少数民族文字报","",""],
+["那曲报(汉)","67-25","周报","0.5","26.4","地（市）、县级中共机关报","",""],
+["那曲报(藏)","67-26","周报","0.5","26.4","地（市）、县级中共机关报","",""],
+["阿里报（汉）","67-29","周报","1.5","78","少数民族文字报","",""],
+["阿里报（藏）","67-36","周报","1.5","78","地（市）、县级中共机关报","",""],
+["拉萨日报（藏）","67-37","日报","1","240","少数民族文字报","",""],
+["拉萨日报（汉）","67-35","日报","1","360","地（市）、县级中共机关报","",""]
+]],
+["陕西省",[
+["陕西日报","51-1","日报","1.36","500","中央、省、直辖市、自治区级中共机关报","https://www.sxdaily.com.cn/","https://www.sxdaily.com.cn/"],
+["西安晚报","51-6","日报","0.83","297","都市报(含早报、晚报)","",""],
+["陕西农村报","51-2","周3报","1.7","238","农、林、牧、渔","",""],
+["陕西工人报","51-7","日报","0.94","336","老年、妇女、青年、工会","",""],
+["各界导报","51-38","周5报","1.3","268","综合类","",""],
+["陕西建筑报","51-28","周报","1","50","工业、矿业及其他产业经济","",""],
+["城市金融报","51-40","周5报","1.2","298.8","财务、会计、财政、金融","",""],
+["阳光报","51-39","周5报","1.5","330","时政新闻","",""],
+["陕西科技报","51-3","周4报","1.2","200","科技报","",""],
+["现代保健报","51-35","周2报","3","298","医药、卫生、保健","",""],
+["西北信息报","51-16","周5报","1.5","360","贸易、经济、商业、管理","",""],
+["教师报","51-8","周2报","1.5","156","教育、教学类","",""],
+["自学考试报","51-23","周报","1","52","教育、教学类","",""],
+["文化艺术报","51-20","周4报","3","624","家庭休闲、生活信息、文学文艺","",""],
+["商洛日报","51-32","周6报","1.24","424.64","地（市）、县级中共机关报","",""],
+["西安日报","51-10","日报","1.4","480","地（市）、县级中共机关报","",""],
+["劳动者报","51-53","周2报","1.13","108","老年、妇女、青年、工会","",""],
+["健康导报","51-69","周3报","2.56","384","医药、卫生、保健","",""],
+["三秦都市报","51-59","周6报","1","300","时政新闻","",""],
+["农业科技报","51-98","周4报","1.4","258","农、林、牧、渔","",""],
+["陕西老年健康报","51-42","周2报","2.28","228","医药、卫生、保健","",""],
+["西部法治报","51-50","周3报","2.6","385","法制、纪检、监察、公安、武警、军队","",""],
+["考试报","51-73","周报","1.5","72","教育、教学类","",""]
+]],
+["甘肃省",[
+["甘肃日报","53-1","日报","1.5","540","中央、省、直辖市、自治区级中共机关报","https://www.gansudaily.com.cn/","https://www.gansudaily.com.cn/"],
+["兰州晚报","53-10","日报","0.5","132","都市报(含早报、晚报)","",""],
+["甘肃农民报","53-2","周3报","0.7","96","农、林、牧、渔","",""],
+["甘肃工人报","53-9","周5报","0.74","192","综合类","",""],
+["甘肃经济日报","53-11","周5报","1.1","300","贸易、经济、商业、管理","",""],
+["民主协商报","53-29","周3报","1.25","168","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["读友报","53-95","周报","3","132","综合类","",""],
+["少年文摘报（小学一年级学习指导）","53-201","周报","1.8","93.6","教辅类","",""],
+["少年文摘报（小学二年级学习指导）","53-202","周报","1.8","93.6","教辅类","",""],
+["少年文摘报（小学三年级语数英）","53-203","周报","1.8","93.6","教辅类","",""],
+["少年文摘报（小学四年级语数英）","53-205","周报","1.8","93.6","教辅类","",""],
+["少年文摘报（小学五年级语数英）","53-207","周报","1.8","93.6","教辅类","",""],
+["少年文摘报（小学六年级语数英）","53-209","周报","1.8","93.6","教辅类","",""],
+["少年文摘报（作文与欣赏）","53-211","周报","1.8","93.6","教辅类","",""],
+["少年文摘报（教育周刊）","53-212","周报","1.8","93.6","教辅类","",""],
+["少年文摘报（百科奇遇）","53-235","周报","1.8","93.6","教辅类","",""],
+["少年文摘报（初一语数英）","53-236","周报","1.8","93.6","教辅类","",""],
+["少年文摘报（初二语数英）","53-237","周报","1.8","93.6","教辅类","",""],
+["少年文摘报（初三语数英）","53-238","周报","1.8","93.6","教辅类","",""],
+["少年文摘报（中学生阅读）","53-239","周报","1.8","93.6","教辅类","",""],
+["少年文摘报（人文综合）","53-240","周报","1.8","93.6","教辅类","",""],
+["兰州日报","53-7","日报","0.6","216","地（市）、县级中共机关报","",""],
+["甘肃科技报","53-3","周5报","1.5","144","科技报","",""],
+["华夏文明导报","53-102","周报","2","104","家庭休闲、生活信息、文学文艺","",""],
+["兰州新区报","53-253","周2报","0.8","80","地（市）、县级中共机关报","",""],
+["甘肃自然资源报","53-63","周2报","1.2","120","工业、矿业及其他产业经济","",""],
+["甘肃法治报","53-34","周3报","1.85","288","法制、纪检、监察、公安、武警、军队","",""],
+["甘肃教育报","53-100","周报","1.5","78","教育、教学类","",""]
+]],
+["青海省",[
+["青海日报","55-1","日报","2","598","中央、省、直辖市、自治区级中共机关报","http://www.qhnews.com/","http://www.qhnews.com/"],
+["西海都市报","55-15","日报","0.6","216","都市报(含早报、晚报)","",""],
+["西宁晚报","55-13","日报","0.6","216","都市报(含早报、晚报)","",""],
+["海东日报","55-11","日报","0.8","288","地（市）、县级中共机关报","",""],
+["青海法治报","55-7","周4报","1.3","252","法制、纪检、监察、公安、武警、军队","",""],
+["刚坚少年报","55-12","旬报","0.8","28.8","少数民族文字报","",""],
+["柴达木日报","55-24","周6报","0.9","280.8","地（市）、县级中共机关报","",""],
+["柴达木报（蒙古文报）","55-23","周2报","0.9","93.6","地（市）、县级中共机关报","",""],
+["青海科技报","55-3","周报","1","50","科技报","",""],
+["黄南报","55-16","周报","1.58","82.08","地（市）、县级中共机关报","",""],
+["黄南藏文报","55-20","周报","1.61","84","少数民族文字报","",""],
+["格尔木日报","55-18","周6报","0.8","168","地（市）、县级中共机关报","",""],
+["祁连山报","55-19","周2报","0.9","93.6","地（市）、县级中共机关报","",""],
+["果洛报","55-21","周报","0.4","19.2","地（市）、县级中共机关报","",""],
+["海南报","55-17","周3报","0.8","125.4","地（市）、县级中共机关报","",""],
+["海南藏文报","55-22","周报","0.8","41.4","少数民族文字报","",""],
+["三江源报","55-26","周2报","2","192","地（市）、县级中共机关报","",""],
+["青海藏文法治报","55-8","周报","0.6","28.2","少数民族文字报","",""],
+["青海藏文科技报","55-10","半月报","1.5","36","少数民族文字报","",""],
+["青海藏文报","55-2","周报","2.5","270","少数民族文字报","",""]
+]],
+["宁夏回族自治区",[
+["宁夏日报","73-1","日报","1.41","516","中央、省、直辖市、自治区级中共机关报","http://szb.nxrb.cn/","http://szb.nxrb.cn/"],
+["新消息报","73-2","周5报","1.18","298","综合类","",""],
+["华兴时报","73-9","周5报","1.34","326","各级人大、政协、侨务、民族事务、民主党派机关报","",""],
+["银川晚报","73-8","日报","0.71","258","都市报(含早报、晚报)","",""],
+["宁夏法治报","73-5","周5报","1.69","426","法制、纪检、监察、公安、武警、军队","",""]
+]],
+["新疆维吾尔自治区",[
+["新疆日报（汉）","57-2","日报","1.1","408","综合类","https://www.xjdaily.com/","https://www.xjdaily.com/"],
+["新疆日报（维）","57-1","日报","1","336","综合类","",""],
+["新疆日报（哈）","57-13","日报","0.5","228","综合类","",""],
+["新疆日报（蒙）","57-3","日报","0.5","228","综合类","",""],
+["兵团日报（维）","57-148","周报","1.2","62.4","综合类","",""],
+["兵团日报（汉）","57-38","日报","1.2","432","综合类","",""],
+["伊犁日报（汉）","57-27","周6报","0.9","270","地（市）、县级中共机关报","",""],
+["伊犁日报（哈）","57-121","周5报","0.9","210","少数民族文字报","",""],
+["伊犁日报（维）","57-22","周5报","0.9","210","少数民族文字报","",""],
+["昌吉日报（汉）","57-103","周5报","1.1","261.5","地（市）、县级中共机关报","",""],
+["塔城日报(汉)","57-106","周5报","0.8","228","地（市）、县级中共机关报","",""],
+["塔城日报(哈)","57-105","周5报","0.7","192","地（市）、县级中共机关报","",""],
+["阿克苏日报（汉）","57-37","周5报","0.8","252","地（市）、县级中共机关报","",""],
+["巴音郭楞日报(汉)","57-45","周6报","1","288","地（市）、县级中共机关报","",""],
+["巴音郭楞日报(蒙)","57-46","周5报","0.37","98.4","地（市）、县级中共机关报","",""],
+["巴音郭楞日报(维)","57-47","周5报","0.37","98.4","地（市）、县级中共机关报","",""],
+["阿勒泰日报（哈）","57-24","周5报","0.81","205.2","地（市）、县级中共机关报","",""],
+["阿勒泰日报(汉）","57-123","周5报","0.9","228","地（市）、县级中共机关报","",""],
+["克孜勒苏日报（柯）","57-111","周5报","1","240","地（市）、县级中共机关报","",""],
+["克孜勒苏日报（维）","57-29","周5报","1","240","地（市）、县级中共机关报","",""],
+["克孜勒苏日报（汉）","57-113","周5报","1","240","地（市）、县级中共机关报","",""],
+["喀什日报（汉）","57-26","周5报","1.08","276","地（市）、县级中共机关报","",""],
+["喀什日报（维）","57-25","周5报","1.08","276","地（市）、县级中共机关报","",""],
+["博尔塔拉报（蒙）","57-109","周3报","0.35","50.4","地（市）、县级中共机关报","",""],
+["博尔塔拉报（维）","57-107","周3报","0.35","50.4","地（市）、县级中共机关报","",""],
+["博尔塔拉报（汉）","57-108","周5报","0.55","138.6","地（市）、县级中共机关报","",""],
+["生活晚报（汉）","57-170","周2报","1.5","138","综合类","",""],
+["和田日报（汉）","57-32","周5报","0.9","237.6","地（市）、县级中共机关报","",""],
+["和田日报（维）","57-28","周5报","0.9","237.6","地（市）、县级中共机关报","",""],
+["吐鲁番日报（汉）","57-133","周5报","1","264","地（市）、县级中共机关报","",""],
+["吐鲁番日报（维）","57-134","周5报","1","264","地（市）、县级中共机关报","",""],
+["叶尔羌报（汉）","57-165","周3报","1.8","252","地（市）、县级中共机关报","",""],
+["伊犁垦区报(汉）","57-141","周3报","1.58","246","地（市）、县级中共机关报","",""],
+["北疆开发报（汉）","57-42","周3报","0.85","132","地（市）、县级中共机关报","",""],
+["准噶尔时报（汉）","57-152","周3报","1","150","地（市）、县级中共机关报","",""],
+["北疆时报（汉）","57-166","周3报","0.96","138.72","地（市）、县级中共机关报","",""],
+["新疆北屯报","57-154","周2报","1.1","115.2","地（市）、县级中共机关报","",""],
+["天山建设报（汉）","57-167","周2报","0.96","94.08","综合类","",""],
+["察布查尔报（锡）","57-23","周2报","0.9","90","少数民族文字报","",""],
+["工人时报（维）","57-20","周3报","1.5","238","综合类","",""],
+["工人时报（汉）","57-19","周4报","1.5","298","综合类","",""],
+["亚洲中心时报（维）","57-145","周2报","0.6","60","综合类","",""],
+["亚洲中心时报（汉）","57-144","周3报","0.6","90.6","综合类","",""],
+["新疆科技报（汉）","57-10","周报","2","108","综合类","",""],
+["新疆科技报（哈）","57-21","周报","1","54","综合类","",""],
+["新疆科技报（维）","57-11","周报","1","54","综合类","",""],
+["老年康乐报（汉）","57-6","周2报","1.15","117","综合类","",""],
+["亚洲中心时报（哈）","57-210","周2报","0.6","60","综合类","",""],
+["新疆哈萨克少年报（哈）","57-16","周报","0.4","38.4","少数民族文字报","",""],
+["新疆法治报（维）","57-8","周5报","1.2","228","综合类","",""],
+["新疆法治报·公安交通周刊","57-183","周报","1.92","96","综合类","",""]
+]]
 ];
+/* ===DATA_END=== */
 
-/* ================= 渲染逻辑 ================= */
-const gridEl   = document.getElementById('grid');
-const tabsEl   = document.getElementById('tabs');
-tabsEl.innerHTML = '';
+/* =========================================================================
+   预置链接
+   - BASE_URLS   : 官网链接
+   - BASE_EPAPERS: 数字报链接
+   ========================================================================= */
+const BASE_URLS = {
+  "1-1":"http://www.people.com.cn/",
+  "1-96":"http://www.people.com.cn/",
+  "1-16":"https://www.gmw.cn/",
+  "1-68":"http://www.ce.cn/",
+  "1-9":"http://www.cyol.com/",
+  "1-38":"https://www.cankaoxiaoxi.com/",
+  "1-180":"https://www.globaltimes.cn/",
+  "1-3":"https://www.chinadaily.com.cn/",
+  "1-26":"http://www.81.cn/",
+  "1-5":"http://www.workercn.cn/",
+  "1-7":"http://www.cnwomen.com.cn/",
+  "1-20":"http://www.jkb.com.cn/",
+  "1-124":"https://www.financialnews.com.cn/",
+  "1-39":"http://www.farmer.com.cn/",
+  "1-19":"http://www.news.cn/",
+  "1-10":"http://www.jyb.cn/",
+  "1-59":"http://www.cenews.com.cn/",
+  "1-53":"http://www.ccoalnews.com/",
+  "1-82":"http://www.sciencenet.cn/",
+  "1-13":"https://www.bjd.com.cn/",
+  "1-14":"https://www.bjd.com.cn/",
+  "1-2":"http://www.rmzxb.com.cn/",
+  "1-41":"http://www.legaldaily.com.cn/",
+  "1-154":"https://www.spp.gov.cn/",
+  "1-174":"https://www.chinacourt.org/",
+  "1-204":"https://www.ccdi.gov.cn/",
+  "1-47":"http://www.sport.gov.cn/",
+  "1-148":"https://www.cqn.com.cn/",
+  "1-152":"https://www.redcross.org.cn/",
+  "1-31":"http://www.jjckb.cn/",
+  "1-6":"http://www.cnenergynews.cn/",
+  "1-52":"http://www.cpnn.com.cn/",
+  "1-122":"http://www.greentimes.com/",
+  "1-77":"http://www.chinajsb.cn/",
+  "1-116":"http://www.mca.gov.cn/",
+  "1-106":"http://www.clssn.com/",
+  "1-178":"http://www.kepu.gov.cn/",
+  "1-286":"http://www.zqrb.cn/",
+  "1-175":"https://www.cs.com.cn/",
+  "1-218":"http://www.cet.com.cn/",
+  "1-76":"https://www.cb.com.cn/",
+  "1-50":"https://www.chinaxwcb.com/",
+  "1-27":"http://www.tuanjiewang.cn/",
+  "3-1":"https://www.jfdaily.com/",
+  "3-3":"https://www.whb.cn/",
+  "3-5":"https://www.xinmin.cn/",
+  "3-21":"https://www.yicai.com/",
+  "3-98":"https://www.cnstock.com/",
+  "5-4":"http://www.jwb.com.cn/",
+  "7-126":"https://www.lswb.com.cn/",
+  "11-1":"http://jlrbszb.cnjiwang.com/",
+  "13-1":"https://www.hljnews.cn/",
+  "15-1":"http://szb.northnews.cn/",
+  "17-1":"http://hbrb.hebnews.cn/",
+  "21-1":"http://epaper.sxrb.com/",
+  "23-1":"https://www.dzwww.com/",
+  "25-1":"http://ah.anhuinews.com/",
+  "27-1":"http://xh.xhby.net/",
+  "31-1":"https://www.zjol.com.cn/",
+  "33-1":"https://www.fjdaily.com/",
+  "35-1":"https://www.henandaily.cn/",
+  "37-1":"https://www.hubeidaily.net/",
+  "41-1":"https://hnrb.voc.com.cn/",
+  "43-1":"https://www.jxnews.com.cn/",
+  "45-2":"https://www.gzdaily.cn/",
+  "45-6":"https://www.ycwb.com/",
+  "45-20":"http://www.sznews.com/",
+  "45-36":"https://www.infzm.com/",
+  "45-91":"https://www.stcn.com/",
+  "45-118":"https://www.21jingji.com/",
+  "47-19":"http://www.gxnews.com.cn/",
+  "51-1":"https://www.sxdaily.com.cn/",
+  "53-1":"https://www.gansudaily.com.cn/",
+  "55-1":"http://www.qhnews.com/",
+  "57-2":"https://www.xjdaily.com/",
+  "61-1":"https://www.scdaily.cn/",
+  "63-1":"https://www.yndaily.com/",
+  "65-1":"http://szb.gzrbs.com.cn/",
+  "67-1":"http://www.xzxw.com/",
+  "73-1":"http://szb.nxrb.cn/",
+  "77-1":"https://www.cqrb.cn/",
+  "83-1":"https://www.hinews.cn/"
+};
 
-const CATS = ['全部', ...new Set(SITES.map(s => s.cat))];
-let currentCat = '全部';
+const BASE_EPAPERS = {
+  "1-1":"http://paper.people.com.cn/rmrb/",
+  "1-96":"http://paper.people.com.cn/rmrbhwb/",
+  "1-16":"https://epaper.gmw.cn/gmrb/",
+  "1-68":"http://paper.ce.cn/",
+  "1-9":"http://zqb.cyol.com/",
+  "1-38":"https://www.cankaoxiaoxi.com/",
+  "1-26":"http://www.81.cn/",
+  "1-5":"http://www.workercn.cn/",
+  "1-7":"http://www.cnwomen.com.cn/",
+  "1-20":"http://www.jkb.com.cn/",
+  "1-124":"https://www.financialnews.com.cn/",
+  "1-39":"http://www.farmer.com.cn/",
+  "1-19":"http://www.news.cn/mrdx/",
+  "1-10":"http://paper.jyb.cn/",
+  "1-59":"http://www.cenews.com.cn/",
+  "1-53":"http://www.ccoalnews.com/",
+  "1-82":"http://www.sciencenet.cn/",
+  "1-13":"https://www.bjd.com.cn/",
+  "1-14":"https://www.bjd.com.cn/",
+  "1-2":"http://www.rmzxb.com.cn/",
+  "1-41":"http://www.legaldaily.com.cn/",
+  "1-154":"https://www.spp.gov.cn/",
+  "1-174":"https://www.chinacourt.org/",
+  "1-204":"https://www.ccdi.gov.cn/",
+  "1-47":"http://www.sport.gov.cn/",
+  "1-148":"https://www.cqn.com.cn/",
+  "1-152":"https://www.redcross.org.cn/",
+  "1-31":"http://jjckb.xinhuanet.com/",
+  "1-6":"http://www.cnenergynews.cn/",
+  "1-52":"http://www.cpnn.com.cn/",
+  "1-122":"http://www.greentimes.com/",
+  "1-77":"http://www.chinajsb.cn/",
+  "1-116":"http://www.mca.gov.cn/",
+  "1-106":"http://www.clssn.com/",
+  "1-178":"http://www.kepu.gov.cn/",
+  "1-223":"https://www.zuzhirenshi.com/",
+  "1-150":"https://www.ctaxnews.net.cn/",
+  "1-286":"http://www.zqrb.cn/",
+  "1-175":"https://www.cs.com.cn/",
+  "1-218":"http://www.cet.com.cn/",
+  "1-76":"https://www.cb.com.cn/",
+  "1-170":"http://www.ciweek.com/",
+  "1-50":"https://www.chinaxwcb.com/",
+  "1-27":"http://www.tuanjiewang.cn/",
+  "3-1":"https://www.jfdaily.com/",
+  "3-3":"https://www.whb.cn/",
+  "3-5":"https://www.xinmin.cn/",
+  "3-21":"https://www.yicai.com/",
+  "3-98":"https://www.cnstock.com/",
+  "5-4":"http://www.jwb.com.cn/",
+  "7-126":"https://www.lswb.com.cn/",
+  "11-1":"http://jlrbszb.cnjiwang.com/",
+  "13-1":"https://www.hljnews.cn/",
+  "15-1":"http://szb.northnews.cn/",
+  "17-1":"http://hbrb.hebnews.cn/",
+  "21-1":"http://epaper.sxrb.com/",
+  "23-1":"https://www.dzwww.com/",
+  "25-1":"http://ah.anhuinews.com/",
+  "27-1":"http://xh.xhby.net/",
+  "31-1":"https://www.zjol.com.cn/",
+  "33-1":"https://www.fjdaily.com/",
+  "35-1":"https://www.henandaily.cn/",
+  "37-1":"https://www.hubeidaily.net/",
+  "41-1":"https://hnrb.voc.com.cn/",
+  "43-1":"https://www.jxnews.com.cn/",
+  "45-2":"https://www.gzdaily.cn/",
+  "45-6":"https://www.ycwb.com/",
+  "45-20":"http://www.sznews.com/",
+  "45-36":"https://www.infzm.com/",
+  "45-91":"https://www.stcn.com/",
+  "45-118":"https://www.21jingji.com/",
+  "47-19":"http://www.gxnews.com.cn/",
+  "51-1":"https://www.sxdaily.com.cn/",
+  "53-1":"https://www.gansudaily.com.cn/",
+  "55-1":"http://www.qhnews.com/",
+  "57-2":"https://www.xjdaily.com/",
+  "61-1":"https://www.scdaily.cn/",
+  "63-1":"https://www.yndaily.com/",
+  "65-1":"http://szb.gzrbs.com.cn/",
+  "67-1":"http://www.xzxw.com/",
+  "73-1":"http://szb.nxrb.cn/",
+  "77-1":"https://www.cqrb.cn/",
+  "83-1":"https://www.hinews.cn/"
+};
 
-/* 分类标签 */
-CATS.forEach(cat => {
-  const count = cat === '全部' ? SITES.length : SITES.filter(s => s.cat === cat).length;
-  const btn = document.createElement('button');
-  btn.className = 'tab' + (cat === '全部' ? ' active' : '');
-  btn.dataset.cat = cat;
-  btn.innerHTML = `${cat}<span class="n">${count}</span>`;
-  btn.addEventListener('click', () => {
-    currentCat = cat;
-    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.cat === cat));
-    render();
+/* =========================================================================
+   状态管理
+   ========================================================================= */
+const STORAGE_KEY = 'paper2026_exp_mw576rl6';
+
+function buildInitialItems(){
+  let idc = 1;
+  const items = [];
+  DATA.forEach(function(pair){
+    const region = pair[0], list = pair[1];
+    list.forEach(function(row){
+      const code = row[1] || '';
+      items.push({
+        id: idc++,
+        region: region,
+        name: row[0] || '',
+        code: code,
+        period: row[2] || '',
+        price: row[3] || '',
+        year: row[4] || '',
+        cat: row[5] || '',
+        url: row.length > 6 ? (row[6] || '') : (BASE_URLS[code] || ''),
+        epaper: row.length > 7 ? (row[7] || '') : (BASE_EPAPERS[code] || '')
+      });
+    });
   });
-  tabsEl.appendChild(btn);
-});
-
-/* 卡片渲染 */
-function render() {
-  const list = SITES.filter(s => currentCat === '全部' || s.cat === currentCat);
-
-  gridEl.innerHTML = '';
-
-  const frag = document.createDocumentFragment();
-  list.forEach((s, i) => {
-    const a = document.createElement('a');
-    a.className = 'card';
-    a.href = s.url;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.style.setProperty('--c', s.color);
-    a.style.animationDelay = Math.min(i, 22) * 18 + 'ms';
-    a.innerHTML = `
-      <div class="logo${s.icon.length > 1 ? ' two' : ''}">${s.icon}</div>
-      <div class="body">
-        <div class="name">
-          ${s.name}${s.cn ? `<span class="cn">${s.cn}</span>` : ''}${s.en ? '<span class="en">EN</span>' : ''}
-          <span class="arrow">↗</span>
-        </div>
-        <div class="desc">${s.desc}</div>
-      </div>`;
-    frag.appendChild(a);
-  });
-  gridEl.appendChild(frag);
+  return items;
 }
 
-document.getElementById('year').textContent = new Date().getFullYear();
+let state = { items: buildInitialItems(), nextId: 100000 };
 
-render();
+function normalizeItem(it){
+  return {
+    id: Number(it.id) || 0,
+    region: String(it.region || '未分类'),
+    name: String(it.name || ''),
+    code: String(it.code || ''),
+    period: String(it.period || ''),
+    price: String(it.price || ''),
+    year: String(it.year || ''),
+    cat: String(it.cat || ''),
+    url: String(it.url || ''),
+    epaper: String(it.epaper || '')
+  };
+}
+
+function loadFromStorage(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return false;
+    const o = JSON.parse(raw);
+    if(!o || !Array.isArray(o.items) || !o.items.length) return false;
+    state.items = o.items.map(normalizeItem);
+    state.nextId = o.nextId || 100000;
+    return true;
+  }catch(e){ return false; }
+}
+
+function saveToStorage(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      items: state.items,
+      nextId: state.nextId,
+      ts: Date.now()
+    }));
+    return true;
+  }catch(e){ return false; }
+}
+
+/* =========================================================================
+   密码校验（源码中不出现明文）
+   ========================================================================= */
+var _x = [0x18, 0x1A, 0x18, 0x1C];
+var _y = 0x2A;
+
+function checkPwd(s){
+  if(typeof s !== 'string' || s.length !== _x.length) return false;
+  for(var i=0;i<_x.length;i++){
+    if((s.charCodeAt(i) ^ _y) !== _x[i]) return false;
+  }
+  return true;
+}
+
+/* =========================================================================
+   DOM 引用
+   ========================================================================= */
+const app      = document.getElementById('app');
+const nav      = document.getElementById('nav');
+const qEl      = document.getElementById('q');
+const hint     = document.getElementById('hint');
+const topBtn   = document.getElementById('top');
+const modeBtn  = document.getElementById('modeBtn');
+const editbar  = document.getElementById('editbar');
+const toastEl  = document.getElementById('toast');
+
+const pwdModal  = document.getElementById('pwdModal');
+const pwdInput  = document.getElementById('pwdInput');
+const pwdErr    = document.getElementById('pwdErr');
+
+const editModal = document.getElementById('editModal');
+const emTitle   = document.getElementById('emTitle');
+const emDesc    = document.getElementById('emDesc');
+const emErr     = document.getElementById('emErr');
+const fName     = document.getElementById('f_name');
+const fCode     = document.getElementById('f_code');
+const fPeriod   = document.getElementById('f_period');
+const fPrice    = document.getElementById('f_price');
+const fYear     = document.getElementById('f_year');
+const fCat      = document.getElementById('f_cat');
+const fUrl      = document.getElementById('f_url');
+const fEpaper   = document.getElementById('f_epaper');
+
+let isEdit = false;
+let searchTerm = '';
+let editingId = null;
+let addingRegion = null;
+let observer = null;
+let toastTimer = null;
+
+/* =========================================================================
+   工具函数
+   ========================================================================= */
+function esc(s){
+  return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+function shortName(r){
+  return r.replace(/(省|市|自治区|维吾尔|回族|壮族)/g,'') || r;
+}
+function toast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2200);
+}
+
+/* =========================================================================
+   渲染
+   ========================================================================= */
+function cardHTML(it, editMode){
+  const hasUrl = !!(it.url || '').trim();
+  const hasEp  = !!(it.epaper || '').trim();
+  const key = (it.name + ' ' + it.code + ' ' + it.cat).toLowerCase();
+
+  let foot = '';
+  if(editMode){
+    foot = '<div class="c-foot"><div class="c-actions">' +
+      '<button class="mini" data-act="edit" data-id="' + it.id + '">编辑</button>' +
+      '<button class="mini del" data-act="del" data-id="' + it.id + '">删除</button>' +
+      '</div></div>';
+  }else{
+    foot = '<div class="c-foot">' +
+      '<a class="c-link c-link-web" data-act="open-web" data-id="' + it.id + '">' +
+        (hasUrl ? '进入官网 ↗' : '搜索官网 ↗') + '</a>' +
+      '<a class="c-link c-link-ep" data-act="open-ep" data-id="' + it.id + '">' +
+        (hasEp ? '数字报 ↗' : '搜索数字报 ↗') + '</a>' +
+      '</div>';
+  }
+
+  return '<article class="card' + (editMode ? ' editing' : '') + '" data-id="' + it.id +
+    '" data-s="' + esc(key) + '">' +
+    '<div class="c-top"><span class="code">' + esc(it.code) + '</span>' +
+    '<span class="period">' + esc(it.period) + '</span></div>' +
+    '<h4 class="c-name">' + esc(it.name) + '</h4>' +
+    '<div class="c-meta"><span>单价 <b>' + esc(it.price) + '</b> 元</span>' +
+    '<span>年价 <b>' + esc(it.year) + '</b> 元</span></div>' +
+    '<div class="c-cat" title="' + esc(it.cat) + '">' + esc(it.cat) + '</div>' +
+    foot +
+    '</article>';
+}
+
+function render(){
+  const groups = new Map();
+  state.items.forEach(function(it){
+    if(!groups.has(it.region)) groups.set(it.region, []);
+    groups.get(it.region).push(it);
+  });
+
+  let navHTML = '<h2>地区导航</h2>';
+  let appHTML = '';
+  let gi = 0;
+
+  groups.forEach(function(list, region){
+    const id = 'r' + (gi++);
+    navHTML += '<a href="#' + id + '" data-target="' + id + '">' +
+      esc(shortName(region)) + '<span class="n">' + list.length + '</span></a>';
+
+    let cards = '';
+    list.forEach(function(it){ cards += cardHTML(it, isEdit); });
+
+    appHTML += '<section class="region" id="' + id + '">' +
+      '<div class="region-hd">' +
+        '<h3>' + esc(region) + '</h3>' +
+        '<span class="count" data-n="' + list.length + '">' + list.length + ' 种</span>' +
+        (isEdit ? '<button class="add" data-add="' + esc(region) + '">＋ 新增报刊</button>' : '') +
+      '</div>' +
+      '<div class="grid">' + cards + '</div>' +
+      '</section>';
+  });
+
+  nav.innerHTML = navHTML;
+  app.innerHTML = appHTML;
+
+  document.getElementById('total').textContent = state.items.length.toLocaleString();
+  document.getElementById('rcount').textContent = groups.size;
+
+  if(observer) observer.disconnect();
+  observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        document.querySelectorAll('#nav a').forEach(function(a){
+          a.classList.toggle('active', a.dataset.target === en.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-80px 0px -70% 0px' });
+  document.querySelectorAll('.region').forEach(function(s){ observer.observe(s); });
+
+  applySearch();
+}
+
+/* =========================================================================
+   搜索
+   ========================================================================= */
+function applySearch(){
+  const v = searchTerm.trim().toLowerCase();
+  let matched = 0;
+
+  document.querySelectorAll('.card').forEach(function(c){
+    const ok = !v || c.dataset.s.indexOf(v) > -1;
+    c.classList.toggle('hide', !ok);
+    if(ok) matched++;
+  });
+
+  document.querySelectorAll('.region').forEach(function(sec){
+    const visible = sec.querySelectorAll('.card:not(.hide)').length;
+    sec.style.display = visible ? '' : 'none';
+    const badge = sec.querySelector('.count');
+    if(badge){
+      const n = badge.dataset.n;
+      badge.textContent = v ? (visible + ' / ' + n + ' 种') : (n + ' 种');
+    }
+  });
+
+  hint.textContent = v ? ('匹配 ' + matched + ' 种') : '支持模糊匹配';
+}
+
+qEl.addEventListener('input', function(){
+  searchTerm = qEl.value;
+  applySearch();
+});
+
+/* =========================================================================
+   卡片交互
+   ========================================================================= */
+app.addEventListener('click', function(e){
+  const addBtn = e.target.closest('button[data-add]');
+  if(addBtn){
+    e.stopPropagation();
+    openAddModal(addBtn.dataset.add);
+    return;
+  }
+
+  const actBtn = e.target.closest('button[data-act="edit"], button[data-act="del"]');
+  if(actBtn){
+    e.stopPropagation();
+    const id = Number(actBtn.dataset.id);
+    if(actBtn.dataset.act === 'edit') openEditModal(id);
+    else if(actBtn.dataset.act === 'del') removeItem(id);
+    return;
+  }
+
+  const linkAct = e.target.closest('a[data-act="open-web"], a[data-act="open-ep"]');
+  if(linkAct){
+    e.stopPropagation();
+    const id = Number(linkAct.dataset.id);
+    const item = state.items.find(function(x){ return x.id === id; });
+    if(!item) return;
+    if(linkAct.dataset.act === 'open-web') openWeb(item);
+    else openEpaper(item);
+    return;
+  }
+
+  const card = e.target.closest('.card');
+  if(!card) return;
+  const id = Number(card.dataset.id);
+  const item = state.items.find(function(x){ return x.id === id; });
+  if(!item) return;
+  if(isEdit) openEditModal(id);
+  else openWeb(item);
+});
+
+function openWeb(it){
+  let url = (it.url || '').trim();
+  if(url && !/^https?:\/\//i.test(url)) url = 'https://' + url;
+  if(!url) url = 'https://www.bing.com/search?q=' + encodeURIComponent(it.name + ' 官网');
+  window.open(url, '_blank', 'noopener');
+}
+
+function openEpaper(it){
+  let url = (it.epaper || '').trim();
+  if(url && !/^https?:\/\//i.test(url)) url = 'https://' + url;
+  if(!url) url = 'https://www.bing.com/search?q=' + encodeURIComponent(it.name + ' 数字报');
+  window.open(url, '_blank', 'noopener');
+}
+
+/* =========================================================================
+   编辑模式
+   ========================================================================= */
+modeBtn.addEventListener('click', function(){
+  if(isEdit){ exitEditMode(); return; }
+  openPwdModal();
+});
+
+function openPwdModal(){
+  pwdInput.value = '';
+  pwdErr.textContent = '';
+  pwdModal.classList.add('show');
+  setTimeout(function(){ pwdInput.focus(); }, 60);
+}
+function closePwdModal(){ pwdModal.classList.remove('show'); }
+function tryUnlock(){
+  if(checkPwd(pwdInput.value)){
+    closePwdModal();
+    enterEditMode();
+  }else{
+    pwdErr.textContent = '密码错误，请重试';
+    pwdInput.value = '';
+    pwdInput.focus();
+  }
+}
+document.getElementById('pwdOk').addEventListener('click', tryUnlock);
+document.getElementById('pwdCancel').addEventListener('click', closePwdModal);
+pwdInput.addEventListener('keydown', function(e){
+  if(e.key === 'Enter') tryUnlock();
+  if(e.key === 'Escape') closePwdModal();
+});
+
+function enterEditMode(){
+  isEdit = true;
+  modeBtn.textContent = '📖 返回阅读模式';
+  modeBtn.classList.add('on');
+  editbar.classList.add('show');
+  render();
+  toast('编辑模式已开启');
+}
+
+function exitEditMode(){
+  /* 退出前自动保存，确保所有改动落地 */
+  saveToStorage();
+  isEdit = false;
+  modeBtn.textContent = '🔒 进入编辑模式';
+  modeBtn.classList.remove('on');
+  editbar.classList.remove('show');
+  render();
+  toast('已自动保存并返回阅读模式');
+}
+document.getElementById('exitBtn').addEventListener('click', exitEditMode);
+
+/* =========================================================================
+   导出 / 导入（JSON）
+   ========================================================================= */
+document.getElementById('exportBtn').addEventListener('click', exportData);
+document.getElementById('exportHtmlBtn').addEventListener('click', exportHTML);
+document.getElementById('importBtn').addEventListener('click', function(){
+  const inp = document.createElement('input');
+  inp.type = 'file';
+  inp.accept = '.json,application/json';
+  inp.onchange = function(){
+    if(inp.files && inp.files[0]) importData(inp.files[0]);
+  };
+  inp.click();
+});
+
+function exportData(){
+  const payload = {
+    app: '中国报纸名录',
+    version: 3,
+    exportTime: new Date().toISOString(),
+    count: state.items.length,
+    items: state.items
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const d = new Date();
+  const pad = function(n){ return String(n).padStart(2,'0'); };
+  a.href = url;
+  a.download = '中国报纸名录_' + d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate()) +
+    '_' + pad(d.getHours()) + pad(d.getMinutes()) + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1200);
+  toast('已导出 JSON（' + state.items.length + ' 条）');
+}
+
+function importData(file){
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    let data;
+    try{ data = JSON.parse(ev.target.result); }
+    catch(err){ toast('导入失败：不是有效的 JSON 文件'); return; }
+
+    let rawItems = null;
+    if(Array.isArray(data)) rawItems = data;
+    else if(data && Array.isArray(data.items)) rawItems = data.items;
+
+    if(!rawItems || !rawItems.length){
+      toast('导入失败：文件结构不正确');
+      return;
+    }
+
+    const clean = [];
+    rawItems.forEach(function(it){
+      if(!it || !it.name) return;
+      clean.push(normalizeItem(it));
+    });
+
+    if(!clean.length){ toast('导入失败：没有有效数据'); return; }
+    if(!confirm('将用导入的 ' + clean.length + ' 条数据替换当前 ' + state.items.length +
+      ' 条数据，确定继续吗？')) return;
+
+    let nid = 1;
+    clean.forEach(function(it){ it.id = nid++; });
+    state.items = clean;
+    state.nextId = nid;
+    saveToStorage();
+    render();
+    toast('已导入 ' + clean.length + ' 条数据');
+  };
+  reader.readAsText(file, 'UTF-8');
+}
+
+/* =========================================================================
+   导出 HTML（含编辑后的完整数据，可直接用于仓库提交）
+   ========================================================================= */
+function exportHTML(){
+  /* 确保所有改动已保存到 state 与 localStorage */
+  saveToStorage();
+
+  /* 1. 按 region 重建 DATA 结构（8 字段：含 url / epaper） */
+  const groups = new Map();
+  state.items.forEach(function(it){
+    if(!groups.has(it.region)) groups.set(it.region, []);
+    groups.get(it.region).push(it);
+  });
+  const newData = [];
+  groups.forEach(function(list, region){
+    const rows = list.map(function(it){
+      return [
+        it.name,
+        it.code,
+        it.period,
+        it.price,
+        it.year,
+        it.cat,
+        it.url || '',
+        it.epaper || ''
+      ];
+    });
+    newData.push([region, rows]);
+  });
+
+  /* 2. 序列化 DATA */
+  const dataStr = 'const DATA = ' + stringifyData(newData) + ';';
+
+  /* 3. 取当前完整 HTML */
+  let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+  /* 4. 替换 DATA 区段 */
+  const dataRegex = /\/\* ===DATA_START=== \*\/[\s\S]*?\/\* ===DATA_END=== \*\//;
+  if(!dataRegex.test(html)){
+    toast('导出失败：未找到数据标记');
+    return;
+  }
+  html = html.replace(
+    dataRegex,
+    '/* ===DATA_START=== */\n' + dataStr + '\n/* ===DATA_END=== */'
+  );
+
+  /* 5. 换一个独立的 STORAGE_KEY，避免与当前页面 localStorage 互相污染 */
+  const exportKey = 'paper2026_exp_' + Date.now().toString(36);
+  html = html.replace(
+    /const STORAGE_KEY = '[^']*';/,
+    "const STORAGE_KEY = '" + exportKey + "';"
+  );
+
+  /* 6. 用 DOMParser 清理编辑态 UI，保证导出文件初始为阅读模式 */
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+
+  const eb = doc.getElementById('editbar');
+  if(eb) eb.classList.remove('show');
+
+  const mb = doc.getElementById('modeBtn');
+  if(mb){
+    mb.classList.remove('on');
+    mb.textContent = '🔒 进入编辑模式';
+  }
+
+  /* 清空已渲染内容，页面首次加载时脚本会重新渲染 */
+  const navEl = doc.getElementById('nav');
+  if(navEl) navEl.innerHTML = '<h2>地区导航</h2>';
+  const appEl = doc.getElementById('app');
+  if(appEl) appEl.innerHTML = '';
+
+  /* 7. 序列化并下载 */
+  const finalHtml = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
+  const blob = new Blob([finalHtml], {type: 'text/html;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const d = new Date();
+  const pad = function(n){ return String(n).padStart(2,'0'); };
+  a.href = url;
+  a.download = '中国报纸名录_' + d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate()) +
+    '_' + pad(d.getHours()) + pad(d.getMinutes()) + '.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+  toast('已导出 HTML（' + state.items.length + ' 条）');
+}
+
+/* 将 [[region, [[...8字段]]], ...] 序列化成美观的 JS 字面量 */
+function stringifyData(arr){
+  function escJS(s){
+    return String(s == null ? '' : s)
+      .replace(/\\/g, '\\\\')
+      .replace(/"/g, '\\"')
+      .replace(/\n/g, '\\n')
+      .replace(/\r/g, '\\r')
+      .replace(/\t/g, '\\t');
+  }
+  let out = '[\n';
+  arr.forEach(function(pair, pi){
+    out += '["' + escJS(pair[0]) + '",[\n';
+    pair[1].forEach(function(row, ri){
+      out += '[' + row.map(function(c){ return '"' + escJS(c) + '"'; }).join(',') + ']';
+      if(ri < pair[1].length - 1) out += ',';
+      out += '\n';
+    });
+    out += ']]';
+    if(pi < arr.length - 1) out += ',';
+    out += '\n';
+  });
+  out += ']';
+  return out;
+}
+
+/* =========================================================================
+   编辑弹窗
+   ========================================================================= */
+function openAddModal(region){
+  addingRegion = region;
+  editingId = null;
+  emTitle.textContent = '新增报刊';
+  emDesc.textContent = '归属地区：' + region;
+  emErr.textContent = '';
+  fName.value = ''; fCode.value = ''; fPeriod.value = '';
+  fPrice.value = ''; fYear.value = ''; fCat.value = '';
+  fUrl.value = ''; fEpaper.value = '';
+  editModal.classList.add('show');
+  setTimeout(function(){ fName.focus(); }, 60);
+}
+
+function openEditModal(id){
+  const it = state.items.find(function(x){ return x.id === id; });
+  if(!it) return;
+  addingRegion = null;
+  editingId = id;
+  emTitle.textContent = '编辑报刊';
+  emDesc.textContent = '归属地区：' + it.region;
+  emErr.textContent = '';
+  fName.value = it.name;
+  fCode.value = it.code;
+  fPeriod.value = it.period;
+  fPrice.value = it.price;
+  fYear.value = it.year;
+  fCat.value = it.cat;
+  fUrl.value = it.url || '';
+  fEpaper.value = it.epaper || '';
+  editModal.classList.add('show');
+  setTimeout(function(){ fName.focus(); }, 60);
+}
+
+function closeEditModal(){ editModal.classList.remove('show'); }
+document.getElementById('emCancel').addEventListener('click', closeEditModal);
+
+document.getElementById('emSave').addEventListener('click', function(){
+  const name = fName.value.trim();
+  if(!name){
+    emErr.textContent = '报刊名称不能为空';
+    fName.focus();
+    return;
+  }
+  const payload = {
+    name: name,
+    code: fCode.value.trim(),
+    period: fPeriod.value.trim(),
+    price: fPrice.value.trim(),
+    year: fYear.value.trim(),
+    cat: fCat.value.trim(),
+    url: fUrl.value.trim(),
+    epaper: fEpaper.value.trim()
+  };
+
+  if(editingId){
+    const it = state.items.find(function(x){ return x.id === editingId; });
+    if(it){
+      it.name = payload.name;
+      it.code = payload.code;
+      it.period = payload.period;
+      it.price = payload.price;
+      it.year = payload.year;
+      it.cat = payload.cat;
+      it.url = payload.url;
+      it.epaper = payload.epaper;
+    }
+    toast('已保存修改');
+  }else if(addingRegion){
+    state.items.push({
+      id: state.nextId++,
+      region: addingRegion,
+      name: payload.name,
+      code: payload.code,
+      period: payload.period,
+      price: payload.price,
+      year: payload.year,
+      cat: payload.cat,
+      url: payload.url,
+      epaper: payload.epaper
+    });
+    toast('已新增报刊');
+  }
+
+  saveToStorage();
+  closeEditModal();
+  render();
+});
+
+editModal.addEventListener('click', function(e){
+  if(e.target === editModal) closeEditModal();
+});
+pwdModal.addEventListener('click', function(e){
+  if(e.target === pwdModal) closePwdModal();
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){
+    closePwdModal();
+    closeEditModal();
+  }
+});
+
+/* =========================================================================
+   删除
+   ========================================================================= */
+function removeItem(id){
+  const it = state.items.find(function(x){ return x.id === id; });
+  if(!it) return;
+  if(!confirm('确定删除《' + it.name + '》吗？')) return;
+  state.items = state.items.filter(function(x){ return x.id !== id; });
+  saveToStorage();
+  render();
+  toast('已删除');
+}
+
+/* =========================================================================
+   回到顶部
+   ========================================================================= */
+window.addEventListener('scroll', function(){
+  topBtn.classList.toggle('show', window.scrollY > 600);
+});
+topBtn.addEventListener('click', function(){
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* =========================================================================
+   启动
+   ========================================================================= */
+(function init(){
+  loadFromStorage();
+  render();
+})();
 </script>
 
 </body></html>
