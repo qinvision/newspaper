@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="杜绝加密空间 · 报纸导航：中外主流报纸刊物精选，党报、都市晚报、财经报刊、国际大报、文摘周报分类归置，一站直达。">
+<title>报纸导航 · PaperNav｜杜绝加密</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0b10'/%3E%3Ctext x='32' y='43' font-size='30' font-family='serif' font-weight='700' fill='%23ff4d5e' text-anchor='middle'%3E报%3C/text%3E%3C/svg%3E">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0a0b10;
+    --card:rgba(255,255,255,.045);
+    --card-hover:rgba(255,255,255,.085);
+    --border:rgba(255,255,255,.08);
+    --text:#e9ecf3;
+    --muted:#8b95a8;
+    --accent:#ff4d5e;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    padding:0 22px 70px;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:'';
+    position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(900px 520px at 10% -10%, rgba(255,77,94,.20), transparent 62%),
+      radial-gradient(780px 460px at 90% -6%, rgba(255,166,64,.15), transparent 62%),
+      radial-gradient(900px 620px at 50% 112%, rgba(120,90,255,.10), transparent 62%);
+  }
+
+  /* ---------- Header ---------- */
+  .back-home{
+    position:fixed;top:16px;left:20px;z-index:30;
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:12.5px;letter-spacing:.06em;color:#a4b0c6;
+    background:rgba(255,255,255,.05);border:1px solid var(--border);
+    border-radius:999px;padding:7px 14px;text-decoration:none;
+    backdrop-filter:blur(8px);transition:.22s ease;
+  }
+  .back-home:hover{color:#fff;border-color:rgba(255,77,94,.5)}
+  header{max-width:1240px;margin:0 auto;padding:70px 0 0;text-align:center}
+  .badge{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:12.5px;letter-spacing:.06em;
+    color:#b6a9b2;
+    background:rgba(255,255,255,.05);
+    border:1px solid var(--border);
+    border-radius:999px;padding:6px 14px;
+    backdrop-filter:blur(8px);
+  }
+  h1{
+    font-size:clamp(30px,5vw,46px);
+    font-weight:800;letter-spacing:-.02em;
+    margin-top:20px;
+    background:linear-gradient(180deg,#fff 30%,#a99aa4);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .sub{margin-top:12px;color:var(--muted);font-size:14.5px}
+  .sub b{color:#ffb3bb;font-weight:600}
+
+  /* ---------- Tabs ---------- */
+  .tabs{
+    display:flex;flex-wrap:wrap;gap:9px;justify-content:center;
+    max-width:900px;margin:36px auto 0;
+  }
+  .tab{
+    font-family:inherit;font-size:13.5px;cursor:pointer;
+    color:#a4b0c6;
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--border);
+    border-radius:999px;
+    padding:8px 16px;
+    transition:.22s ease;
+    display:inline-flex;align-items:center;gap:7px;
+  }
+  .tab:hover{color:#fff;background:rgba(255,255,255,.085);transform:translateY(-1px)}
+  .tab .n{font-size:11px;opacity:.6}
+  .tab.active{
+    color:#fff;
+    background:linear-gradient(135deg,#ff4d5e,#ff9147);
+    border-color:transparent;
+    box-shadow:0 8px 22px -10px rgba(255,77,94,.9);
+  }
+  .tab.active .n{opacity:.85}
+
+  /* ---------- Grid ---------- */
+  .grid{
+    max-width:1240px;margin:38px auto 0;
+    display:grid;gap:14px;
+    grid-template-columns:repeat(auto-fill,minmax(272px,1fr));
+  }
+  .card{
+    --c:#ff4d5e;
+    position:relative;overflow:hidden;
+    display:flex;gap:13px;align-items:flex-start;
+    padding:16px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    text-decoration:none;color:inherit;
+    transition:transform .22s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease;
+    animation:rise .5s cubic-bezier(.22,1,.36,1) backwards;
+  }
+  .card::after{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(420px 130px at 0% 0%, var(--c), transparent 72%);
+    opacity:0;transition:opacity .3s ease;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    background:var(--card-hover);
+    border-color:rgba(255,255,255,.17);
+    box-shadow:0 16px 38px -18px rgba(0,0,0,.85);
+  }
+  .card:hover::after{opacity:.09}
+  .logo{
+    flex:0 0 42px;width:42px;height:42px;border-radius:12px;
+    display:grid;place-items:center;
+    font-size:16px;font-weight:700;letter-spacing:-.02em;
+    color:var(--c);
+    background:rgba(255,255,255,.055);
+    background:color-mix(in srgb, var(--c) 17%, rgba(255,255,255,.03));
+    border:1px solid rgba(255,255,255,.08);
+    border-color:color-mix(in srgb, var(--c) 32%, transparent);
+    transition:transform .22s ease;
+  }
+  .logo.two{font-size:14px;letter-spacing:-.05em}
+  .card:hover .logo{transform:scale(1.06) rotate(-3deg)}
+  .body{min-width:0;flex:1}
+  .name{
+    font-size:15px;font-weight:650;line-height:1.35;
+    display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  }
+  .name .cn{color:#7f8aa0;font-weight:400;font-size:12.5px}
+  .name .en{
+    font-size:9.5px;font-weight:700;letter-spacing:.08em;
+    color:#9aa5b8;background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:4px;padding:1px 4px;line-height:1.4;
+  }
+  .arrow{
+    font-size:11px;color:var(--muted);
+    opacity:0;transform:translateX(-5px);
+    transition:.22s ease;
+  }
+  .card:hover .arrow{opacity:1;transform:none}
+  .desc{
+    margin-top:5px;font-size:12.5px;line-height:1.55;color:var(--muted);
+    overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  }
+
+  @keyframes rise{
+    from{opacity:0;transform:translateY(14px)}
+    to{opacity:1;transform:none}
+  }
+
+  /* ---------- Empty ---------- */
+  .empty{
+    grid-column:1/-1;text-align:center;padding:70px 0;color:var(--muted);
+  }
+  .empty .big{font-size:38px;margin-bottom:14px;opacity:.5}
+  .empty p{font-size:14px}
+
+  /* ---------- Footer ---------- */
+  footer{
+    max-width:1240px;margin:64px auto 0;
+    padding-top:26px;border-top:1px solid rgba(255,255,255,.07);
+    text-align:center;font-size:12.5px;color:#5f6a80;line-height:1.9;
+  }
+  footer a{color:#8b7f88;text-decoration:none;border-bottom:1px dashed rgba(139,127,136,.4)}
+  footer a:hover{color:var(--accent);border-color:var(--accent)}
+
+  @media (max-width:520px){
+    body{padding:0 16px 50px}
+    header{padding-top:48px}
+    .grid{grid-template-columns:1fr;margin-top:28px}
+  }
+</style>
+</head>
+<body>
+
+<a class="back-home" href="https://mydjjm.cn/" aria-label="返回杜绝加密主页">← 返回主页</a>
+
+<header>
+  <div class="badge">PaperNav · 报纸索引</div>
+  <h1>报纸导航</h1>
+  <p class="sub">中外主流报纸刊物精选 · <b>官方站点直达</b> · 不转载、不存储</p>
+</header>
+
+<nav class="tabs" id="tabs"></nav>
+
+<main class="grid" id="grid"></main>
+
+<footer>
+  <div>所有链接均指向各媒体的官方网站，本站不转载、不存储任何新闻内容。</div>
+  <div><a href="https://mydjjm.cn/">← 返回杜绝加密主页</a></div>
+  <div>© <span id="year">2026</span> PaperNav</div>
+</footer>
+
+<script>
+/* ================= 数据 ================= */
+/* en: true 表示英文站点，用于标识 */
+const SITES = [
+  /* ---------------- 党政大报 ---------------- */
+  { name:'人民日报', cn:'',   cat:'党政大报', color:'#c9242b', icon:'人', url:'http://www.people.com.cn',            desc:'中共中央机关报，政策与时政权威解读', kw:'中央 机关报 政策' },
+  { name:'光明日报', cn:'',   cat:'党政大报', color:'#b8232f', icon:'光', url:'https://www.gmw.cn',                  desc:'知识分子与思想文化领域大报', kw:'文化 思想 学术' },
+  { name:'经济日报', cn:'',   cat:'党政大报', color:'#c0392b', icon:'经', url:'http://www.ce.cn',                   desc:'国务院主办，宏观经济与产业政策', kw:'经济 政策 产业' },
+  { name:'解放军报', cn:'',   cat:'党政大报', color:'#1f4e9c', icon:'军', url:'http://www.81.cn',                  desc:'中央军委机关报，国防与军事', kw:'军队 国防 军事' },
+  { name:'学习时报', cn:'',   cat:'党政大报', color:'#8c1c13', icon:'学', url:'https://www.studytimes.cn',          desc:'中央党校主办，理论与干部读物', kw:'理论 党校 干部' },
+  { name:'法治日报', cn:'',   cat:'党政大报', color:'#2f5fa8', icon:'法', url:'http://www.legaldaily.com.cn',       desc:'政法领域中央大报，法治建设报道', kw:'法律 政法 法治' },
+  { name:'工人日报', cn:'',   cat:'党政大报', color:'#d23c22', icon:'工', url:'http://www.workercn.cn',            desc:'全国总工会主办，劳动者权益视角', kw:'工会 劳动者 职场' },
+  { name:'中国青年报', cn:'', cat:'党政大报', color:'#1d6fb8', icon:'青', url:'https://www.cyol.com',              desc:'共青团中央机关报，青年与冰点特稿', kw:'青年 冰点 特稿' },
+
+  /* ---------------- 都市晚报 ---------------- */
+  { name:'北京晚报', cn:'',   cat:'都市晚报', color:'#d7262e', icon:'京', url:'https://bjwb.bjd.com.cn',            desc:'北京日报社旗下，古都市井与民生', kw:'北京 民生 市井' },
+  { name:'新民晚报', cn:'',   cat:'都市晚报', color:'#c8102e', icon:'新', url:'https://www.xinmin.cn',              desc:'上海老牌晚报，海派都市生活', kw:'上海 海派 都市' },
+  { name:'羊城晚报', cn:'',   cat:'都市晚报', color:'#e2231a', icon:'羊', url:'https://www.ycwb.com',              desc:'广州岭南风格，华南民生与时评', kw:'广州 岭南 华南' },
+  { name:'今晚报',   cn:'',   cat:'都市晚报', color:'#b8232f', icon:'今', url:'https://www.jwb.com.cn',            desc:'天津晚报，津味市井与文化', kw:'天津 津味 市井' },
+  { name:'扬子晚报', cn:'',   cat:'都市晚报', color:'#c0392b', icon:'扬', url:'http://www.yangtse.com',            desc:'江苏发行量最大晚报，长三角视角', kw:'江苏 南京 长三角' },
+  { name:'钱江晚报', cn:'',   cat:'都市晚报', color:'#1f7a5c', icon:'钱', url:'https://qjwb.thehour.cn',           desc:'浙江日报旗下，杭州与浙江民生', kw:'浙江 杭州 民生' },
+  { name:'楚天都市报', cn:'', cat:'都市晚报', color:'#e8531f', icon:'楚', url:'https://ctdsb.cnhubei.com',          desc:'湖北门户都市报，华中民生', kw:'湖北 武汉 华中' },
+  { name:'南方都市报', cn:'南都', cat:'都市晚报', color:'#e2231a', icon:'南', url:'https://www.oeeee.com',         desc:'深度调查与舆论监督见长', kw:'调查 社会 监督' },
+
+  /* ---------------- 财经证券 ---------------- */
+  { name:'中国证券报', cn:'中证报', cat:'财经证券', color:'#c9242b', icon:'中', url:'https://www.cs.com.cn',        desc:'证监会指定信披媒体，股市权威', kw:'股票 信披 证券' },
+  { name:'上海证券报', cn:'上证报', cat:'财经证券', color:'#1d6fb8', icon:'上', url:'https://www.cnstock.com',     desc:'证监会指定信披媒体，上证所背景', kw:'股票 信披 上证' },
+  { name:'证券时报', cn:'',   cat:'财经证券', color:'#1f4e9c', icon:'证', url:'https://www.stcn.com',              desc:'资本市场与上市公司深度报道', kw:'证券 上市 公司' },
+  { name:'证券日报', cn:'',   cat:'财经证券', color:'#2f5fa8', icon:'日', url:'http://www.zqrb.cn',               desc:'资本市场政策与监管动向', kw:'证券 监管 政策' },
+  { name:'中国经营报', cn:'', cat:'财经证券', color:'#b03a2e', icon:'经', url:'https://www.cb.com.cn',             desc:'老牌财经周报，商业案例与趋势', kw:'商业 周报 案例' },
+  { name:'第一财经日报', cn:'', cat:'财经证券', color:'#d94f2b', icon:'第', url:'https://www.yicai.com',            desc:'上海第一财经，宏观与公司新闻', kw:'宏观 公司 财经' },
+  { name:'21世纪经济报道', cn:'21经济', cat:'财经证券', color:'#e07b39', icon:'21', url:'https://www.21jingji.com', desc:'产业与区域经济分析', kw:'产业 经济 区域' },
+  { name:'经济观察报', cn:'', cat:'财经证券', color:'#8e6cd8', icon:'观', url:'https://www.eeo.com.cn',             desc:'商业评论与深度产业观察', kw:'商业 评论 观察' },
+
+  /* ---------------- 文摘周刊 ---------------- */
+  { name:'参考消息', cn:'',   cat:'文摘周刊', color:'#c8102e', icon:'参', url:'https://www.cankaoxiaoxi.com',      desc:'新华社主办，外媒报道中文译介', kw:'外媒 译介 国际' },
+  { name:'环球时报', cn:'',   cat:'文摘周刊', color:'#d2001f', icon:'环', url:'https://www.huanqiu.com',            desc:'国际时政与民族视角评论', kw:'国际 时政 评论' },
+  { name:'南方周末', cn:'',   cat:'文摘周刊', color:'#c9222b', icon:'周', url:'https://www.infzm.com',              desc:'老牌深度周报，特稿与年度策划', kw:'特稿 深度 周报' },
+  { name:'瞭望',     cn:'',   cat:'文摘周刊', color:'#b8232f', icon:'瞭', url:'http://www.lwgcw.com',              desc:'新华社主办时政新闻周刊', kw:'时政 周刊 新华社' },
+  { name:'半月谈',   cn:'',   cat:'文摘周刊', color:'#8c1c13', icon:'半', url:'http://www.banyuetan.org',           desc:'中宣部委托新华社主办通俗刊物', kw:'通俗 政策 基层' },
+  { name:'中国新闻周刊', cn:'', cat:'文摘周刊', color:'#d13b3b', icon:'新', url:'https://www.inewsweek.cn',         desc:'时政社会深度报道与专题策划', kw:'时政 专题 社会' },
+  { name:'三联生活周刊', cn:'', cat:'文摘周刊', color:'#e84c3d', icon:'三', url:'https://www.lifeweek.com.cn',     desc:'文化、社会与生活方式长文', kw:'文化 生活 长文' },
+  { name:'瞭望东方周刊', cn:'东方', cat:'文摘周刊', color:'#1f4e9c', icon:'东', url:'http://www.dfweekly.com',     desc:'新华社旗下，城市与财经观察', kw:'城市 财经 观察' },
+
+  /* ---------------- 地方党报 ---------------- */
+  { name:'解放日报', cn:'',   cat:'地方党报', color:'#c9242b', icon:'解', url:'https://www.jfdaily.com',            desc:'上海市委机关报，长三角权威', kw:'上海 市委 长三角' },
+  { name:'南方日报', cn:'',   cat:'地方党报', color:'#c0392b', icon:'南', url:'http://www.nfdaily.cn',              desc:'广东省委机关报，华南政经', kw:'广东 省委 华南' },
+  { name:'广州日报', cn:'',   cat:'地方党报', color:'#d7262e', icon:'广', url:'https://gzdaily.dayoo.com',         desc:'广州市委机关报，华南都市政经', kw:'广州 市委 都市' },
+  { name:'北京日报', cn:'',   cat:'地方党报', color:'#b8232f', icon:'北', url:'https://bjd.bjd.com.cn',            desc:'北京市委机关报，首都政经', kw:'北京 市委 首都' },
+  { name:'天津日报', cn:'',   cat:'地方党报', color:'#1f4e9c', icon:'津', url:'https://epaper.tianjinwe.com',      desc:'天津市委机关报，京津冀视角', kw:'天津 市委 京津冀' },
+  { name:'新华日报', cn:'',   cat:'地方党报', color:'#8c1c13', icon:'华', url:'https://xh.xhby.net',               desc:'江苏省委机关报，历史悠久', kw:'江苏 省委 历史' },
+
+  /* ---------------- 国际大报 ---------------- */
+  { name:'纽约时报', cn:'NYT', cat:'国际大报', color:'#5b5b5b', icon:'N', url:'https://www.nytimes.com', en:true,    desc:'美国旗舰大报，国际时政与文化', kw:'美国 时政 文化' },
+  { name:'华尔街日报', cn:'WSJ', cat:'国际大报', color:'#1a1a1a', icon:'W', url:'https://www.wsj.com', en:true,    desc:'全球财经与商业权威大报', kw:'财经 商业 全球' },
+  { name:'金融时报', cn:'FT',  cat:'国际大报', color:'#fceea1', icon:'F', url:'https://www.ft.com', en:true,       desc:'英国伦敦，全球金融与政策', kw:'金融 伦敦 政策' },
+  { name:'卫报',     cn:'Guardian', cat:'国际大报', color:'#0b5aa5', icon:'G', url:'https://www.theguardian.com', en:true, desc:'英国左翼大报，国际调查', kw:'英国 调查 评论' },
+  { name:'每日电讯报', cn:'Telegraph', cat:'国际大报', color:'#c41e3a', icon:'T', url:'https://www.telegraph.co.uk', en:true, desc:'英国保守派大报，时政评论', kw:'英国 时政 评论' },
+  { name:'朝日新闻', cn:'',   cat:'国际大报', color:'#e60012', icon:'朝', url:'https://www.asahi.com',             desc:'日本三大报之一，稳健左派', kw:'日本 报纸 左派' },
+  { name:'读卖新闻', cn:'',   cat:'国际大报', color:'#c9242b', icon:'读', url:'https://www.yomiuri.co.jp',          desc:'日本发行量最大报，保守派', kw:'日本 报纸 保守' },
+  { name:'经济学人', cn:'The Economist', cat:'国际大报', color:'#c8102e', icon:'E', url:'https://www.economist.com', en:true, desc:'英国深度周刊，全球政经视角', kw:'周刊 政经 全球' }
+];
+
+/* ================= 渲染逻辑 ================= */
+const gridEl   = document.getElementById('grid');
+const tabsEl   = document.getElementById('tabs');
+tabsEl.innerHTML = '';
+
+const CATS = ['全部', ...new Set(SITES.map(s => s.cat))];
+let currentCat = '全部';
+
+/* 分类标签 */
+CATS.forEach(cat => {
+  const count = cat === '全部' ? SITES.length : SITES.filter(s => s.cat === cat).length;
+  const btn = document.createElement('button');
+  btn.className = 'tab' + (cat === '全部' ? ' active' : '');
+  btn.dataset.cat = cat;
+  btn.innerHTML = `${cat}<span class="n">${count}</span>`;
+  btn.addEventListener('click', () => {
+    currentCat = cat;
+    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.cat === cat));
+    render();
+  });
+  tabsEl.appendChild(btn);
+});
+
+/* 卡片渲染 */
+function render() {
+  const list = SITES.filter(s => currentCat === '全部' || s.cat === currentCat);
+
+  gridEl.innerHTML = '';
+
+  const frag = document.createDocumentFragment();
+  list.forEach((s, i) => {
+    const a = document.createElement('a');
+    a.className = 'card';
+    a.href = s.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.style.setProperty('--c', s.color);
+    a.style.animationDelay = Math.min(i, 22) * 18 + 'ms';
+    a.innerHTML = `
+      <div class="logo${s.icon.length > 1 ? ' two' : ''}">${s.icon}</div>
+      <div class="body">
+        <div class="name">
+          ${s.name}${s.cn ? `<span class="cn">${s.cn}</span>` : ''}${s.en ? '<span class="en">EN</span>' : ''}
+          <span class="arrow">↗</span>
+        </div>
+        <div class="desc">${s.desc}</div>
+      </div>`;
+    frag.appendChild(a);
+  });
+  gridEl.appendChild(frag);
+}
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+render();
+</script>
+
+</body></html>
