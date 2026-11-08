@@ -1,1 +1,75 @@
-
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="全国主要报纸电子版快捷入口，按类别浏览和搜索。">
+<title>全国报纸数字版导航</title>
+<style>
+:root{--red:#c8161d;--red-dark:#a90f15;--red-pale:#fff5f5;--ink:#243447;--muted:#687586;--line:#e8edf2;--canvas:#f5f7fa;--card:#fff;--shadow:0 10px 32px rgba(15,23,42,.055)}
+*{box-sizing:border-box}html{max-width:100%;overflow-x:hidden;scroll-behavior:smooth}body{max-width:100%;margin:0;overflow-x:hidden;background:radial-gradient(circle at 50% -12%,rgba(200,22,29,.065),transparent 29rem),var(--canvas);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.55}
+.site-head{position:relative;color:#fff;background:#ba151c;overflow:hidden}.head-inner{position:relative;max-width:1200px;margin:auto;padding:20px 20px 14px}.brand-row{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand h1{margin:0;font-size:clamp(1.35rem,2.5vw,1.75rem);letter-spacing:.04em;line-height:1.28}.brand p{margin:4px 0 0;color:rgba(255,255,255,.84);font-size:.88rem}.home-link{flex:none;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.48);border-radius:999px;padding:6px 11px;font-size:.8rem;transition:.18s ease}.home-link:hover,.home-link:focus-visible{color:var(--red);background:#fff;outline:none}
+.search-dock{position:sticky;top:0;z-index:20;display:flex;align-items:center;min-height:62px;background:#ba151c;box-shadow:0 7px 16px rgba(96,7,11,.16)}.search-inner{width:100%;max-width:1200px;margin:auto;padding:10px 20px}.search-wrap{position:relative;max-width:620px}.search-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#9a4450;pointer-events:none}.search-box{width:100%;height:42px;border:1px solid rgba(255,255,255,.7);border-radius:10px;padding:0 82px 0 45px;color:#263444;background:rgba(255,255,255,.97);font:inherit;outline:none;box-shadow:0 5px 16px rgba(80,0,0,.14)}.search-box:focus{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.22),0 7px 20px rgba(80,0,0,.2)}.search-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;border-radius:7px;background:transparent;color:#8d414a;padding:5px 8px;font:inherit;font-size:.78rem;cursor:pointer}.search-clear:hover{background:#fff0f1}.search-clear[hidden]{display:none}
+main{max-width:1200px;margin:26px auto 30px;padding:0 20px}.intro{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted);font-size:.86rem;margin:0 2px 15px}.result-status{min-height:1.4em}.result-status strong{color:var(--red);font-weight:700}
+.category{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:14px;padding:22px;margin:0 0 18px;box-shadow:var(--shadow)}.category[hidden],.media-btn[hidden]{display:none}.category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:13px;margin-bottom:16px;border-bottom:1px solid #f1e7e8}.category-title{display:flex;align-items:center;gap:9px;margin:0;color:var(--red);font-size:1.16rem;line-height:1.25}.category-title:before{content:"";width:4px;height:18px;background:var(--red);border-radius:99px}.category-count{flex:none;padding:3px 9px;border-radius:999px;background:var(--red-pale);color:#9a2f35;font-size:.76rem;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(156px,1fr));gap:10px}.media-btn{position:relative;display:flex;align-items:center;justify-content:center;min-height:48px;padding:9px 10px;border:1px solid #e3e9ef;border-radius:99px;background:linear-gradient(180deg,#fff,#fafbfd);color:#344354;text-align:center;text-decoration:none;font-size:.93rem;font-weight:550;line-height:1.25;transition:transform .18s,box-shadow .18s,border-color .18s,color .18s}.media-btn:hover,.media-btn:focus-visible{transform:translateY(-2px);border-color:rgba(200,22,29,.42);background:#fffafa;color:var(--red);box-shadow:0 7px 17px rgba(200,22,29,.11);outline:none}.media-btn:active{transform:scale(.98)}.media-btn.disabled{cursor:default;flex-direction:column;gap:2px;padding:7px 9px;background:#f7f8fa;border-style:dashed;border-color:#e4e8ed;color:#98a3af;font-weight:500}.media-btn.disabled:hover{transform:none;box-shadow:none}.unavailable-note{font-size:.71rem;color:#aab3bd}
+.empty{display:none;text-align:center;padding:45px 18px 52px;background:#fff;border:1px dashed #d9e0e7;border-radius:14px;color:#687586}.empty.show{display:block}.empty b{display:block;color:#435263;font-size:1rem;margin-bottom:5px}
+.back-top{position:fixed;z-index:30;right:20px;bottom:22px;width:44px;height:44px;border:1px solid #ead8da;border-radius:50%;background:#fff;color:var(--red);box-shadow:0 8px 22px rgba(20,27,38,.16);font-size:1.25rem;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s}.back-top.show{opacity:1;visibility:visible;transform:translateY(0)}.back-top:hover{color:#fff;background:var(--red);border-color:var(--red)}
+@media(max-width:600px){.head-inner{padding:15px 14px 6px}.brand p{font-size:.78rem}.home-link{padding:5px 9px;font-size:.73rem}.search-dock{min-height:52px}.search-inner{padding:6px 14px}.search-box{height:40px;font-size:16px}main{margin-top:16px;padding:0 12px}.category{padding:16px 14px;border-radius:12px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.media-btn{min-height:45px;padding:8px 6px;font-size:.84rem;border-radius:8px}}
+</style>
+</head>
+<body>
+<header class="site-head"><div class="head-inner"><div class="brand-row">
+<div class="brand"><h1>全国报纸数字版导航</h1><p>排名不分先后</p></div>
+<a class="home-link" href="https://mydjjm.cn/">返回首页</a>
+</div></div></header>
+<div class="search-dock" aria-label="报纸搜索"><div class="search-inner"><div class="search-wrap">
+<svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6"></circle><path d="m16 16 4 4"></path></svg>
+<input class="search-box" id="searchInput" type="search" autocomplete="off" placeholder="请输入报纸名称进行搜索" aria-label="搜索报纸名称">
+<button id="clearSearch" class="search-clear" type="button" hidden>清空</button>
+</div></div></div>
+<main>
+<div class="intro"><span id="totalInfo">正在载入…</span><span class="result-status" id="resultStatus" aria-live="polite"></span></div>
+<div id="directory"></div>
+<div id="emptyState" class="empty" role="status"><b>未找到相关报纸</b><span>请尝试其他名称，或清空现有搜索词。</span></div>
+</main>
+<button id="backTop" class="back-top" type="button" aria-label="返回顶部" title="返回顶部">↑</button>
+<script>
+const categories=[
+{name:'中央主要新闻单位',items:[
+['人民日报','https://paper.people.com.cn/'],['解放军报','http://www.81.cn/szb_223187/szblb/index.html'],['光明日报','https://epaper.gmw.cn/'],['经济日报','http://paper.ce.cn/'],['中国日报',null],['科技日报','https://epaper.stdaily.com/statics/technology-site/index.html'],['人民政协报','https://web.rmzxw.net.cn'],['中国纪检监察报','https://jjjcb.ccdi.gov.cn/epaper/'],['学习时报','https://paper.studytimes.cn/'],['工人日报','https://www.workercn.cn/papers/grrb/index.html'],['中国青年报','https://zqb.cyol.com/'],['中国妇女报','https://paper.cnwomen.com.cn/'],['农民日报','https://szb.farmer.com.cn/'],['法治日报','http://epaper.legaldaily.com.cn/public/dianzhibao-2019.php'],['中国文化报','https://npaper.ccmapp.cn/zh-CN/']
+]},
+{name:'省级党报',items:[
+['北京日报','https://bjrbdzb.bjd.com.cn/bjrb/paperindex.htm'],['天津日报','http://epaper.tianjinwe.com/tjrb/'],['河北日报','https://hbrb.hebnews.cn/'],['山西日报','http://epaper.sxrb.com/index.shtml'],['内蒙古日报','https://szb.northnews.cn/nmgrb/paperindex.htm'],['辽宁日报','https://epaper.lnd.com.cn/lnrbindex.html'],['吉林日报','http://jlrbszb.dajilin.com'],['黑龙江日报','http://epaper.hljnews.cn/hljrb/pc/layout/index.html'],['解放日报','https://www.jfdaily.com/staticsg/home'],['新华日报','https://xh.xhby.net/'],['浙江日报','https://zjrb.zjol.com.cn'],['安徽日报','https://szb.ahnews.com.cn/ahrb/layout/'],['福建日报','https://fjrb.fjdaily.com/'],['江西日报','https://epaper.jxxw.com.cn/'],['大众日报','https://paper.dzwww.com/dzrb/'],['河南日报','https://newpaper.dahe.cn/hnrb'],['湖北日报','https://epaper.hubeidaily.net/'],['湖南日报','https://epaper.voc.com.cn/hnrb/'],['南方日报','https://epaper.southcn.com/nfdaily/'],['广西日报','https://gxrb.gxrb.com.cn/'],['海南日报','http://news.hndaily.cn/'],['重庆日报','https://epaper.cqrb.cn/cqrb/'],['四川日报','https://epaper.scdaily.cn/'],['贵州日报','https://szb.eyesnews.cn/'],['云南日报','https://yndaily.yunnan.cn/'],['西藏日报','https://e.xzxw.com/xzrb/'],['陕西日报','https://esb.sxdaily.com.cn/'],['甘肃日报','https://szb.gansudaily.com.cn/gsrb/'],['青海日报','https://epaper.tibet3.com/qhrb'],['宁夏日报','https://szb.nxrb.cn/'],['新疆日报','https://xjrb.ts.cn/'],['兵团日报','https://epaper.bingtuannet.com/']
+]},
+{name:'副省级城市党报',items:[
+['广州日报','https://newspaper.gzdaily.cn/'],['长江日报','https://cjrb.cjn.cn/'],['哈尔滨日报','https://harbin.joyhua.cn/'],['沈阳日报','https://epaper.syd.com.cn/syrb/'],['成都日报','https://www.cdrb.com.cn'],['南京日报','http://njrb.njdaily.cn/'],['西安日报','https://epaper.xiancn.com/newxarb'],['济南日报','http://jnrb.e23.cn/jnrb/'],['杭州日报','https://hzdaily.hangzhou.com.cn/hzrb/index.html'],['深圳特区报','https://sztqb.sznews.com/'],['大连日报','https://szb.dltv.cn/epaper/dlrb/'],['青岛日报','https://epaper.guanhai.com.cn/'],['厦门日报','https://epaper.xmrb.com/xmrb/'],['宁波日报','http://epaper.cnnb.com.cn/nbrb'],['长春日报',null]
+]},
+{name:'省会（首府）城市党报',items:[
+['石家庄日报','http://sjzrb.sjzdaily.com.cn/'],['太原日报','http://epaper.tyrbw.com/tyrb'],['合肥日报','https://newspaper.hf365.com/hfrb/pc/layout/'],['福州日报','https://mag.fznews.com.cn/fzrb/paperindex.htm'],['南昌日报','http://www.ncrbw.cn/'],['郑州日报','https://zzrb.zynews.cn/'],['长沙晚报','https://www.icswb.com/newspaper-gen_one-15.html'],['南宁日报','http://www.nnrb.com.cn/'],['海口日报','https://szb.hkwb.net/'],['贵阳日报','https://rb.gywb.cn/'],['昆明日报','https://kmrb-paper.kmdaily.kmrmt.cn/epaper_pc'],['拉萨日报','https://www.lasaribao.cn/lsrb/'],['乌鲁木齐晚报','http://wlmqszb.womob.cn/'],['西宁日报',null],['银川日报',null]
+]},
+{name:'晚报都市类日报',items:[
+['新京报','https://epaper.bjnews.com.cn/'],['潇湘晨报','https://xxcb.cn/epaper/'],['南方都市报','https://epaper.oeeee.com/'],['新民晚报','https://www.jfdaily.com/staticsg/home'],['华商报','http://ehsb.hspress.net/'],['北京晚报','https://bjrbdzb.bjd.com.cn/bjwb/paperindex.htm'],['北京青年报','https://epaper.ynet.com'],['燕赵都市报','https://yzdsb.hbfzb.com/'],['燕赵晚报','http://yzwb.sjzdaily.com.cn'],['河北青年报','https://www.hbynet.net/html/heqing/daohang/dianzibao/index.html'],['今晚报','https://jinwanbaoepaper.enorth.com.cn/jwb/paperindex.htm'],['太原晚报','http://epaper.tyrbw.com/tywb/'],['北方新报','https://szb.northnews.cn/bfxb/'],['辽沈晚报','https://epaper.lnd.com.cn/lswbindex.html'],['半岛晨报','https://ep.bdcb.cn/'],['城市晚报','http://www.cswbszb.com/cswb/'],['长春晚报','http://epaper.changchunews.cn/ccwb/'],['生活报','http://epaper.hljnews.cn/shb/pc/layout/index.html'],['新闻晨报','https://ep.shxwcb.com/'],['扬子晚报','https://epaper.yzwb.net/'],['金陵晚报','http://jlwb.njdaily.cn/'],['南京晨报','https://njcb.xhby.net/'],['现代快报','https://szb.xdplus.cn/'],['钱江晚报','https://qjwb.tidenews.com.cn'],['都市快报','https://hzdaily.hangzhou.com.cn/dskb/'],['每日商报','https://hzdaily.hangzhou.com.cn/mrsb/index.html'],['新安晚报','https://epaper.ahwang.cn/xawb'],['合肥晚报','https://newspaper.hf365.com/hfwb/pc/layout/'],['市场星报','http://www.ahscb.com'],['海峡都市报','https://hxdsb.fjdaily.com/'],['海峡导报','https://epaper.taihainet.com/'],['福州晚报','https://mag.fznews.com.cn/fzwb/paperindex.htm'],['东南早报','https://szb.qzwb.com/dnzb/'],['泉州晚报','https://szb.qzwb.com/qzwb'],['江南都市报','https://jiangxi.jxnews.com.cn/pdf/jndsbfm/'],['南昌晚报','http://www.ncwbw.cn/'],['齐鲁晚报','https://epaper.qlwb.com.cn/'],['半岛都市报','http://bddsb.bandao.cn/pc/bddsb/'],['济南时报','http://jnsb.e23.cn/jnsb/'],['大河报','https://newpaper.dahe.cn/dhb'],['河南商报','https://newpaper.dahe.cn/hnsb'],['郑州晚报','https://zzwb.zynews.cn/'],['楚天都市报','https://ctdsbepaper.hubeidaily.net'],['武汉晚报','https://whwb.cjn.cn/'],['长江商报','http://www.changjiangtimes.com/szb'],['三湘都市报','https://epaper.voc.com.cn/sxdsb'],['羊城晚报','https://ep.ycwb.com/'],['新快报','https://epaper.xkb.com.cn/'],['信息时报','https://epaper.xxsb.com/'],['深圳商报','https://szsb.sznews.com'],['深圳晚报','https://wb.sznews.com'],['晶报','https://jb.sznews.com'],['南国早报','https://ngzb.gxrb.com.cn/'],['南宁晚报','http://www.nnwb.com/'],['南国都市报','http://szb.ngdsb.cn/'],['重庆晨报','https://epaper.cqcb.com/'],['重庆晚报','https://epaper.cqdsrb.com.cn/'],['重庆商报','https://e.chinacqsb.com/'],['华西都市报','http://www.wccdaily.com.cn/'],['成都商报','http://e.cdsb.com/epaper'],['春城晚报','https://ccwb.yunnan.cn/'],['都市时报','https://dssb-paper.kmdaily.kmrmt.cn/epaper_pc'],['西藏商报','https://e.xzxw.com/xzsb/'],['三秦都市报','https://epaper.sanqin.com/'],['西安晚报','https://epaper.xiancn.com/newxawb'],['兰州晚报','https://lzwb.lzbs.com.cn/'],['西海都市报','https://epaper.tibet3.com/xhdsb/'],['青岛晚报','https://epaper.guanhai.com.cn/'],['青岛早报','https://epaper.guanhai.com.cn/'],['厦门晚报','https://epaper.xmrb.com/xmwb'],['海西晨报','http://dzb.sunnews.cn/'],['宁波晚报','http://epaper.cnnb.com.cn/nbwb'],['现代金报','http://epaper.cnnb.com.cn/xdjb']
+]}
+];
+const directory=document.getElementById('directory'),input=document.getElementById('searchInput'),clearButton=document.getElementById('clearSearch'),empty=document.getElementById('emptyState'),status=document.getElementById('resultStatus'),totalInfo=document.getElementById('totalInfo');
+const esc=t=>t.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+function render(){
+  directory.innerHTML=categories.map((category,index)=>`<section class="category" data-category="${index}"><div class="category-head"><h2 class="category-title">${esc(category.name)}</h2><span class="category-count">${category.items.length} 家</span></div><div class="grid">${category.items.map(([name,url])=>url?`<a class="media-btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-name="${esc(name)}" data-url="${esc(url)}">${esc(name)}</a>`:`<span class="media-btn disabled" data-name="${esc(name)}">${esc(name)}<span class="unavailable-note">暂无电子版入口</span></span>`).join('')}</div></section>`).join('');
+}
+function filter(){
+  const q=input.value.trim().toLowerCase();let total=0;
+  document.querySelectorAll('.category').forEach(section=>{let shown=0;section.querySelectorAll('.media-btn').forEach(item=>{const match=!q||item.dataset.name.toLowerCase().includes(q);item.hidden=!match;if(match)shown++});section.querySelector('.category-count').hidden=!!q;section.hidden=shown===0;total+=shown});
+  clearButton.hidden=!q;empty.classList.toggle('show',!!q&&!total);status.innerHTML=q?`找到 <strong>${total}</strong> 家相关报纸`:'';
+}
+render();
+const count=categories.reduce((sum,c)=>sum+c.items.length,0);totalInfo.textContent=`共收录 ${count} 家报纸`;
+input.addEventListener('input',filter);
+clearButton.addEventListener('click',()=>{input.value='';filter();input.focus()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.activeElement===input){input.value='';filter();input.blur()}});
+const backTop=document.getElementById('backTop');
+addEventListener('scroll',()=>backTop.classList.toggle('show',scrollY>380),{passive:true});
+backTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>
