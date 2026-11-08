@@ -1,114 +1,1074 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="全国报纸数字版导航快捷入口，按类别浏览和搜索。">
 <title>全国报纸数字版导航</title>
 <style>
-:root{
---brand:#ba151c;--brand-shadow:rgba(96,7,11,.22);
---accent:#c8161d;--accent-soft:#fff5f5;--accent-on-soft:#9a2f35;--accent-hover-rgba:rgba(200,22,29,.12);
---bg:#f5f7fa;--bg-glow:rgba(200,22,29,.065);
---card:#fff;--card-border:#e8edf2;--card-head-line:#f1e7e8;
---ink:#243447;--muted:#687586;
---btn-bg:linear-gradient(180deg,#fff,#fafbfd);--btn-border:#e3e9ef;--btn-ink:#344354;--btn-hover-bg:#fffafa;
---disabled-bg:#f7f8fa;--disabled-border:#e4e8ed;--disabled-ink:#98a3af;--unavailable:#aab3bd;
---empty-bg:#fff;--empty-border:#d9e0e7;--empty-b-ink:#435263;
---backtop-border:#ead8da;
---shadow:0 10px 32px rgba(15,23,42,.055);
-}
-body[data-theme="blue"]{--brand:#1e3a8a;--brand-shadow:rgba(30,58,138,.25);--accent:#1d4ed8;--accent-soft:#eff4ff;--accent-on-soft:#1e40af;--accent-hover-rgba:rgba(29,78,216,.12);--bg:#f0f5fb;--bg-glow:rgba(29,78,216,.08);--btn-hover-bg:#f5f8ff;}
-body[data-theme="green"]{--brand:#166534;--brand-shadow:rgba(22,101,52,.25);--accent:#15803d;--accent-soft:#effaf1;--accent-on-soft:#166534;--accent-hover-rgba:rgba(21,128,61,.12);--bg:#f1f7f2;--bg-glow:rgba(21,128,61,.07);--btn-hover-bg:#f4fbf5;}
-body[data-theme="purple"]{--brand:#6b21a8;--brand-shadow:rgba(107,33,168,.25);--accent:#7e22ce;--accent-soft:#f7f0fd;--accent-on-soft:#6b21a8;--accent-hover-rgba:rgba(126,34,206,.12);--bg:#f7f3fb;--bg-glow:rgba(126,34,206,.07);--btn-hover-bg:#faf6fe;}
-body[data-theme="orange"]{--brand:#c2410c;--brand-shadow:rgba(194,65,12,.25);--accent:#ea580c;--accent-soft:#fdf1e7;--accent-on-soft:#9a3412;--accent-hover-rgba:rgba(234,88,12,.12);--bg:#fdf4ec;--bg-glow:rgba(234,88,12,.07);--btn-hover-bg:#fef6ee;}
-body[data-theme="pink"]{--brand:#be185d;--brand-shadow:rgba(190,24,93,.25);--accent:#db2777;--accent-soft:#fce7f3;--accent-on-soft:#9d174d;--accent-hover-rgba:rgba(219,39,119,.12);--bg:#fdf2f7;--bg-glow:rgba(219,39,119,.07);--btn-hover-bg:#fdf2f7;}
-body[data-theme="teal"]{--brand:#0f766e;--brand-shadow:rgba(15,118,110,.25);--accent:#0d9488;--accent-soft:#ccfbf1;--accent-on-soft:#115e59;--accent-hover-rgba:rgba(13,148,136,.12);--bg:#eef7f6;--bg-glow:rgba(13,148,136,.07);--btn-hover-bg:#effaf8;}
-body[data-theme="dark"]{--brand:#111827;--brand-shadow:rgba(0,0,0,.5);--accent:#f59e0b;--accent-soft:rgba(245,158,11,.15);--accent-on-soft:#fbbf24;--accent-hover-rgba:rgba(245,158,11,.18);--bg:#0b1220;--bg-glow:rgba(245,158,11,.05);--card:#1f2937;--card-border:#374151;--card-head-line:#2d3748;--ink:#e5e7eb;--muted:#9ca3af;--btn-bg:linear-gradient(180deg,#273244,#1f2937);--btn-border:#374151;--btn-ink:#d1d5db;--btn-hover-bg:#2d3a4f;--disabled-bg:#16202e;--disabled-border:#2d3748;--disabled-ink:#6b7280;--unavailable:#6b7280;--empty-bg:#1f2937;--empty-border:#374151;--empty-b-ink:#e5e7eb;--backtop-border:#374151;--shadow:0 10px 32px rgba(0,0,0,.4);}
-*{box-sizing:border-box}html{max-width:100%;overflow-x:hidden;scroll-behavior:smooth}body{max-width:100%;margin:0;overflow-x:hidden;background:radial-gradient(circle at 50% -12%,var(--bg-glow),transparent 29rem),var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.55;transition:background .25s,color .25s}
-.site-head{position:sticky;top:0;z-index:30;color:#fff;background:var(--brand);box-shadow:0 7px 16px var(--brand-shadow);transition:background .25s}.head-inner{max-width:1200px;margin:auto;padding:8px 20px;display:flex;align-items:center;gap:14px;min-height:56px}.brand h1{margin:0;font-size:clamp(1rem,1.6vw,1.25rem);letter-spacing:.04em;line-height:1.28;white-space:nowrap}.brand p{display:none}.clock{flex:none;font-variant-numeric:tabular-nums;color:rgba(255,255,255,.92);font-size:.82rem;letter-spacing:.02em;white-space:nowrap}.home-link{flex:none;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.48);border-radius:999px;padding:5px 11px;font-size:.78rem;transition:.18s ease;white-space:nowrap}.home-link:hover,.home-link:focus-visible{color:var(--brand);background:#fff;outline:none}.theme-btn{flex:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid rgba(255,255,255,.45);border-radius:50%;background:transparent;color:#fff;font-size:1rem;cursor:pointer;transition:.18s}.theme-btn:hover{background:#fff;color:var(--brand)}
-.search-wrap{position:relative;flex:1;min-width:120px}.search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#9a4450;pointer-events:none}.search-box{width:100%;height:38px;border:1px solid rgba(255,255,255,.7);border-radius:9px;padding:0 68px 0 38px;color:#263444;background:rgba(255,255,255,.97);font:inherit;font-size:.9rem;outline:none;box-shadow:0 3px 10px rgba(0,0,0,.14)}.search-box:focus{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.22)}.search-clear{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;border-radius:7px;background:transparent;color:#8d414a;padding:4px 7px;font:inherit;font-size:.74rem;cursor:pointer}.search-clear:hover{background:var(--accent-soft)}.search-clear[hidden]{display:none}
-main{max-width:1200px;margin:26px auto 30px;padding:0 20px}.intro{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted);font-size:.86rem;margin:0 2px 15px}.result-status{min-height:1.4em}.result-status strong{color:var(--accent);font-weight:700}
-.category{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:22px;margin:0 0 18px;box-shadow:var(--shadow);transition:background .25s,border-color .25s}.category[hidden],.media-btn[hidden]{display:none}.category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:13px;margin-bottom:16px;border-bottom:1px solid var(--card-head-line)}.category-title{display:flex;align-items:center;gap:9px;margin:0;color:var(--accent);font-size:1.16rem;line-height:1.25}.category-title:before{content:"";width:4px;height:18px;background:var(--accent);border-radius:99px}.category-count{flex:none;padding:3px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent-on-soft);font-size:.76rem;white-space:nowrap}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(156px,1fr));gap:10px}.media-btn{position:relative;display:flex;align-items:center;justify-content:center;min-height:48px;padding:9px 10px;border:1px solid var(--btn-border);border-radius:99px;background:var(--btn-bg);color:var(--btn-ink);text-align:center;text-decoration:none;font-size:.93rem;font-weight:550;line-height:1.25;transition:transform .18s,box-shadow .18s,border-color .18s,color .18s,background .25s}.media-btn:hover,.media-btn:focus-visible{transform:translateY(-2px);border-color:var(--accent);background:var(--btn-hover-bg);color:var(--accent);box-shadow:0 7px 17px var(--accent-hover-rgba);outline:none}.media-btn:active{transform:scale(.98)}.media-btn.disabled{cursor:default;flex-direction:column;gap:2px;padding:7px 9px;background:var(--disabled-bg);border-style:dashed;border-color:var(--disabled-border);color:var(--disabled-ink);font-weight:500}.media-btn.disabled:hover{transform:none;box-shadow:none}.unavailable-note{font-size:.71rem;color:var(--unavailable)}
-.empty{display:none;text-align:center;padding:45px 18px 52px;background:var(--empty-bg);border:1px dashed var(--empty-border);border-radius:14px;color:var(--muted)}.empty.show{display:block}.empty b{display:block;color:var(--empty-b-ink);font-size:1rem;margin-bottom:5px}
-.back-top{position:fixed;z-index:30;right:20px;bottom:22px;width:44px;height:44px;border:1px solid var(--backtop-border);border-radius:50%;background:var(--card);color:var(--accent);box-shadow:0 8px 22px rgba(20,27,38,.16);font-size:1.25rem;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s}.back-top.show{opacity:1;visibility:visible;transform:translateY(0)}.back-top:hover{color:#fff;background:var(--accent);border-color:var(--accent)}
-@media(max-width:600px){.head-inner{padding:6px 12px;gap:8px;min-height:48px}.brand h1{font-size:.95rem}.brand{display:none}.clock{font-size:.7rem}.home-link{padding:4px 8px;font-size:.7rem}.theme-btn{width:28px;height:28px;font-size:.9rem}.search-box{height:34px;font-size:15px;padding:0 60px 0 32px}main{margin-top:14px;padding:0 12px}.category{padding:16px 14px;border-radius:12px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.media-btn{min-height:45px;padding:8px 6px;font-size:.84rem;border-radius:8px}}
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  :root {
+    --bg:#f5f6f8; --surface:#fff; --text:#222; --muted:#999;
+    --heading:#1e3c72; --subheading:#555;
+    --accent:#2a5298; --accent-2:#1e3c72; --central:#c0392b;
+    --border:#e4e8ee; --card-bg:#f8fafc; --card-hover:#eaf2ff;
+    --chip-bg:#eef2f7; --chip-text:#335; --chip-hover-bg:#2a5298; --chip-hover-text:#fff;
+    --divider:#eef2f7; --shadow:0 1px 4px rgba(0,0,0,.06);
+  }
+  /* ---------- 8 套主题 ---------- */
+  body[data-theme="crimson"]{--bg:#f7f3f3;--surface:#fff;--text:#241a1a;--muted:#9a8f8f;--heading:#8e1c2c;--subheading:#6b5a5a;--accent:#c0392b;--accent-2:#7b1b2b;--central:#8e1c2c;--border:#ecdfdf;--card-bg:#faf6f6;--card-hover:#fdeeee;--chip-bg:#f7ecec;--chip-text:#4a2a2a;--chip-hover-bg:#c0392b;--chip-hover-text:#fff;--divider:#f2e6e6;}
+  body[data-theme="forest"]{--bg:#f2f6f3;--surface:#fff;--text:#182219;--muted:#8a9a8e;--heading:#1e7a5a;--subheading:#4a6152;--accent:#2e8b57;--accent-2:#166047;--central:#b3541e;--border:#dfe9e3;--card-bg:#f7fbf8;--card-hover:#e8f6ee;--chip-bg:#e8f2ec;--chip-text:#254633;--chip-hover-bg:#2e8b57;--chip-hover-text:#fff;--divider:#e6f0ea;}
+  body[data-theme="violet"]{--bg:#f5f3f8;--surface:#fff;--text:#1f1a26;--muted:#968ea3;--heading:#6b3fa0;--subheading:#5d5470;--accent:#7d4fb5;--accent-2:#4e2a78;--central:#b3427a;--border:#e6e0ee;--card-bg:#f9f7fc;--card-hover:#f1ebfa;--chip-bg:#efeaf6;--chip-text:#3f2f56;--chip-hover-bg:#7d4fb5;--chip-hover-text:#fff;--divider:#eee8f7;}
+  body[data-theme="sunset"]{--bg:#fdf6f0;--surface:#fff;--text:#2a1f16;--muted:#a8968a;--heading:#b4560f;--subheading:#6b5545;--accent:#d2691e;--accent-2:#8f3d05;--central:#a83232;--border:#f0e2d5;--card-bg:#fdfaf7;--card-hover:#fceedd;--chip-bg:#f7ece1;--chip-text:#5a4028;--chip-hover-bg:#d2691e;--chip-hover-text:#fff;--divider:#f5e9dd;}
+  body[data-theme="teal"]{--bg:#f0f6f7;--surface:#fff;--text:#14232a;--muted:#84999f;--heading:#0f7b8a;--subheading:#476067;--accent:#1493a3;--accent-2:#0a5b67;--central:#c0562b;--border:#dceacc;--border:#dceacc;--border:#dceacc;--card-bg:#f6fbfb;--card-hover:#e2f4f6;--chip-bg:#e5f1f3;--chip-text:#1f4247;--chip-hover-bg:#1493a3;--chip-hover-text:#fff;--divider:#e4f0f2;--border:#dceacc;}
+  body[data-theme="sakura"]{--bg:#fbf4f6;--surface:#fff;--text:#261a1f;--muted:#a8919a;--heading:#c2547e;--subheading:#6d4d58;--accent:#d1718f;--accent-2:#a13f66;--central:#a13f66;--border:#f0e0e6;--card-bg:#fdf8fa;--card-hover:#fbe9f0;--chip-bg:#f7e9ee;--chip-text:#54323f;--chip-hover-bg:#d1718f;--chip-hover-text:#fff;--divider:#f6eaf0;}
+  body[data-theme="dark"]{--bg:#11151a;--surface:#1a2028;--text:#e6eaf0;--muted:#8a94a3;--heading:#7fb2ff;--subheading:#a9b4c2;--accent:#4f8fe8;--accent-2:#24407a;--central:#ff7b6b;--border:#2a323d;--card-bg:#1f262f;--card-hover:#28323e;--chip-bg:#232b35;--chip-text:#c6cfdb;--chip-hover-bg:#4f8fe8;--chip-hover-text:#fff;--divider:#252d38;--shadow:0 1px 4px rgba(0,0,0,.55);}
+
+  body { margin:0; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background:var(--bg); color:var(--text); line-height:1.5; transition:background-color .25s, color .25s; }
+
+  header { background: linear-gradient(135deg, var(--accent-2), var(--accent)); color:#fff; padding:20px 20px 28px; text-align:center; }
+  .header-top { display:flex; align-items:center; justify-content:space-between; gap:12px; max-width:1200px; margin:0 auto 18px; }
+  .home-pill {
+    display:inline-flex; align-items:center; gap:6px; padding:6px 16px; border-radius:999px;
+    background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.42); color:#fff;
+    text-decoration:none; font-size:13px; backdrop-filter:blur(4px); transition:background .18s, transform .18s;
+    white-space:nowrap;
+  }
+  .home-pill:hover { background:rgba(255,255,255,.32); transform:translateY(-1px); }
+  .clock { font-size:13px; opacity:.92; font-variant-numeric: tabular-nums; letter-spacing:.3px; white-space:nowrap; }
+  header h1 { margin:0 0 8px; font-size:26px; }
+  header p { margin:0; opacity:.88; font-size:14px; }
+
+  .search { position:relative; max-width:520px; margin:18px auto 0; }
+  .search input {
+    width:100%; padding:11px 44px 11px 42px; border-radius:24px; border:1px solid transparent;
+    font-size:14px; outline:none; background:#fff; color:#222;
+    box-shadow:0 4px 14px rgba(0,0,0,.12); transition:box-shadow .18s, border-color .18s;
+    font-family:inherit;
+  }
+  .search input:focus { box-shadow:0 6px 20px rgba(0,0,0,.2); border-color:var(--accent); }
+  .search input::placeholder { color:#9aa3af; }
+  .search .icon { position:absolute; left:15px; top:50%; transform:translateY(-50%); font-size:15px; opacity:.55; pointer-events:none; }
+  .search .clear {
+    position:absolute; right:8px; top:50%; transform:translateY(-50%);
+    width:26px; height:26px; border-radius:50%; border:none; cursor:pointer;
+    background:#e8ecf1; color:#66707d; font-size:14px; line-height:1; display:none;
+    align-items:center; justify-content:center; padding:0;
+  }
+  .search .clear:hover { background:#dbe1e8; }
+  .search.has-value .clear { display:flex; }
+
+  .themes { display:flex; gap:9px; justify-content:center; flex-wrap:wrap; margin-top:16px; }
+  .theme-dot {
+    width:22px; height:22px; border-radius:50%; cursor:pointer; padding:0;
+    border:2px solid rgba(255,255,255,.55); transition:transform .16s, box-shadow .16s;
+  }
+  .theme-dot:hover { transform:scale(1.18); }
+  .theme-dot.active { border-color:#fff; box-shadow:0 0 0 3px rgba(255,255,255,.45); transform:scale(1.12); }
+
+  nav { position:sticky; top:0; background:var(--surface); box-shadow:0 1px 4px rgba(0,0,0,.08); padding:10px 16px; display:flex; flex-wrap:wrap; gap:8px; z-index:10; transition:background-color .25s; }
+  nav a { font-size:13px; padding:4px 12px; border-radius:14px; background:var(--chip-bg); color:var(--chip-text); text-decoration:none; transition:background .16s, color .16s; }
+  nav a:hover { background:var(--chip-hover-bg); color:var(--chip-hover-text); }
+
+  main { max-width:1200px; margin:0 auto; padding:20px; }
+
+  .search-status { display:none; margin-bottom:16px; font-size:14px; color:var(--muted); text-align:center; }
+  .search-status.on { display:block; }
+
+  .region { background:var(--surface); border-radius:10px; padding:20px; margin-bottom:20px; box-shadow:var(--shadow); transition:background-color .25s; }
+  .region.central { border-top:4px solid var(--central); }
+  .region h2 { margin:0 0 16px; font-size:20px; color:var(--heading); border-bottom:2px solid var(--divider); padding-bottom:8px; }
+  .region.central h2 { color:var(--central); }
+  .cnt { font-size:12px; color:var(--muted); font-weight:normal; margin-left:6px; }
+  .prov { margin-bottom:16px; }
+  .prov:last-child { margin-bottom:0; }
+  .prov h3 { margin:0 0 10px; font-size:15px; color:var(--subheading); font-weight:600; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap:8px; }
+  .card { display:block; padding:10px 12px; background:var(--card-bg); border:1px solid var(--border); border-radius:6px; text-decoration:none; color:var(--text); font-size:14px; transition:all .15s; }
+  .card:hover { background:var(--card-hover); border-color:var(--accent); transform:translateY(-1px); }
+  .name { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+  .is-hidden { display:none !important; }
+
+  footer { text-align:center; padding:24px; color:var(--muted); font-size:12px; }
+
+  .to-top {
+    position:fixed; right:20px; bottom:24px; width:46px; height:46px; border-radius:50%;
+    border:none; background:var(--accent); color:#fff; font-size:20px; line-height:1;
+    cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,.25); z-index:60;
+    opacity:0; visibility:hidden; transform:translateY(12px);
+    transition:opacity .25s, transform .25s, visibility .25s, background-color .25s;
+  }
+  .to-top.show { opacity:1; visibility:visible; transform:translateY(0); }
+  .to-top:hover { filter:brightness(1.12); }
+
+  @media (max-width:600px){
+    header h1 { font-size:21px; }
+    .clock { font-size:11px; }
+    .home-pill { font-size:12px; padding:5px 12px; }
+    .to-top { right:14px; bottom:16px; width:42px; height:42px; }
+  }
 </style>
 </head>
 <body>
-<header class="site-head"><div class="head-inner">
-<div class="brand"><h1>全国报纸数字版导航</h1></div>
-<div class="search-wrap">
-<svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6"></circle><path d="m16 16 4 4"></path></svg>
-<input class="search-box" id="searchInput" type="search" autocomplete="off" placeholder="请输入报纸名称进行搜索" aria-label="搜索报纸名称">
-<button id="clearSearch" class="search-clear" type="button" hidden>清空</button>
-</div>
-<span id="clock" class="clock" aria-label="当前时间"></span>
-<button id="themeBtn" class="theme-btn" type="button" title="切换主题" aria-label="切换主题">🎨</button>
-<a class="home-link" href="https://mydjjm.cn/">返回首页</a>
-</div></header>
-<main>
-<div class="intro"><span id="totalInfo">正在载入…</span><span class="result-status" id="resultStatus" aria-live="polite"></span></div>
-<div id="directory"></div>
-<div id="emptyState" class="empty" role="status"><b>未找到相关报纸</b><span>请尝试其他名称，或清空现有搜索词。</span></div>
-</main>
-<button id="backTop" class="back-top" type="button" aria-label="返回顶部" title="返回顶部">↑</button>
-<script>
-const categories=[
-{name:'中央主要报纸',items:[
-['人民日报','https://paper.people.com.cn/'],['解放军报','http://www.81.cn/szb_223187/szblb/index.html'],['光明日报','https://epaper.gmw.cn/'],['经济日报','http://paper.ce.cn/'],['科技日报','https://epaper.stdaily.com/statics/technology-site/index.html'],['人民政协报','https://web.rmzxw.net.cn'],['中国纪检监察报','https://jjjcb.ccdi.gov.cn/epaper/'],['学习时报','https://paper.studytimes.cn/'],['工人日报','https://www.workercn.cn/papers/grrb/index.html'],['中国青年报','https://zqb.cyol.com/'],['中国妇女报','https://paper.cnwomen.com.cn/'],['农民日报','https://szb.farmer.com.cn/'],['法治日报','http://epaper.legaldaily.com.cn/public/dianzhibao-2019.php'],['中国文化报','https://npaper.ccmapp.cn/zh-CN/']
-]},
-{name:'省级党报',items:[
-['北京日报','https://bjrbdzb.bjd.com.cn/bjrb/paperindex.htm'],['天津日报','http://epaper.tianjinwe.com/tjrb/'],['河北日报','https://hbrb.hebnews.cn/'],['山西日报','http://epaper.sxrb.com/index.shtml'],['内蒙古日报','https://szb.northnews.cn/nmgrb/paperindex.htm'],['辽宁日报','https://epaper.lnd.com.cn/lnrbindex.html'],['吉林日报','http://jlrbszb.dajilin.com'],['黑龙江日报','http://epaper.hljnews.cn/hljrb/pc/layout/index.html'],['解放日报(上海)','https://www.jfdaily.com/staticsg/home'],['新华日报(江苏)','https://xh.xhby.net/'],['浙江日报','https://zjrb.zjol.com.cn'],['安徽日报','https://szb.ahnews.com.cn/ahrb/layout/'],['福建日报','https://fjrb.fjdaily.com/'],['江西日报','https://epaper.jxxw.com.cn/'],['大众日报(山东)','https://paper.dzwww.com/dzrb/'],['河南日报','https://newpaper.dahe.cn/hnrb'],['湖北日报','https://epaper.hubeidaily.net/'],['湖南日报','https://epaper.voc.com.cn/hnrb/'],['南方日报(广东)','https://epaper.southcn.com/nfdaily/'],['广西日报','https://gxrb.gxrb.com.cn/'],['海南日报','http://news.hndaily.cn/'],['重庆日报','https://epaper.cqrb.cn/cqrb/'],['四川日报','https://epaper.scdaily.cn/'],['贵州日报','https://szb.eyesnews.cn/'],['云南日报','https://yndaily.yunnan.cn/'],['西藏日报','https://e.xzxw.com/xzrb/'],['陕西日报','https://esb.sxdaily.com.cn/'],['甘肃日报','https://szb.gansudaily.com.cn/gsrb/'],['青海日报','https://epaper.tibet3.com/qhrb'],['宁夏日报','https://szb.nxrb.cn/'],['新疆日报','https://xjrb.ts.cn/'],['兵团日报','https://epaper.bingtuannet.com/']
-]},
-{name:'副省级城市党报',items:[
-['广州日报','https://newspaper.gzdaily.cn/'],['长江日报','https://cjrb.cjn.cn/'],['哈尔滨日报','https://harbin.joyhua.cn/'],['沈阳日报','https://epaper.syd.com.cn/syrb/'],['成都日报','https://www.cdrb.com.cn'],['南京日报','http://njrb.njdaily.cn/'],['西安日报','https://epaper.xiancn.com/newxarb'],['济南日报','http://jnrb.e23.cn/jnrb/'],['杭州日报','https://hzdaily.hangzhou.com.cn/hzrb/index.html'],['深圳特区报','https://sztqb.sznews.com/'],['大连日报','https://szb.dltv.cn/epaper/dlrb/'],['青岛日报','https://epaper.guanhai.com.cn/'],['厦门日报','https://epaper.xmrb.com/xmrb/'],['宁波日报','http://epaper.cnnb.com.cn/nbrb'],['长春日报','https://epaper.changchunews.cn/']
-]},
-{name:'省会（首府）城市党报',items:[
-['石家庄日报','http://sjzrb.sjzdaily.com.cn/'],['太原日报','http://epaper.tyrbw.com/tyrb'],['合肥日报','https://newspaper.hf365.com/hfrb/pc/layout/'],['福州日报','https://mag.fznews.com.cn/fzrb/paperindex.htm'],['南昌日报','http://www.ncrbw.cn/'],['郑州日报','https://zzrb.zynews.cn/'],['长沙晚报','https://www.icswb.com/newspaper-gen_one-15.html'],['南宁日报','http://www.nnrb.com.cn/'],['海口日报','https://szb.hkwb.net/'],['贵阳日报','https://rb.gywb.cn/'],['昆明日报','https://kmrb-paper.kmdaily.kmrmt.cn/epaper_pc'],['拉萨日报','https://www.lasaribao.cn/lsrb/'],['乌鲁木齐晚报','http://wlmqszb.womob.cn/'],['西宁晚报','https://h5.newaircloud.com/epaper?sid=xiningwb'],['银川日报','https://szb.ycfbapp.com/ycrb/pc/layout/']
-]},
-{name:'晚报都市类报纸',items:[
-['新京报','https://epaper.bjnews.com.cn/'],['潇湘晨报','https://xxcb.cn/epaper/'],['兵团晚报','http://shwb.bingtuannet.com/pc/layout/'],['南方都市报','https://epaper.oeeee.com/'],['新民晚报','https://www.jfdaily.com/staticsg/home'],['华商报','http://ehsb.hspress.net/'],['北京晚报','https://bjrbdzb.bjd.com.cn/bjwb/paperindex.htm'],['北京青年报','https://epaper.ynet.com'],['燕赵都市报','https://yzdsb.hbfzb.com/'],['燕赵晚报','http://yzwb.sjzdaily.com.cn'],['河北青年报','https://www.hbynet.net/html/heqing/daohang/dianzibao/index.html'],['今晚报','https://jinwanbaoepaper.enorth.com.cn/jwb/paperindex.htm'],['太原晚报','http://epaper.tyrbw.com/tywb/'],['北方新报','https://szb.northnews.cn/bfxb/'],['辽沈晚报','https://epaper.lnd.com.cn/lswbindex.html'],['半岛晨报','https://ep.bdcb.cn/'],['城市晚报','http://www.cswbszb.com/cswb/'],['长春晚报','http://epaper.changchunews.cn/ccwb/'],['生活报','http://epaper.hljnews.cn/shb/pc/layout/index.html'],['新闻晨报','https://ep.shxwcb.com/'],['扬子晚报','https://epaper.yzwb.net/'],['金陵晚报','http://jlwb.njdaily.cn/'],['南京晨报','https://njcb.xhby.net/'],['现代快报','https://szb.xdplus.cn/'],['钱江晚报','https://qjwb.tidenews.com.cn'],['都市快报','https://hzdaily.hangzhou.com.cn/dskb/'],['每日商报','https://hzdaily.hangzhou.com.cn/mrsb/index.html'],['新安晚报','https://epaper.ahwang.cn/xawb'],['合肥晚报','https://newspaper.hf365.com/hfwb/pc/layout/'],['市场星报','http://www.ahscb.com'],['海峡都市报','https://hxdsb.fjdaily.com/'],['海峡导报','https://epaper.taihainet.com/'],['福州晚报','https://mag.fznews.com.cn/fzwb/paperindex.htm'],['东南早报','https://szb.qzwb.com/dnzb/'],['泉州晚报','https://szb.qzwb.com/qzwb'],['江南都市报','https://jiangxi.jxnews.com.cn/pdf/jndsbfm/'],['南昌晚报','http://www.ncwbw.cn/'],['齐鲁晚报','https://epaper.qlwb.com.cn/'],['半岛都市报','http://bddsb.bandao.cn/pc/bddsb/'],['济南时报','http://jnsb.e23.cn/jnsb/'],['大河报','https://newpaper.dahe.cn/dhb'],['河南商报','https://newpaper.dahe.cn/hnsb'],['郑州晚报','https://zzwb.zynews.cn/'],['楚天都市报','https://ctdsbepaper.hubeidaily.net'],['武汉晚报','https://whwb.cjn.cn/'],['长江商报','http://www.changjiangtimes.com/szb'],['三湘都市报','https://epaper.voc.com.cn/sxdsb'],['羊城晚报','https://ep.ycwb.com/'],['新快报','https://epaper.xkb.com.cn/'],['信息时报','https://epaper.xxsb.com/'],['深圳商报','https://szsb.sznews.com'],['深圳晚报','https://wb.sznews.com'],['晶报','https://jb.sznews.com'],['南国早报','https://ngzb.gxrb.com.cn/'],['南宁晚报','http://www.nnwb.com/'],['南国都市报','http://szb.ngdsb.cn/'],['重庆晨报','https://epaper.cqcb.com/'],['重庆晚报','https://epaper.cqdsrb.com.cn/'],['重庆商报','https://e.chinacqsb.com/'],['华西都市报','http://www.wccdaily.com.cn/'],['成都商报','http://e.cdsb.com/epaper'],['春城晚报','https://ccwb.yunnan.cn/'],['都市时报','https://dssb-paper.kmdaily.kmrmt.cn/epaper_pc'],['西藏商报','https://e.xzxw.com/xzsb/'],['三秦都市报','https://epaper.sanqin.com/'],['西安晚报','https://epaper.xiancn.com/newxawb'],['兰州晚报','https://lzwb.lzbs.com.cn/'],['西海都市报','https://epaper.tibet3.com/xhdsb/'],['青岛晚报','https://epaper.guanhai.com.cn/'],['青岛早报','https://epaper.guanhai.com.cn/'],['厦门晚报','https://epaper.xmrb.com/xmwb'],['海西晨报','http://dzb.sunnews.cn/'],['宁波晚报','http://epaper.cnnb.com.cn/nbwb'],['现代金报','http://epaper.cnnb.com.cn/xdjb'],['银川晚报','https://szb.ycfbapp.com/ycwb/pc/layout']
-]}
-];
-const directory=document.getElementById('directory'),input=document.getElementById('searchInput'),clearButton=document.getElementById('clearSearch'),empty=document.getElementById('emptyState'),status=document.getElementById('resultStatus'),totalInfo=document.getElementById('totalInfo');
-const esc=t=>t.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
-// 每个板块内按报纸名拼音 A-Z 自动排序
-const pinyinCollator = new Intl.Collator('zh-Hans-CN-u-co-pinyin', { sensitivity:'base', numeric:true });
-categories.forEach(c => c.items.sort((a,b) => pinyinCollator.compare(a[0], b[0])));
 
-function render(){
-  directory.innerHTML=categories.map((category,index)=>`<section class="category" data-category="${index}"><div class="category-head"><h2 class="category-title">${esc(category.name)}</h2><span class="category-count">${category.items.length} 家</span></div><div class="grid">${category.items.map(([name,url])=>url?`<a class="media-btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-name="${esc(name)}" data-url="${esc(url)}">${esc(name)}</a>`:`<span class="media-btn disabled" data-name="${esc(name)}">${esc(name)}<span class="unavailable-note">暂无电子版入口</span></span>`).join('')}</div></section>`).join('');
-}
-function filter(){
-  const q=input.value.trim().toLowerCase();let total=0;
-  document.querySelectorAll('.category').forEach(section=>{let shown=0;section.querySelectorAll('.media-btn').forEach(item=>{const match=!q||item.dataset.name.toLowerCase().includes(q);item.hidden=!match;if(match)shown++});section.querySelector('.category-count').hidden=!!q;section.hidden=shown===0;total+=shown});
-  clearButton.hidden=!q;empty.classList.toggle('show',!!q&&!total);status.innerHTML=q?`找到 <strong>${total}</strong> 家相关报纸`:'';
-}
-render();
-const count=categories.reduce((sum,c)=>sum+c.items.length,0);totalInfo.textContent=`共收录 ${count} 家报纸`;
-input.addEventListener('input',filter);
-clearButton.addEventListener('click',()=>{input.value='';filter();input.focus()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.activeElement===input){input.value='';filter();input.blur()}});
-const THEMES=['red','blue','green','purple','orange','pink','teal','dark'];
-const THEME_NAMES={red:'经典红',blue:'深海蓝',green:'墨绿',purple:'紫金',orange:'暖橙',pink:'樱花粉',teal:'青碧',dark:'暗夜黑'};
-const themeBtn=document.getElementById('themeBtn');
-function applyTheme(t){document.body.dataset.theme=t;try{localStorage.setItem('np-theme',t)}catch(e){}}
-function initTheme(){let t='red';try{t=localStorage.getItem('np-theme')||'red'}catch(e){}if(!THEME_NAMES[t])t='red';applyTheme(t);themeBtn.title='主题：'+THEME_NAMES[t]+'（点击切换）';}
-themeBtn.addEventListener('click',()=>{const cur=document.body.dataset.theme||'red';const i=THEMES.indexOf(cur);const next=THEMES[(i+1)%THEMES.length];applyTheme(next);themeBtn.title='主题：'+THEME_NAMES[next]+'（点击切换）';});
-initTheme();
-const clockEl=document.getElementById('clock');
-function pad(n){return n<10?'0'+n:''+n}
-function tick(){
-  const d=new Date();
-  const weeks=['日','一','二','三','四','五','六'];
-  clockEl.textContent=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} 周${weeks[d.getDay()]} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
-}
-tick();setInterval(tick,1000);
-const backTop=document.getElementById('backTop');
-addEventListener('scroll',()=>backTop.classList.toggle('show',scrollY>380),{passive:true});
-backTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+<header>
+  <div class="header-top">
+    <a class="home-pill" href="https://mydjjm.cn/" target="_blank" rel="noopener">🏠 返回主页</a>
+    <div class="clock" id="clock">--</div>
+  </div>
+  <h1>全国报纸数字版导航</h1>
+  <p>共收录 790 份可在线阅读的报纸数字版（含收费）</p>
+
+  <div class="search" id="searchBox">
+    <span class="icon">🔍</span>
+    <input id="search" type="search" placeholder="搜索报纸名称，例如：人民日报、晚报…" autocomplete="off">
+    <button class="clear" id="clearSearch" title="清空" aria-label="清空搜索">✕</button>
+  </div>
+
+  <div class="themes" id="themes"></div>
+</header>
+
+<nav><a href="#r-central">中央级</a><a href="#r-华北">华北</a><a href="#r-东北">东北</a><a href="#r-华东">华东</a><a href="#r-华中">华中</a><a href="#r-华南">华南</a><a href="#r-西南">西南</a><a href="#r-西北">西北</a></nav>
+
+<main>
+<div class="search-status" id="searchStatus"></div>
+
+<section class="region central" id="r-central"><h2>中央级 · 全国性报纸 <span class="cnt">95</span></h2><div class="grid"><a class="card" href="http://www.ctnews.com.cn/paper/" target="_blank" rel="noopener"><span class="name">中国旅游报</span></a>
+<a class="card" href="http://www.ctaxnews.net.cn/" target="_blank" rel="noopener"><span class="name">中国税务报</span></a>
+<a class="card" href="https://epaper.gmw.cn/gmrb/html/layout/index.html" target="_blank" rel="noopener"><span class="name">光明日报</span></a>
+<a class="card" href="http://www.chinapostnews.com.cn/" target="_blank" rel="noopener"><span class="name">中国邮政报</span></a>
+<a class="card" href="http://epaper.zqcn.com.cn/" target="_blank" rel="noopener"><span class="name">中国企业报</span></a>
+<a class="card" href="http://www.chinajsb.cn/" target="_blank" rel="noopener"><span class="name">中国建设报</span></a>
+<a class="card" href="http://epaper.csteelnews.com/" target="_blank" rel="noopener"><span class="name">中国冶金报</span></a>
+<a class="card" href="http://ep.chinanshw.cn/" target="_blank" rel="noopener"><span class="name">中国农村信用合作报</span></a>
+<a class="card" href="https://www.chinatradenews.com.cn/epaper/" target="_blank" rel="noopener"><span class="name">中国贸易报</span></a>
+<a class="card" href="http://www.jyb.cn/zggdjy/" target="_blank" rel="noopener"><span class="name">中国高等教育</span></a>
+<a class="card" href="https://www.stats.gov.cn/zs/tjwh/tjkw/tjqk/zgxxb/" target="_blank" rel="noopener"><span class="name">中国信息报</span></a>
+<a class="card" href="http://epaper.zqrb.cn/" target="_blank" rel="noopener"><span class="name">证券日报</span></a>
+<a class="card" href="http://paper.people.com.cn/mszk/paperindex.htm" target="_blank" rel="noopener"><span class="name">民生周刊</span></a>
+<a class="card" href="http://paper.people.com.cn/zgjjzk/paperindex.htm" target="_blank" rel="noopener"><span class="name">中国经济周刊</span></a>
+<a class="card" href="https://www.eeo.com.cn/epaper/eeocover/1.shtml" target="_blank" rel="noopener"><span class="name">经济观察报</span></a>
+<a class="card" href="https://rmydb.cnii.com.cn/" target="_blank" rel="noopener"><span class="name">人民邮电报</span></a>
+<a class="card" href="https://www.cnii.com.cn/cnjy/" target="_blank" rel="noopener"><span class="name">中国集邮报</span></a>
+<a class="card" href="https://www.cnii.com.cn/zgwxd/" target="_blank" rel="noopener"><span class="name">中国无线电</span></a>
+<a class="card" href="https://peoplerail.com/newszb/index.htm" target="_blank" rel="noopener"><span class="name">人民铁道</span></a>
+<a class="card" href="http://paper.people.com.cn/rmrbhwb/" target="_blank" rel="noopener"><span class="name">人民日报海外版</span></a>
+<a class="card" href="http://epaper.cpd.com.cn/" target="_blank" rel="noopener"><span class="name">人民公安报</span></a>
+<a class="card" href="http://digitalpaper.stdaily.com/" target="_blank" rel="noopener"><span class="name">科技日报</span></a>
+<a class="card" href="https://www.cqn.com.cn/zgzlb/index.htm" target="_blank" rel="noopener"><span class="name">中国质量报</span></a>
+<a class="card" href="http://paper.chinahightech.com" target="_blank" rel="noopener"><span class="name">中国高新技术产业导报</span></a>
+<a class="card" href="http://newspaper.jcrb.com/" target="_blank" rel="noopener"><span class="name">检察日报</span></a>
+<a class="card" href="http://www.jcrb.com/rmjc/" target="_blank" rel="noopener"><span class="name">人民检察</span></a>
+<a class="card" href="https://jjsb.cet.com.cn/" target="_blank" rel="noopener"><span class="name">中国经济时报</span></a>
+<a class="card" href="http://epaper.cena.com.cn/" target="_blank" rel="noopener"><span class="name">中国电子报</span></a>
+<a class="card" href="http://dianzibao.cb.com.cn/" target="_blank" rel="noopener"><span class="name">中国经营报</span></a>
+<a class="card" href="https://szb.farmer.com.cn/" target="_blank" rel="noopener"><span class="name">农民日报</span></a>
+<a class="card" href="http://epaper.cnpc.com.cn/zgsyb/" target="_blank" rel="noopener"><span class="name">中国石油报</span></a>
+<a class="card" href="http://zqb.cyol.com/" target="_blank" rel="noopener"><span class="name">中国青年报</span></a>
+<a class="card" href="http://www.zuzhirenshi.com/newspaper/index" target="_blank" rel="noopener"><span class="name">中国组织人事报</span></a>
+<a class="card" href="https://epaper.ccmapp.cn/zh-CN/" target="_blank" rel="noopener"><span class="name">中国文化报</span></a>
+<a class="card" href="https://zxb.ccn.com.cn/" target="_blank" rel="noopener"><span class="name">中国消费者报</span></a>
+<a class="card" href="https://www.rmfyb.com/" target="_blank" rel="noopener"><span class="name">人民法院报</span></a>
+<a class="card" href="http://paper.ce.cn/" target="_blank" rel="noopener"><span class="name">经济日报</span></a>
+<a class="card" href="https://www.workercn.cn/papers/grrb/index.html" target="_blank" rel="noopener"><span class="name">工人日报</span></a>
+<a class="card" href="http://dz.jjckb.cn/www/pages/webpage2009/" target="_blank" rel="noopener"><span class="name">经济参考报</span></a>
+<a class="card" href="http://mrdx.cn/" target="_blank" rel="noopener"><span class="name">新华每日电讯</span></a>
+<a class="card" href="http://www.81.cn/szb_223187/szblb/index.html" target="_blank" rel="noopener"><span class="name">解放军报</span></a>
+<a class="card" href="http://www.81.cn/szb_223187/gfbszblb/index.html" target="_blank" rel="noopener"><span class="name">中国国防报</span></a>
+<a class="card" href="http://epaper.legaldaily.com.cn/fzrb/content/PaperIndex.htm" target="_blank" rel="noopener"><span class="name">法治日报</span></a>
+<a class="card" href="http://qnzj.cyol.com/" target="_blank" rel="noopener"><span class="name">中国青年作家报</span></a>
+<a class="card" href="http://paper.crcc.cn/" target="_blank" rel="noopener"><span class="name">中国铁道建筑报</span></a>
+<a class="card" href="http://paper.people.com.cn/zgcsb/paperindex.htm" target="_blank" rel="noopener"><span class="name">中国城市报</span></a>
+<a class="card" href="http://paper.people.com.cn/zgnyb/paperindex.htm" target="_blank" rel="noopener"><span class="name">中国能源报</span></a>
+<a class="card" href="http://www.rmlt.com.cn/magazine/A/2023/" target="_blank" rel="noopener"><span class="name">人民论坛</span></a>
+<a class="card" href="https://www.peopleweekly.cn/html/renminzhoukan/" target="_blank" rel="noopener"><span class="name">人民周刊</span></a>
+<a class="card" href="https://www.globalpeople.com.cn/305935/index.html" target="_blank" rel="noopener"><span class="name">环球人物</span></a>
+<a class="card" href="http://paper.cfsn.cn/" target="_blank" rel="noopener"><span class="name">中国食品安全报</span></a>
+<a class="card" href="http://www.chinawater.com.cn/zgslb/" target="_blank" rel="noopener"><span class="name">中国水利报</span></a>
+<a class="card" href="http://dzb.cinn.cn/" target="_blank" rel="noopener"><span class="name">中国工业报</span></a>
+<a class="card" href="http://mpaper.ccin.com.cn:81/pc/index" target="_blank" rel="noopener"><span class="name">中国化工报</span></a>
+<a class="card" href="https://paper.cnmn.com.cn/" target="_blank" rel="noopener"><span class="name">中国有色金属报</span></a>
+<a class="card" href="https://rmzxb.183read.cc/" target="_blank" rel="noopener"><span class="name">人民政协报</span></a>
+<a class="card" href="http://epaper.zgqxb.com.cn/" target="_blank" rel="noopener"><span class="name">中国气象报</span></a>
+<a class="card" href="http://paper.aqsc.cn/" target="_blank" rel="noopener"><span class="name">中国应急管理报</span></a>
+<a class="card" href="http://www.cfgw.net.cn/epaper/" target="_blank" rel="noopener"><span class="name">中国改革报</span></a>
+<a class="card" href="http://paper.zgswcn.com/" target="_blank" rel="noopener"><span class="name">中国商报</span></a>
+<a class="card" href="https://epaper.shehuiwang.cn/" target="_blank" rel="noopener"><span class="name">中国社会报</span></a>
+<a class="card" href="http://paper.ccoalnews.com/" target="_blank" rel="noopener"><span class="name">中国煤炭报</span></a>
+<a class="card" href="http://pc.cmrnn.com.cn/" target="_blank" rel="noopener"><span class="name">中国市场监管报</span></a>
+<a class="card" href="https://zgdsb.cctv.com/paper/index.shtml" target="_blank" rel="noopener"><span class="name">中国电视报</span></a>
+<a class="card" href="http://www.chinasportsdaily.cn/tyb/" target="_blank" rel="noopener"><span class="name">中国体育报</span></a>
+<a class="card" href="https://www.redcross.org.cn/redcrossol/index.html" target="_blank" rel="noopener"><span class="name">中国红十字报</span></a>
+<a class="card" href="http://dzzy.cbbr.com.cn/" target="_blank" rel="noopener"><span class="name">中国出版传媒商报</span></a>
+<a class="card" href="http://ccppg.k618.cn/cpfw/dnj/zgetb/" target="_blank" rel="noopener"><span class="name">中国儿童报</span></a>
+<a class="card" href="http://ccppg.k618.cn/cpfw/dnj/zgsnb/" target="_blank" rel="noopener"><span class="name">中国少年报</span></a>
+<a class="card" href="http://ccppg.k618.cn/cpfw/gnj/zgzxsb/" target="_blank" rel="noopener"><span class="name">中国中学生报</span></a>
+<a class="card" href="http://szb.htgjjl.com/htb/" target="_blank" rel="noopener"><span class="name">中国航天报</span></a>
+<a class="card" href="http://paper.cntcm.com.cn/bz/html/index.html" target="_blank" rel="noopener"><span class="name">中国中医药报</span></a>
+<a class="card" href="http://www.cgpnews.cn/epapers" target="_blank" rel="noopener"><span class="name">中国政府采购报</span></a>
+<a class="card" href="http://www.cfen.com.cn/dzb/" target="_blank" rel="noopener"><span class="name">中国财经报</span></a>
+<a class="card" href="http://bk.cnpharm.com/zgyyb/" target="_blank" rel="noopener"><span class="name">中国医药报</span></a>
+<a class="card" href="https://www.chnfund.com/epaper" target="_blank" rel="noopener"><span class="name">中国基金报</span></a>
+<a class="card" href="http://paper.tuanjiewang.cn/tjb" target="_blank" rel="noopener"><span class="name">团结报</span></a>
+<a class="card" href="https://news.183read.cc/" target="_blank" rel="noopener"><span class="name">中国畜牧兽医报</span></a>
+<a class="card" href="http://www.zgsfbs.cn/news/electric.html" target="_blank" rel="noopener"><span class="name">中国书法报</span></a>
+<a class="card" href="https://epaper.chinaxwcb.com/" target="_blank" rel="noopener"><span class="name">中国新闻出版广电报</span></a>
+<a class="card" href="https://news.sciencenet.cn/dz/dznews_photo.aspx" target="_blank" rel="noopener"><span class="name">中国科学报</span></a>
+<a class="card" href="https://medical.sciencenet.cn/dz/dznews_photo.aspx" target="_blank" rel="noopener"><span class="name">医学科学报</span></a>
+<a class="card" href="https://sz.iprchn.com/bz/html/index.html" target="_blank" rel="noopener"><span class="name">中国知识产权报</span></a>
+<a class="card" href="https://www.cssn.cn/dbskdt/" target="_blank" rel="noopener"><span class="name">中国社会科学报</span></a>
+<a class="card" href="http://chinafilmnews.cn/" target="_blank" rel="noopener"><span class="name">中国电影报</span></a>
+<a class="card" href="https://www.nia.gov.cn/n741435/n907688/n932715/n1557001/index.html" target="_blank" rel="noopener"><span class="name">中国移民管理报</span></a>
+<a class="card" href="http://epaper.chinanews.com/" target="_blank" rel="noopener"><span class="name">中国新闻</span></a>
+<a class="card" href="https://www.cfnews.org.cn/zxydjdyfs" target="_blank" rel="noopener"><span class="name">中国家庭报</span></a>
+<a class="card" href="http://epaper.gold.org.cn/" target="_blank" rel="noopener"><span class="name">中国黄金报</span></a>
+<a class="card" href="http://zgcbb.cnepaper.com/zgcbb/" target="_blank" rel="noopener"><span class="name">中国船舶报</span></a>
+<a class="card" href="https://www.xyshjj.cn/" target="_blank" rel="noopener"><span class="name">中国县域经济报</span></a>
+<a class="card" href="https://www.yicai.com/epaper/pc/index.html" target="_blank" rel="noopener"><span class="name">第一财经日报</span></a>
+<a class="card" href="https://paper.cnstock.com/" target="_blank" rel="noopener"><span class="name">上海证券报</span></a>
+<a class="card" href="http://epaper.21jingji.com/" target="_blank" rel="noopener"><span class="name">21世纪经济报道</span></a>
+<a class="card" href="http://epaper.stcn.com/" target="_blank" rel="noopener"><span class="name">证券时报</span></a></div></section>
+<section class="region" id="r-华北"><h2>华北 <span class="cnt">101</span></h2><div class="prov"><h3>北京 <span class="cnt">42</span></h3><div class="grid"><a class="card" href="https://bjrbdzb.bjd.com.cn/bjrb/paperindex.htm" target="_blank" rel="noopener"><span class="name">北京日报</span></a>
+<a class="card" href="https://bjrbdzb.bjd.com.cn/bjwb/paperindex.htm" target="_blank" rel="noopener"><span class="name">北京晚报</span></a>
+<a class="card" href="http://qnck.cyol.com/" target="_blank" rel="noopener"><span class="name">青年参考</span></a>
+<a class="card" href="https://paper.lifetimes.cn/index" target="_blank" rel="noopener"><span class="name">生命时报</span></a>
+<a class="card" href="http://paper.people.com.cn/fcyym/" target="_blank" rel="noopener"><span class="name">讽刺与幽默</span></a>
+<a class="card" href="http://dzb.xfrb.com.cn/" target="_blank" rel="noopener"><span class="name">消费日报</span></a>
+<a class="card" href="https://epaper.gmw.cn/zhdsb/paperindex.htm" target="_blank" rel="noopener"><span class="name">中华读书报</span></a>
+<a class="card" href="https://epaper.gmw.cn/wzb/paperindex.htm" target="_blank" rel="noopener"><span class="name">文摘报</span></a>
+<a class="card" href="http://www.ccidcom.com/newspaper.html" target="_blank" rel="noopener"><span class="name">通信产业报</span></a>
+<a class="card" href="http://epaper.cbt.com.cn/epaper/uniflows/html/" target="_blank" rel="noopener"><span class="name">中华工商时报</span></a>
+<a class="card" href="https://www.cnii.com.cn/txqygl/" target="_blank" rel="noopener"><span class="name">通信企业管理</span></a>
+<a class="card" href="https://www.peoplerail.com/rail/list-792-1.html" target="_blank" rel="noopener"><span class="name">报林</span></a>
+<a class="card" href="http://epaper.ynet.com/" target="_blank" rel="noopener"><span class="name">北京青年报</span></a>
+<a class="card" href="http://sqb.ynet.com/" target="_blank" rel="noopener"><span class="name">北京社区报</span></a>
+<a class="card" href="http://www.cqqnb.net/ebook/" target="_blank" rel="noopener"><span class="name">重庆青年报</span></a>
+<a class="card" href="http://paper1.nzdb.com.cn/epaper/" target="_blank" rel="noopener"><span class="name">农资导报</span></a>
+<a class="card" href="http://www.lifestyle.com.cn/main/?l=magazine_list&amp;cate=-2" target="_blank" rel="noopener"><span class="name">精品购物指南</span></a>
+<a class="card" href="http://faxing.jkb.com.cn/" target="_blank" rel="noopener"><span class="name">健康报</span></a>
+<a class="card" href="http://faxing.jkb.com.cn/?name=jkwz" target="_blank" rel="noopener"><span class="name">老年健康报</span></a>
+<a class="card" href="http://faxing.jkb.com.cn/?name=dzjk" target="_blank" rel="noopener"><span class="name">大众健康</span></a>
+<a class="card" href="http://faxing.jkb.com.cn/?name=xsjkb" target="_blank" rel="noopener"><span class="name">学生健康报</span></a>
+<a class="card" href="http://211.160.252.154/" target="_blank" rel="noopener"><span class="name">国家电网报</span></a>
+<a class="card" href="http://www.gongyishibao.com/dianzibao/" target="_blank" rel="noopener"><span class="name">公益时报</span></a>
+<a class="card" href="https://paper.i21st.cn/" target="_blank" rel="noopener"><span class="name">21世纪英文报</span></a>
+<a class="card" href="http://www.legalweekly.cn/" target="_blank" rel="noopener"><span class="name">法治周末</span></a>
+<a class="card" href="http://paper.kepuing.com/" target="_blank" rel="noopener"><span class="name">科普时报</span></a>
+<a class="card" href="http://www.jcrb.com/FYFZ/" target="_blank" rel="noopener"><span class="name">方圆</span></a>
+<a class="card" href="http://epaper.bjnews.com.cn/" target="_blank" rel="noopener"><span class="name">新京报</span></a>
+<a class="card" href="https://epa.comnews.cn/" target="_blank" rel="noopener"><span class="name">国际商报</span></a>
+<a class="card" href="http://epaper.bbtnews.com.cn/site1/bjsb/" target="_blank" rel="noopener"><span class="name">北京商报</span></a>
+<a class="card" href="http://jydb.scedumedia.com/" target="_blank" rel="noopener"><span class="name">教育导报</span></a>
+<a class="card" href="https://www.cvnews.com.cn/zaixianpdf/list3_28_1.html" target="_blank" rel="noopener"><span class="name">商用汽车新闻</span></a>
+<a class="card" href="http://wyb.chinawriter.com.cn/" target="_blank" rel="noopener"><span class="name">文艺报</span></a>
+<a class="card" href="http://szb.zh-hz.com/" target="_blank" rel="noopener"><span class="name">中华合作时报</span></a>
+<a class="card" href="http://www.xjzgh.org.cn/ghyw/grsb/grsb.htm" target="_blank" rel="noopener"><span class="name">工人时报</span></a>
+<a class="card" href="http://ldwb.workerbj.cn/" target="_blank" rel="noopener"><span class="name">劳动午报</span></a>
+<a class="card" href="http://www.legaldaily.com.cn/Village_ruled_by_law/node_106970.htm" target="_blank" rel="noopener"><span class="name">法制文萃报</span></a>
+<a class="card" href="https://bjksb.bjeea.cn/html/ksb/pdfzhuanlan/index.html" target="_blank" rel="noopener"><span class="name">北京考试报</span></a>
+<a class="card" href="http://www.cptoday.cn/epaper/home" target="_blank" rel="noopener"><span class="name">出版商务周报</span></a>
+<a class="card" href="http://www.entrepreneurdaily.cn/" target="_blank" rel="noopener"><span class="name">企业家日报</span></a>
+<a class="card" href="http://app.worldmetals.com.cn:10008/epaper/" target="_blank" rel="noopener"><span class="name">世界金属导报</span></a>
+<a class="card" href="http://www.zhjzbs.com/html/2023/2023-09-12_0912/2493450.html" target="_blank" rel="noopener"><span class="name">中华建筑报</span></a></div></div>
+<div class="prov"><h3>天津 <span class="cnt">3</span></h3><div class="grid"><a class="card" href="http://epaper.tianjinwe.com/tjrb" target="_blank" rel="noopener"><span class="name">天津日报</span></a>
+<a class="card" href="http://jinwanbaoepaper.enorth.com.cn/zlnsb/" target="_blank" rel="noopener"><span class="name">中老年时报</span></a>
+<a class="card" href="http://jinwanbaoepaper.enorth.com.cn/jwb" target="_blank" rel="noopener"><span class="name">今晚报</span></a></div></div>
+<div class="prov"><h3>河北 <span class="cnt">28</span></h3><div class="grid"><a class="card" href="http://epaper.lfcmw.com/dsbpaper/pc/layout/" target="_blank" rel="noopener"><span class="name">廊坊都市报</span></a>
+<a class="card" href="http://epaper.lfcmw.com/rbpaper/pc/layout/" target="_blank" rel="noopener"><span class="name">廊坊日报</span></a>
+<a class="card" href="http://digital.zmdxw.com/" target="_blank" rel="noopener"><span class="name">中煤地质报</span></a>
+<a class="card" href="http://szbk.zjknews.com/shtml/index_zjkrb.shtml" target="_blank" rel="noopener"><span class="name">张家口日报</span></a>
+<a class="card" href="http://www.xtrb.cn/epaper/xtrb/pc/col/" target="_blank" rel="noopener"><span class="name">邢台日报</span></a>
+<a class="card" href="http://www.xtrb.cn/epaper/xzb/pc/col/" target="_blank" rel="noopener"><span class="name">邢周报</span></a>
+<a class="card" href="http://news.xd56b.com/shtml/index_xdwlb.shtml" target="_blank" rel="noopener"><span class="name">现代物流报</span></a>
+<a class="card" href="http://epaper.bdall.com/rbpaper/pc/layout/" target="_blank" rel="noopener"><span class="name">保定日报</span></a>
+<a class="card" href="http://epaper.bdall.com/wbpaper/pc/layout/" target="_blank" rel="noopener"><span class="name">保定晚报</span></a>
+<a class="card" href="http://epaper.bdall.com/lczkpaper/pc/layout/" target="_blank" rel="noopener"><span class="name">莲池周刊</span></a>
+<a class="card" href="https://hbrb.hebnews.cn/" target="_blank" rel="noopener"><span class="name">河北日报</span></a>
+<a class="card" href="https://yzdsb.hebnews.cn/" target="_blank" rel="noopener"><span class="name">燕赵都市报</span></a>
+<a class="card" href="https://szbz.hbfzb.com/" target="_blank" rel="noopener"><span class="name">河北法制报</span></a>
+<a class="card" href="https://hbnw.hebnews.cn/node_355151.htm" target="_blank" rel="noopener"><span class="name">燕赵农村报</span></a>
+<a class="card" href="http://epaper.hbjjrb.com/" target="_blank" rel="noopener"><span class="name">河北经济日报</span></a>
+<a class="card" href="http://www.hbgrb.net/epaper/" target="_blank" rel="noopener"><span class="name">河北工人报</span></a>
+<a class="card" href="http://szb.handannews.com.cn/rbpaper/index.html" target="_blank" rel="noopener"><span class="name">邯郸日报</span></a>
+<a class="card" href="http://szb.handannews.com.cn/wbpaper/index.html" target="_blank" rel="noopener"><span class="name">邯郸晚报</span></a>
+<a class="card" href="http://szb.handannews.com.cn/sbpaper/index.html" target="_blank" rel="noopener"><span class="name">中原商报</span></a>
+<a class="card" href="http://szb.dingzhoudaily.com/" target="_blank" rel="noopener"><span class="name">定州日报</span></a>
+<a class="card" href="https://paper.hehechengde.cn/cdrb/" target="_blank" rel="noopener"><span class="name">承德日报</span></a>
+<a class="card" href="http://czrb.bohaitoday.com/" target="_blank" rel="noopener"><span class="name">沧州日报</span></a>
+<a class="card" href="http://czwb.bohaitoday.com/" target="_blank" rel="noopener"><span class="name">沧州晚报</span></a>
+<a class="card" href="http://sjzrb.sjzdaily.com.cn/" target="_blank" rel="noopener"><span class="name">石家庄日报</span></a>
+<a class="card" href="http://yzwb.sjzdaily.com.cn/" target="_blank" rel="noopener"><span class="name">燕赵晚报</span></a>
+<a class="card" href="http://yzlnb.sjzdaily.com.cn/" target="_blank" rel="noopener"><span class="name">燕赵老年报</span></a>
+<a class="card" href="https://www.hbynet.net/html/heqing/daohang/dianzibao/index.html" target="_blank" rel="noopener"><span class="name">河北青年报</span></a>
+<a class="card" href="http://new.grainnews.com.cn:9999/login.aspx" target="_blank" rel="noopener"><span class="name">粮油市场报</span></a></div></div>
+<div class="prov"><h3>山西 <span class="cnt">14</span></h3><div class="grid"><a class="card" href="http://dzb.sxgrw.com:8081/" target="_blank" rel="noopener"><span class="name">山西工人报</span></a>
+<a class="card" href="http://epaper.sxrb.com/shtml/index_sxscdb.shtml" target="_blank" rel="noopener"><span class="name">山西市场导报</span></a>
+<a class="card" href="http://epaper.sxycrb.com/rbpaper/index.html" target="_blank" rel="noopener"><span class="name">运城日报</span></a>
+<a class="card" href="http://epaper.sxycrb.com/wbpaper/index.html" target="_blank" rel="noopener"><span class="name">运城晚报</span></a>
+<a class="card" href="http://www.kxdb.com/dzbk/list.php?catid=33" target="_blank" rel="noopener"><span class="name">科学导报</span></a>
+<a class="card" href="http://epaper.sxrb.com/index_sxfzb.shtml" target="_blank" rel="noopener"><span class="name">山西法治报</span></a>
+<a class="card" href="http://epaper.sxrb.com/shtml/index_sxjjrb.shtml" target="_blank" rel="noopener"><span class="name">山西经济日报</span></a>
+<a class="card" href="http://www.sxqnb.com.cn/" target="_blank" rel="noopener"><span class="name">山西青年报</span></a>
+<a class="card" href="http://epaper.sxrb.com/shtml/index_sxrb.shtml" target="_blank" rel="noopener"><span class="name">山西日报</span></a>
+<a class="card" href="http://syguandao.ihwrm.com/" target="_blank" rel="noopener"><span class="name">石油管道报</span></a>
+<a class="card" href="http://epaper.sxrb.com/shtml/index_sxwb.shtml" target="_blank" rel="noopener"><span class="name">山西晚报</span></a>
+<a class="card" href="http://epaper.sxrb.com/shtml/index_sxnmb.shtml" target="_blank" rel="noopener"><span class="name">山西农民报</span></a>
+<a class="card" href="http://epaper.51peoplephoto.com/medium/index" target="_blank" rel="noopener"><span class="name">人民摄影</span></a>
+<a class="card" href="http://epaper.sxrb.com/shtml/index_lyzk.shtml" target="_blank" rel="noopener"><span class="name">良友周报</span></a></div></div>
+<div class="prov"><h3>内蒙古 <span class="cnt">14</span></h3><div class="grid"><a class="card" href="https://www.mingchenghao.cn/info-11-c.html" target="_blank" rel="noopener"><span class="name">名城早报</span></a>
+<a class="card" href="http://szb.northnews.cn/bfxb/" target="_blank" rel="noopener"><span class="name">北方新报</span></a>
+<a class="card" href="http://szb.nmgnews.com.cn/nmgrb/" target="_blank" rel="noopener"><span class="name">内蒙古日报</span></a>
+<a class="card" href="http://szb.nmgsb.com.cn/" target="_blank" rel="noopener"><span class="name">内蒙古商报</span></a>
+<a class="card" href="http://szb.nmgcb.com.cn/" target="_blank" rel="noopener"><span class="name">内蒙古晨报</span></a>
+<a class="card" href="https://i.xpaper.net/lhrb/release/index.shtml" target="_blank" rel="noopener"><span class="name">林海日报</span></a>
+<a class="card" href="https://nginx-hlbr.hlbrnews.com.cn/hlbr" target="_blank" rel="noopener"><span class="name">呼伦贝尔日报</span></a>
+<a class="card" href="http://commend.nmgnews.com.cn/nmgrb/zhoumo/index.html" target="_blank" rel="noopener"><span class="name">北方周末报</span></a>
+<a class="card" href="https://btrb.baotounews.com.cn/" target="_blank" rel="noopener"><span class="name">包头日报</span></a>
+<a class="card" href="https://btwb.baotounews.com.cn/" target="_blank" rel="noopener"><span class="name">包头晚报</span></a>
+<a class="card" href="http://szb.wuhainews.org.cn/" target="_blank" rel="noopener"><span class="name">乌海日报</span></a>
+<a class="card" href="https://www.xlglrbw.org.cn/" target="_blank" rel="noopener"><span class="name">锡林郭勒日报</span></a>
+<a class="card" href="http://www.nmgfzb.cn/xpaper" target="_blank" rel="noopener"><span class="name">内蒙古法制报</span></a>
+<a class="card" href="https://www.impc.com.cn/paper/" target="_blank" rel="noopener"><span class="name">内蒙古电力报</span></a></div></div></section>
+<section class="region" id="r-华东"><h2>华东 <span class="cnt">261</span></h2><div class="prov"><h3>上海 <span class="cnt">22</span></h3><div class="grid"><a class="card" href="https://paper.xinmin.cn/index/xmwb/index.htm" target="_blank" rel="noopener"><span class="name">新民晚报</span></a>
+<a class="card" href="http://wxb.whb.cn/" target="_blank" rel="noopener"><span class="name">文学报</span></a>
+<a class="card" href="http://www.bundpic.com/" target="_blank" rel="noopener"><span class="name">外滩画报</span></a>
+<a class="card" href="http://epaper.shautonews.com/" target="_blank" rel="noopener"><span class="name">上海汽车报</span></a>
+<a class="card" href="https://www.shkjb.com/paper/animate.html" target="_blank" rel="noopener"><span class="name">上海科技报</span></a>
+<a class="card" href="http://www.why.com.cn/" target="_blank" rel="noopener"><span class="name">青年报</span></a>
+<a class="card" href="https://www.xepaper.com/ldbs/" target="_blank" rel="noopener"><span class="name">劳动报</span></a>
+<a class="card" href="http://dzb.jzsbs.com/" target="_blank" rel="noopener"><span class="name">建筑时报</span></a>
+<a class="card" href="http://paper.people.com.cn/gjjrb/" target="_blank" rel="noopener"><span class="name">国际金融报</span></a>
+<a class="card" href="http://www.why.com.cn/epublish/xsdb.html" target="_blank" rel="noopener"><span class="name">学生导报</span></a>
+<a class="card" href="http://citynews.eastday.com/" target="_blank" rel="noopener"><span class="name">城市导报</span></a>
+<a class="card" href="https://www.jfdaily.com/staticsg/res/html/journal/index.html" target="_blank" rel="noopener"><span class="name">解放日报</span></a>
+<a class="card" href="http://dzb.whb.cn/" target="_blank" rel="noopener"><span class="name">文汇报</span></a>
+<a class="card" href="http://www.dfcxb.com/" target="_blank" rel="noopener"><span class="name">东方城乡报</span></a>
+<a class="card" href="http://www.why.com.cn/" target="_blank" rel="noopener"><span class="name">青年报</span></a>
+<a class="card" href="https://www.xepaper.com/lhsb/" target="_blank" rel="noopener"><span class="name">联合时报</span></a>
+<a class="card" href="http://ep.shxwcb.com/" target="_blank" rel="noopener"><span class="name">新闻晨报</span></a>
+<a class="card" href="http://www.shfzb.com.cn/" target="_blank" rel="noopener"><span class="name">上海法治报</span></a>
+<a class="card" href="http://ep.sqcbmedia.com/" target="_blank" rel="noopener"><span class="name">社区晨报</span></a>
+<a class="card" href="https://paper.xinmin.cn/index/dfsports/index.html" target="_blank" rel="noopener"><span class="name">东方体育日报</span></a>
+<a class="card" href="http://pudong-epaper.shmedia.tech/" target="_blank" rel="noopener"><span class="name">浦东时报</span></a>
+<a class="card" href="http://www.xinminweekly.com.cn/wqframe/index.htm" target="_blank" rel="noopener"><span class="name">新民周刊</span></a></div></div>
+<div class="prov"><h3>江苏 <span class="cnt">44</span></h3><div class="grid"><a class="card" href="http://epaper.gytoday.cn/" target="_blank" rel="noopener"><span class="name">高邮日报</span></a>
+<a class="card" href="http://paper.tdcm.cn/" target="_blank" rel="noopener"><span class="name">宜兴日报</span></a>
+<a class="card" href="https://paper.ycnews.cn/rb/pc/index.html" target="_blank" rel="noopener"><span class="name">盐阜大众报</span></a>
+<a class="card" href="https://paper.ycnews.cn/wb/pc/index.html" target="_blank" rel="noopener"><span class="name">盐城晚报</span></a>
+<a class="card" href="http://xzkgb.yunpaper1.cn/" target="_blank" rel="noopener"><span class="name">徐州矿工报</span></a>
+<a class="card" href="http://epaper.wjdaily.com/" target="_blank" rel="noopener"><span class="name">吴江日报</span></a>
+<a class="card" href="http://sz.tznews.cn/tzrb" target="_blank" rel="noopener"><span class="name">泰州日报</span></a>
+<a class="card" href="http://sz.tznews.cn/tzwb" target="_blank" rel="noopener"><span class="name">泰州晚报</span></a>
+<a class="card" href="https://www.taicangdaily.cn/tcrbszb/index.htm" target="_blank" rel="noopener"><span class="name">太仓日报</span></a>
+<a class="card" href="http://epaper.sqdaily.com/" target="_blank" rel="noopener"><span class="name">宿迁日报</span></a>
+<a class="card" href="http://njcb.xhby.net/" target="_blank" rel="noopener"><span class="name">南京晨报</span></a>
+<a class="card" href="https://epaper.ksrmtzx.com/" target="_blank" rel="noopener"><span class="name">昆山日报</span></a>
+<a class="card" href="http://www.cnepaper.com/jjrb/" target="_blank" rel="noopener"><span class="name">靖江日报</span></a>
+<a class="card" href="http://njrb.njdaily.cn/" target="_blank" rel="noopener"><span class="name">南京日报</span></a>
+<a class="card" href="http://jlwb.njdaily.cn/" target="_blank" rel="noopener"><span class="name">金陵晚报</span></a>
+<a class="card" href="http://jssb.njdaily.cn/" target="_blank" rel="noopener"><span class="name">江苏商报</span></a>
+<a class="card" href="http://zhibao.dzzq.com.cn/index.shtml" target="_blank" rel="noopener"><span class="name">大众证券报</span></a>
+<a class="card" href="http://epaper.routeryun.com/Home/Page/index/mdid/250218.html" target="_blank" rel="noopener"><span class="name">江阴日报</span></a>
+<a class="card" href="http://jsjjb.xhby.net/" target="_blank" rel="noopener"><span class="name">江苏经济报</span></a>
+<a class="card" href="http://jsfzb.xhby.net/" target="_blank" rel="noopener"><span class="name">江苏法治报</span></a>
+<a class="card" href="http://jnsb.xhby.net/" target="_blank" rel="noopener"><span class="name">江南时报</span></a>
+<a class="card" href="http://jhrb.jianhunews.com/" target="_blank" rel="noopener"><span class="name">建湖日报</span></a>
+<a class="card" href="http://szb.wxrb.com/layout/index.html" target="_blank" rel="noopener"><span class="name">无锡日报</span></a>
+<a class="card" href="http://szb.wxrb.com/jnwb/pc/layout/index.html" target="_blank" rel="noopener"><span class="name">江南晚报</span></a>
+<a class="card" href="http://epaper.routeryun.com/hmrb" target="_blank" rel="noopener"><span class="name">海门日报</span></a>
+<a class="card" href="http://www.zgnt.net/ntrbszb/pc/layout/index.html" target="_blank" rel="noopener"><span class="name">南通日报</span></a>
+<a class="card" href="http://www.zgnt.net/jhwbszb/pc/layout/index.html" target="_blank" rel="noopener"><span class="name">江海晚报</span></a>
+<a class="card" href="http://digital.dtxww.com/" target="_blank" rel="noopener"><span class="name">东台日报</span></a>
+<a class="card" href="http://epaper.routeryun.com/dyrb" target="_blank" rel="noopener"><span class="name">丹阳日报</span></a>
+<a class="card" href="http://dzb.csxww.com/" target="_blank" rel="noopener"><span class="name">常熟日报</span></a>
+<a class="card" href="http://xh.xhby.net/" target="_blank" rel="noopener"><span class="name">新华日报</span></a>
+<a class="card" href="http://epaper.yzwb.net/" target="_blank" rel="noopener"><span class="name">扬子晚报</span></a>
+<a class="card" href="http://epaper.dxscg.com.cn/" target="_blank" rel="noopener"><span class="name">乡村干部报</span></a>
+<a class="card" href="http://xinsushang.xhby.net/" target="_blank" rel="noopener"><span class="name">新苏商</span></a>
+<a class="card" href="https://szb.cnxz.com.cn/xzrb/index.html" target="_blank" rel="noopener"><span class="name">徐州日报</span></a>
+<a class="card" href="https://szb.cnxz.com.cn/dscb/index.html" target="_blank" rel="noopener"><span class="name">都市晨报</span></a>
+<a class="card" href="http://zjrb.cnepaper.com/index/pcindex.html" target="_blank" rel="noopener"><span class="name">镇江日报</span></a>
+<a class="card" href="http://epaper.routeryun.com/wujin" target="_blank" rel="noopener"><span class="name">武进日报</span></a>
+<a class="card" href="https://epaper.cz001.com.cn/czwbpaper/pc/layout/index.html" target="_blank" rel="noopener"><span class="name">常州晚报</span></a>
+<a class="card" href="https://epaper.cz001.com.cn/gxqbpaper/index.html" target="_blank" rel="noopener"><span class="name">常州高新区报</span></a>
+<a class="card" href="http://www.yzrb.com/" target="_blank" rel="noopener"><span class="name">扬州日报</span></a>
+<a class="card" href="http://dz.xdkb.net/" target="_blank" rel="noopener"><span class="name">现代快报</span></a>
+<a class="card" href="http://epaper.jsgrb.com/" target="_blank" rel="noopener"><span class="name">江苏工人报</span></a>
+<a class="card" href="http://epaper.jsenews.com/" target="_blank" rel="noopener"><span class="name">江苏教育报</span></a></div></div>
+<div class="prov"><h3>浙江 <span class="cnt">46</span></h3><div class="grid"><a class="card" href="http://qzrb.qz828.com/" target="_blank" rel="noopener"><span class="name">衢州日报</span></a>
+<a class="card" href="http://qzwb.qz828.com/" target="_blank" rel="noopener"><span class="name">衢州晚报</span></a>
+<a class="card" href="http://www.xepaper.com/shangyu/paperindex.htm" target="_blank" rel="noopener"><span class="name">上虞日报</span></a>
+<a class="card" href="http://www.rarb.cn/" target="_blank" rel="noopener"><span class="name">瑞安日报</span></a>
+<a class="card" href="http://bz.zgqt.zj.cn/qtqb/qtqb/pc/layout/index.html" target="_blank" rel="noopener"><span class="name">青田侨报</span></a>
+<a class="card" href="http://www.ncxxb.com.cn/" target="_blank" rel="noopener"><span class="name">农村信息报</span></a>
+<a class="card" href="http://epaper.zjgrrb.com/" target="_blank" rel="noopener"><span class="name">浙江工人日报</span></a>
+<a class="card" href="http://zjfzb.zjol.com.cn/" target="_blank" rel="noopener"><span class="name">浙江法制报</span></a>
+<a class="card" href="http://msb.zjol.com.cn/" target="_blank" rel="noopener"><span class="name">美术报</span></a>
+<a class="card" href="http://eyyrb.yynews.com.cn/" target="_blank" rel="noopener"><span class="name">余姚日报</span></a>
+<a class="card" href="http://www.lybs.com.cn/" target="_blank" rel="noopener"><span class="name">联谊报</span></a>
+<a class="card" href="http://ljdb.lxnews.cn/" target="_blank" rel="noopener"><span class="name">兰江导报</span></a>
+<a class="card" href="https://www.yqrb.cn/" target="_blank" rel="noopener"><span class="name">乐清日报</span></a>
+<a class="card" href="https://epaper.jhnews.com.cn/jrwb/jhwbpaper/pc/layout/" target="_blank" rel="noopener"><span class="name">金华晚报</span></a>
+<a class="card" href="https://epaper.jhnews.com.cn/jhrb/jhrbpaper/pc/layout/" target="_blank" rel="noopener"><span class="name">金华日报</span></a>
+<a class="card" href="https://xsrb.xsnet.cn/" target="_blank" rel="noopener"><span class="name">萧山日报</span></a>
+<a class="card" href="https://hzdaily.hangzhou.com.cn/dskb/" target="_blank" rel="noopener"><span class="name">都市快报</span></a>
+<a class="card" href="https://hzdaily.hangzhou.com.cn/mrsb/" target="_blank" rel="noopener"><span class="name">每日商报</span></a>
+<a class="card" href="http://yhcb.eyh.cn/" target="_blank" rel="noopener"><span class="name">余杭时报</span></a>
+<a class="card" href="http://fydaily.xepaper.com/" target="_blank" rel="noopener"><span class="name">富阳日报</span></a>
+<a class="card" href="https://hzdaily.hangzhou.com.cn/cb/" target="_blank" rel="noopener"><span class="name">城报</span></a>
+<a class="card" href="https://dyrb.dynews.zj.cn/" target="_blank" rel="noopener"><span class="name">东阳日报</span></a>
+<a class="card" href="http://paper.taizhou.com.cn/taizhou/tzwb/pc/layout/index.html" target="_blank" rel="noopener"><span class="name">台州晚报</span></a>
+<a class="card" href="http://paper.taizhou.com.cn/taizhou/tzrb/pc/layout/index.html" target="_blank" rel="noopener"><span class="name">台州日报</span></a>
+<a class="card" href="http://www.taizhou.com.cn/zhuanti/node_26500.htm" target="_blank" rel="noopener"><span class="name">东海文学</span></a>
+<a class="card" href="http://paper.lsnews.com.cn/lsrb/" target="_blank" rel="noopener"><span class="name">丽水日报</span></a>
+<a class="card" href="http://epaper.sznews.zj.cn/" target="_blank" rel="noopener"><span class="name">今日嵊州</span></a>
+<a class="card" href="https://hnrb.cnepaper.com/hnrb/" target="_blank" rel="noopener"><span class="name">海宁日报</span></a>
+<a class="card" href="http://epaper.zjscdb.com/" target="_blank" rel="noopener"><span class="name">市场导报</span></a>
+<a class="card" href="http://zjrb.zjol.com.cn/" target="_blank" rel="noopener"><span class="name">浙江日报</span></a>
+<a class="card" href="http://zjlnb.zjol.com.cn/" target="_blank" rel="noopener"><span class="name">浙江老年报</span></a>
+<a class="card" href="http://jxrb.cnjxol.com/" target="_blank" rel="noopener"><span class="name">嘉兴日报</span></a>
+<a class="card" href="http://nhwb.cnjxol.com/" target="_blank" rel="noopener"><span class="name">南湖晚报</span></a>
+<a class="card" href="http://paper.wlxww.com/" target="_blank" rel="noopener"><span class="name">温岭日报</span></a>
+<a class="card" href="http://epaper.shaoxing.com.cn/sxrb/pc/column/" target="_blank" rel="noopener"><span class="name">绍兴日报</span></a>
+<a class="card" href="http://hzdaily.hangzhou.com.cn/hzrb/index.html" target="_blank" rel="noopener"><span class="name">杭州日报</span></a>
+<a class="card" href="http://szb1.ywcity.cn/" target="_blank" rel="noopener"><span class="name">义乌商报</span></a>
+<a class="card" href="http://daily.cnnb.com.cn/nbrb/paperindex.htm" target="_blank" rel="noopener"><span class="name">宁波日报</span></a>
+<a class="card" href="http://daily.cnnb.com.cn/xdjb/paperindex.htm" target="_blank" rel="noopener"><span class="name">现代金报</span></a>
+<a class="card" href="http://epaper.shaoxing.com.cn/sxwb/pc/column/" target="_blank" rel="noopener"><span class="name">绍兴晚报</span></a>
+<a class="card" href="http://hzdaily.hangzhou.com.cn/mrsb/index.html" target="_blank" rel="noopener"><span class="name">每日商报</span></a>
+<a class="card" href="http://daily.cnnb.com.cn/nbwb/paperindex.htm" target="_blank" rel="noopener"><span class="name">宁波晚报</span></a>
+<a class="card" href="http://qjwb.thehour.cn/" target="_blank" rel="noopener"><span class="name">钱江晚报</span></a>
+<a class="card" href="http://jnyb.zjol.com.cn/" target="_blank" rel="noopener"><span class="name">江南游报</span></a>
+<a class="card" href="http://www.zjjyb.cn/" target="_blank" rel="noopener"><span class="name">浙江教育报</span></a>
+<a class="card" href="http://zjfzb.zjol.com.cn/" target="_blank" rel="noopener"><span class="name">浙江法治报</span></a></div></div>
+<div class="prov"><h3>安徽 <span class="cnt">41</span></h3><div class="grid"><a class="card" href="https://szb.ahnews.com.cn/ahrb/layout/" target="_blank" rel="noopener"><span class="name">安徽日报</span></a>
+<a class="card" href="http://epaper.ahwang.cn" target="_blank" rel="noopener"><span class="name">新安晚报</span></a>
+<a class="card" href="https://szb.ahnews.com.cn/ncb/pc/layout/" target="_blank" rel="noopener"><span class="name">安徽日报农村版</span></a>
+<a class="card" href="https://szb.ahnews.com.cn/fzb/pc/layout/" target="_blank" rel="noopener"><span class="name">安徽法制报</span></a>
+<a class="card" href="https://szb.ahnews.com.cn/jhsb/pc/layout/" target="_blank" rel="noopener"><span class="name">江淮时报</span></a>
+<a class="card" href="http://www.huishangol.com/magazine" target="_blank" rel="noopener"><span class="name">徽商杂志</span></a>
+<a class="card" href="http://newspaper.hf365.com/hfrb/pc/layout/" target="_blank" rel="noopener"><span class="name">合肥日报</span></a>
+<a class="card" href="http://newspaper.hf365.com/hfwb/pc/layout/" target="_blank" rel="noopener"><span class="name">合肥晚报</span></a>
+<a class="card" href="http://newspaper.hf365.com/sqb/" target="_blank" rel="noopener"><span class="name">合肥晚报社区报</span></a>
+<a class="card" href="http://newspaper.hf365.com/jhcb/pc/layout/" target="_blank" rel="noopener"><span class="name">江淮晨报</span></a>
+<a class="card" href="http://newspaper.hf365.com/dtb/pc/layout/" target="_blank" rel="noopener"><span class="name">合肥地铁</span></a>
+<a class="card" href="http://newspaper.hf365.com/chck/pc/layout/" target="_blank" rel="noopener"><span class="name">巢湖晨刊</span></a>
+<a class="card" href="http://szbk.chuzhou.cn/czrb/" target="_blank" rel="noopener"><span class="name">滁州日报</span></a>
+<a class="card" href="http://szbk.chuzhou.cn/wdck/" target="_blank" rel="noopener"><span class="name">皖东晨刊</span></a>
+<a class="card" href="http://szbk.chuzhou.cn/fyxw/" target="_blank" rel="noopener"><span class="name">滁州日报凤阳新闻</span></a>
+<a class="card" href="http://szbk.chuzhou.cn/czrb/pc/layout/" target="_blank" rel="noopener"><span class="name">滁州日报南谯新闻</span></a>
+<a class="card" href="http://epaper.wuhunews.cn/pc/whrb/layout" target="_blank" rel="noopener"><span class="name">芜湖日报</span></a>
+<a class="card" href="http://epaper.wuhunews.cn/pc/djwb/layout" target="_blank" rel="noopener"><span class="name">大江晚报</span></a>
+<a class="card" href="http://hnrb.huainannet.com/" target="_blank" rel="noopener"><span class="name">淮南日报</span></a>
+<a class="card" href="http://hhzb.huainannet.com/" target="_blank" rel="noopener"><span class="name">淮河早报</span></a>
+<a class="card" href="http://aqdzb.aqnews.com.cn/site/epSite.do?method=epaper" target="_blank" rel="noopener"><span class="name">安庆日报</span></a>
+<a class="card" href="http://aqdzb.aqnews.com.cn/site/epSite.do?method=epaper" target="_blank" rel="noopener"><span class="name">安庆晚报</span></a>
+<a class="card" href="http://www.zgfxnews.com/mp/fxb/pc/layout/" target="_blank" rel="noopener"><span class="name">拂晓报</span></a>
+<a class="card" href="https://test.fynews.net/site/epSite.do?method=epaper" target="_blank" rel="noopener"><span class="name">阜阳日报</span></a>
+<a class="card" href="https://test.fynews.net/site/epSite.do?method=epaper" target="_blank" rel="noopener"><span class="name">颍州晚报</span></a>
+<a class="card" href="http://www.hsdaily.cn/" target="_blank" rel="noopener"><span class="name">黄山日报</span></a>
+<a class="card" href="http://epaper.hbnews.net/" target="_blank" rel="noopener"><span class="name">淮北日报</span></a>
+<a class="card" href="http://szb.tlnews.cn/" target="_blank" rel="noopener"><span class="name">铜陵日报</span></a>
+<a class="card" href="http://epaperpc.xuanwww.com/" target="_blank" rel="noopener"><span class="name">宣城日报</span></a>
+<a class="card" href="http://wxrb.luaninfo.com/" target="_blank" rel="noopener"><span class="name">皖西日报</span></a>
+<a class="card" href="http://czrb.chiznews.com:8081/" target="_blank" rel="noopener"><span class="name">池州日报</span></a>
+<a class="card" href="http://newspaper.hf365.com/dtb/pc/layout/" target="_blank" rel="noopener"><span class="name">合肥地铁报</span></a>
+<a class="card" href="http://epaper.ahyouth.com/" target="_blank" rel="noopener"><span class="name">安徽青年报</span></a>
+<a class="card" href="https://www.gsdbs.com/" target="_blank" rel="noopener"><span class="name">工商导报</span></a>
+<a class="card" href="http://www.tlysnews.com:8081/" target="_blank" rel="noopener"><span class="name">铜陵有色报</span></a>
+<a class="card" href="http://ahkjb.joyhua.cn/" target="_blank" rel="noopener"><span class="name">安徽科技报</span></a>
+<a class="card" href="http://www.ahscb.com/" target="_blank" rel="noopener"><span class="name">市场星报</span></a>
+<a class="card" href="https://szb.ahjjw.com.cn/" target="_blank" rel="noopener"><span class="name">安徽经济报</span></a>
+<a class="card" href="http://epaper.bbnews.cn:8080/szbhtm/rb/content/PaperIndex.htm" target="_blank" rel="noopener"><span class="name">蚌埠日报</span></a>
+<a class="card" href="http://epaper.bbnews.cn:8080/szbhtm/ck/content/PaperIndex.htm" target="_blank" rel="noopener"><span class="name">淮河晨刊</span></a>
+<a class="card" href="http://epaper.wuhunews.cn/pc/jzk/layout/" target="_blank" rel="noopener"><span class="name">芜湖广播电视金周刊</span></a></div></div>
+<div class="prov"><h3>福建 <span class="cnt">25</span></h3><div class="grid"><a class="card" href="http://szb.ptxw.com/" target="_blank" rel="noopener"><span class="name">湄洲日报</span></a>
+<a class="card" href="http://xyjb.ptxw.com/" target="_blank" rel="noopener"><span class="name">仙游今报</span></a>
+<a class="card" href="http://ptsb.pingtan.gov.cn/" target="_blank" rel="noopener"><span class="name">平潭时报</span></a>
+<a class="card" href="http://epaper.ssrb.com.cn/" target="_blank" rel="noopener"><span class="name">石狮日报</span></a>
+<a class="card" href="http://smrb.smnet.com.cn/" target="_blank" rel="noopener"><span class="name">三明日报</span></a>
+<a class="card" href="http://www.zzxww.com/" target="_blank" rel="noopener"><span class="name">闽南日报</span></a>
+<a class="card" href="http://www.mxrb.cn/dzb/mxrb/" target="_blank" rel="noopener"><span class="name">闽西日报</span></a>
+<a class="card" href="https://www.xepaper.com/mdrbs" target="_blank" rel="noopener"><span class="name">闽东日报</span></a>
+<a class="card" href="http://mbrb.greatwuyi.com/" target="_blank" rel="noopener"><span class="name">闽北日报</span></a>
+<a class="card" href="https://epaper.xmrb.com/xmrb" target="_blank" rel="noopener"><span class="name">厦门日报</span></a>
+<a class="card" href="http://dzb.sunnews.cn/" target="_blank" rel="noopener"><span class="name">海西晨报</span></a>
+<a class="card" href="http://www.taihaizazhi.com/" target="_blank" rel="noopener"><span class="name">台海杂志</span></a>
+<a class="card" href="https://szb.qzwb.com/qzwb/" target="_blank" rel="noopener"><span class="name">泉州晚报</span></a>
+<a class="card" href="https://szb.qzwb.com/dnzb/" target="_blank" rel="noopener"><span class="name">东南早报</span></a>
+<a class="card" href="https://szb.qzwb.com/qzsb/" target="_blank" rel="noopener"><span class="name">泉州商报</span></a>
+<a class="card" href="http://epaper.taihainet.com/" target="_blank" rel="noopener"><span class="name">海峡导报</span></a>
+<a class="card" href="https://fjrb.fjdaily.com/" target="_blank" rel="noopener"><span class="name">福建日报</span></a>
+<a class="card" href="https://fjwsb.fjdaily.com/" target="_blank" rel="noopener"><span class="name">福建卫生报</span></a>
+<a class="card" href="https://jjjjb.fjdaily.com/" target="_blank" rel="noopener"><span class="name">晋江经济报</span></a>
+<a class="card" href="https://hssb.fjdaily.com/" target="_blank" rel="noopener"><span class="name">海丝商报</span></a>
+<a class="card" href="http://mag.fznews.com.cn/fzrb/paperindex.htm" target="_blank" rel="noopener"><span class="name">福州日报</span></a>
+<a class="card" href="http://mag.fznews.com.cn/fzwb/paperindex.htm" target="_blank" rel="noopener"><span class="name">福州晚报</span></a>
+<a class="card" href="http://mag.fznews.com.cn/fzwbhwb/paperindex.htm" target="_blank" rel="noopener"><span class="name">福州晚报海外版</span></a>
+<a class="card" href="http://rcb.hxrc.com/" target="_blank" rel="noopener"><span class="name">海峡人才报</span></a>
+<a class="card" href="https://www.xepaper.com/qxkjb/" target="_blank" rel="noopener"><span class="name">侨乡科技报</span></a></div></div>
+<div class="prov"><h3>江西 <span class="cnt">23</span></h3><div class="grid"><a class="card" href="http://szb.jgsdaily.com:9999/epaper/jgsb/html/" target="_blank" rel="noopener"><span class="name">井冈山报</span></a>
+<a class="card" href="http://ri.newsxy.com/" target="_blank" rel="noopener"><span class="name">新余日报</span></a>
+<a class="card" href="http://ytpaper.ytnews.cn/" target="_blank" rel="noopener"><span class="name">鹰潭日报</span></a>
+<a class="card" href="http://ipaper.zgfznews.com/bz/html/index.html" target="_blank" rel="noopener"><span class="name">抚州日报</span></a>
+<a class="card" href="http://paper.srxww.com/pc/column/index.html" target="_blank" rel="noopener"><span class="name">上饶日报</span></a>
+<a class="card" href="http://paper.srxww.com/wbpc/column/index.html" target="_blank" rel="noopener"><span class="name">上饶晚报</span></a>
+<a class="card" href="http://szb.gnrbs.cn/" target="_blank" rel="noopener"><span class="name">赣南日报</span></a>
+<a class="card" href="http://www.ncrbw.cn/paperindex.htm" target="_blank" rel="noopener"><span class="name">南昌日报</span></a>
+<a class="card" href="http://www.ncwbw.cn/paperindex.htm" target="_blank" rel="noopener"><span class="name">南昌晚报</span></a>
+<a class="card" href="http://jyb.ncrbw.cn/paperindex.htm" target="_blank" rel="noopener"><span class="name">家庭医生报</span></a>
+<a class="card" href="http://epaper.jxxw.com.cn/" target="_blank" rel="noopener"><span class="name">江西日报</span></a>
+<a class="card" href="https://jiangxi.jxnews.com.cn/pdf/xxrbfm/index.shtml" target="_blank" rel="noopener"><span class="name">信息日报</span></a>
+<a class="card" href="https://jiangxi.jxnews.com.cn/pdf/xfzbfm/" target="_blank" rel="noopener"><span class="name">新法治报</span></a>
+<a class="card" href="http://jjrb.jjxw.cn/" target="_blank" rel="noopener"><span class="name">九江日报</span></a>
+<a class="card" href="http://xywb.jjxw.cn/" target="_blank" rel="noopener"><span class="name">浔阳晚报</span></a>
+<a class="card" href="http://cjzk.jjxw.cn/" target="_blank" rel="noopener"><span class="name">长江周刊</span></a>
+<a class="card" href="https://jxzx.jxnews.com.cn/ghsb/" target="_blank" rel="noopener"><span class="name">江西政协报</span></a>
+<a class="card" href="http://www.cnjjwb.com/index.php?s=szb&amp;c=home&amp;m=index&amp;periodical_id=9183" target="_blank" rel="noopener"><span class="name">经济晚报</span></a>
+<a class="card" href="https://jxgrb.jxnews.com.cn/mrbm/" target="_blank" rel="noopener"><span class="name">江西工人报</span></a>
+<a class="card" href="https://epaper.newsyc.com:9443/ycrb/pc/index.html" target="_blank" rel="noopener"><span class="name">宜春日报</span></a>
+<a class="card" href="https://epaper.newsyc.com:9443/gxwb/pc/index.html" target="_blank" rel="noopener"><span class="name">赣西晚报</span></a>
+<a class="card" href="http://ipaper.zgfznews.com/bz/html/index.html?cid=56" target="_blank" rel="noopener"><span class="name">临川晚报</span></a>
+<a class="card" href="http://szb.pxnews.cn/" target="_blank" rel="noopener"><span class="name">萍乡日报</span></a></div></div>
+<div class="prov"><h3>山东 <span class="cnt">60</span></h3><div class="grid"><a class="card" href="http://paper.zbnews.net/zbrb/" target="_blank" rel="noopener"><span class="name">淄博日报</span></a>
+<a class="card" href="http://paper.zbnews.net/zbwb/" target="_blank" rel="noopener"><span class="name">淄博晚报</span></a>
+<a class="card" href="http://paper.zbnews.net/" target="_blank" rel="noopener"><span class="name">淄博财经新报</span></a>
+<a class="card" href="http://paper.bzrb.net/" target="_blank" rel="noopener"><span class="name">滨州日报</span></a>
+<a class="card" href="http://lbwb.binzhouw.com/" target="_blank" rel="noopener"><span class="name">鲁北晚报</span></a>
+<a class="card" href="http://paper.dzwww.com/dzrb/" target="_blank" rel="noopener"><span class="name">大众日报</span></a>
+<a class="card" href="http://paper.dzwww.com/ncdz/" target="_blank" rel="noopener"><span class="name">农村大众</span></a>
+<a class="card" href="https://epaper.qlwb.com.cn/" target="_blank" rel="noopener"><span class="name">齐鲁晚报</span></a>
+<a class="card" href="https://hsjzb.qlwb.com.cn/" target="_blank" rel="noopener"><span class="name">黄三角早报</span></a>
+<a class="card" href="http://jjdb.sdenews.com/" target="_blank" rel="noopener"><span class="name">经济导报</span></a>
+<a class="card" href="http://paper.dzwww.com/sdfzb/" target="_blank" rel="noopener"><span class="name">山东法制报</span></a>
+<a class="card" href="http://ymwb.langya.cn/" target="_blank" rel="noopener"><span class="name">沂蒙晚报</span></a>
+<a class="card" href="http://lnsb.qlwb.com.cn/" target="_blank" rel="noopener"><span class="name">鲁南商报</span></a>
+<a class="card" href="http://paper.dzwww.com/inlink/wfwb.htm" target="_blank" rel="noopener"><span class="name">潍坊晚报</span></a>
+<a class="card" href="http://paper.dzwww.com/shrb/index.html" target="_blank" rel="noopener"><span class="name">生活日报</span></a>
+<a class="card" href="http://www.zzszq.gov.cn/xw/szxb/" target="_blank" rel="noopener"><span class="name">市中新报</span></a>
+<a class="card" href="http://www.zzrbw.com/zzwbPaper/" target="_blank" rel="noopener"><span class="name">枣庄晚报</span></a>
+<a class="card" href="http://www.zzrbw.com/" target="_blank" rel="noopener"><span class="name">枣庄日报</span></a>
+<a class="card" href="http://www.tzdaily.com.cn/" target="_blank" rel="noopener"><span class="name">滕州日报</span></a>
+<a class="card" href="https://szb.sgnet.cn/" target="_blank" rel="noopener"><span class="name">寿光日报</span></a>
+<a class="card" href="http://epaper.qdcaijing.com/" target="_blank" rel="noopener"><span class="name">青岛财经日报</span></a>
+<a class="card" href="http://www.heze.cn/hzrb/pc/layout/" target="_blank" rel="noopener"><span class="name">菏泽日报</span></a>
+<a class="card" href="http://www.heze.cn/mdwb/pc/layout/" target="_blank" rel="noopener"><span class="name">牡丹晚报</span></a>
+<a class="card" href="http://lcrb.lcxw.cn/paper/pc/layout/" target="_blank" rel="noopener"><span class="name">聊城日报</span></a>
+<a class="card" href="http://lcrb.lcxw.cn/lcwb/pc/layout/" target="_blank" rel="noopener"><span class="name">聊城晚报</span></a>
+<a class="card" href="http://epaper.jn001.com/" target="_blank" rel="noopener"><span class="name">济宁日报</span></a>
+<a class="card" href="http://epaper.jn001.com/paperwb/layout/index.html" target="_blank" rel="noopener"><span class="name">济宁晚报</span></a>
+<a class="card" href="http://epaper.jn001.com/pcgxxw/layout/" target="_blank" rel="noopener"><span class="name">济宁高新新闻</span></a>
+<a class="card" href="https://rbrk.rznews.cn/" target="_blank" rel="noopener"><span class="name">日照日报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_dzrb.shtml" target="_blank" rel="noopener"><span class="name">德州日报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_dzwb.shtml" target="_blank" rel="noopener"><span class="name">德州晚报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_dzk.shtml" target="_blank" rel="noopener"><span class="name">德州日报德周刊</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_dhzs.shtml" target="_blank" rel="noopener"><span class="name">东海报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_qyb.shtml" target="_blank" rel="noopener"><span class="name">庆云报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_xjdzb.shtml" target="_blank" rel="noopener"><span class="name">夏津大众报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_qhb.shtml" target="_blank" rel="noopener"><span class="name">齐河报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_yhkf.shtml" target="_blank" rel="noopener"><span class="name">运河开发区报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_llsb.shtml" target="_blank" rel="noopener"><span class="name">乐陵市报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_dzjjkfq.shtml" target="_blank" rel="noopener"><span class="name">德州日报经济开发区报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_lxb.shtml" target="_blank" rel="noopener"><span class="name">陵城报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_lydz.shtml" target="_blank" rel="noopener"><span class="name">临邑大众报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_ycsb.shtml" target="_blank" rel="noopener"><span class="name">禹城市报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_dcb.shtml" target="_blank" rel="noopener"><span class="name">德州日报德城版</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_wcsb.shtml" target="_blank" rel="noopener"><span class="name">武城时报</span></a>
+<a class="card" href="http://dzb.dezhoudaily.com/shtml/index_njb.shtml" target="_blank" rel="noopener"><span class="name">宁津报</span></a>
+<a class="card" href="http://222.132.157.151:9988/" target="_blank" rel="noopener"><span class="name">泰安日报</span></a>
+<a class="card" href="http://222.132.157.151:9989/" target="_blank" rel="noopener"><span class="name">泰山晚报</span></a>
+<a class="card" href="http://www.shm.com.cn/szb/ytrb/paper/index.html" target="_blank" rel="noopener"><span class="name">烟台日报</span></a>
+<a class="card" href="http://www.shm.com.cn/szb/ytwb/paper/index.html" target="_blank" rel="noopener"><span class="name">烟台晚报</span></a>
+<a class="card" href="http://www.shm.com.cn/szb/hxjb/paper/index.html" target="_blank" rel="noopener"><span class="name">华夏酒报</span></a>
+<a class="card" href="http://lyrb.langya.cn/" target="_blank" rel="noopener"><span class="name">临沂日报</span></a>
+<a class="card" href="https://epaper.qingdaonews.com/lnshb/paperindex.htm" target="_blank" rel="noopener"><span class="name">老年生活报</span></a>
+<a class="card" href="https://epaper.qingdaonews.com/qdrb/paperindex.htm" target="_blank" rel="noopener"><span class="name">青岛日报</span></a>
+<a class="card" href="https://epaper.qingdaonews.com/qdwb/paperindex.htm" target="_blank" rel="noopener"><span class="name">青岛晚报</span></a>
+<a class="card" href="https://epaper.qingdaonews.com/qdzb/paperindex.htm" target="_blank" rel="noopener"><span class="name">青岛早报</span></a>
+<a class="card" href="http://jnrb.e23.cn/jnrb/" target="_blank" rel="noopener"><span class="name">济南日报</span></a>
+<a class="card" href="http://jnsb.e23.cn/jnsb/" target="_blank" rel="noopener"><span class="name">济南时报</span></a>
+<a class="card" href="http://www.sdjyb.com.cn/" target="_blank" rel="noopener"><span class="name">山东教育报</span></a>
+<a class="card" href="https://paper.eastobacco.com/" target="_blank" rel="noopener"><span class="name">东方烟草报</span></a>
+<a class="card" href="http://wfrb.wfnews.com.cn/" target="_blank" rel="noopener"><span class="name">潍坊日报</span></a></div></div></section>
+<section class="region" id="r-西南"><h2>西南 <span class="cnt">86</span></h2><div class="prov"><h3>重庆 <span class="cnt">9</span></h3><div class="grid"><a class="card" href="https://qjpcpaper.cqliving.com/" target="_blank" rel="noopener"><span class="name">武陵都市报</span></a>
+<a class="card" href="https://act.newoo.com/epaper/" target="_blank" rel="noopener"><span class="name">新女报</span></a>
+<a class="card" href="https://epaper.cqrb.cn/html/cqrb/" target="_blank" rel="noopener"><span class="name">重庆日报</span></a>
+<a class="card" href="http://dpaper.sxcm.net/" target="_blank" rel="noopener"><span class="name">三峡都市报</span></a>
+<a class="card" href="https://e.chinacqsb.com/" target="_blank" rel="noopener"><span class="name">重庆商报</span></a>
+<a class="card" href="https://epaper.cqdsrb.com.cn/" target="_blank" rel="noopener"><span class="name">重庆晚报</span></a>
+<a class="card" href="https://epaper.cqcb.com/" target="_blank" rel="noopener"><span class="name">重庆晨报</span></a>
+<a class="card" href="http://xjrb.xjrb.com:8200/" target="_blank" rel="noopener"><span class="name">西江日报</span></a>
+<a class="card" href="https://szb.cqfzb.net/" target="_blank" rel="noopener"><span class="name">重庆法治报</span></a></div></div>
+<div class="prov"><h3>四川 <span class="cnt">43</span></h3><div class="grid"><a class="card" href="https://epaper.scdaily.cn/" target="_blank" rel="noopener"><span class="name">四川日报</span></a>
+<a class="card" href="https://country.scol.com.cn/" target="_blank" rel="noopener"><span class="name">四川农村日报</span></a>
+<a class="card" href="https://www.wccdaily.com.cn/" target="_blank" rel="noopener"><span class="name">华西都市报</span></a>
+<a class="card" href="https://stocknews.scol.com.cn/" target="_blank" rel="noopener"><span class="name">金融投资报</span></a>
+<a class="card" href="http://www.wanxiabao.cn/" target="_blank" rel="noopener"><span class="name">晚霞报</span></a>
+<a class="card" href="http://www.cdrb.com.cn/" target="_blank" rel="noopener"><span class="name">成都日报</span></a>
+<a class="card" href="https://e.cdsb.com/" target="_blank" rel="noopener"><span class="name">成都商报</span></a>
+<a class="card" href="http://www.xnsbdzb.com/《西南商报》创办于1953年；创刊于1993年" target="_blank" rel="noopener"><span class="name">西南商报</span></a>
+<a class="card" href="https://www.sceeic.cn/index/#/level3Index/newsList?id=zsksb&amp;listType=ebook&amp;loaclPath=%5B%7B%22name%22%3A%22%E6%8B%9B%E7%94%9F%E8%80%83%E8%AF%95%E6%8A%A5%22,%22url%22%3A%22%22%7D%5D" target="_blank" rel="noopener"><span class="name">招生考试报</span></a>
+<a class="card" href="https://dzb.scfzbs.com/" target="_blank" rel="noopener"><span class="name">四川法治报</span></a>
+<a class="card" href="http://pdf.zgm.cn/" target="_blank" rel="noopener"><span class="name">自贡日报</span></a>
+<a class="card" href="http://www.sczx.gov.cn/newspaper/" target="_blank" rel="noopener"><span class="name">四川政协报</span></a>
+<a class="card" href="https://szb.bzgd.com/" target="_blank" rel="noopener"><span class="name">巴中日报</span></a>
+<a class="card" href="http://rb.lsrbs.net/" target="_blank" rel="noopener"><span class="name">乐山日报</span></a>
+<a class="card" href="https://www.jswmb.cn/" target="_blank" rel="noopener"><span class="name">精神文明报</span></a>
+<a class="card" href="http://www.abadaily.com/" target="_blank" rel="noopener"><span class="name">阿坝日报</span></a>
+<a class="card" href="http://www.abadaily.com/abrbs/mzjyb/" target="_blank" rel="noopener"><span class="name">四川民族教育报</span></a>
+<a class="card" href="https://e.gyxww.cn/" target="_blank" rel="noopener"><span class="name">广元日报</span></a>
+<a class="card" href="https://epaper.beiww.com/" target="_blank" rel="noopener"><span class="name">雅安日报</span></a>
+<a class="card" href="https://gaszb.gatv.com.cn/" target="_blank" rel="noopener"><span class="name">广安日报</span></a>
+<a class="card" href="http://snrb.snxw.com/" target="_blank" rel="noopener"><span class="name">遂宁日报</span></a>
+<a class="card" href="http://epaper.myrb.net/" target="_blank" rel="noopener"><span class="name">绵阳日报</span></a>
+<a class="card" href="http://history.dywang.cn:8389/" target="_blank" rel="noopener"><span class="name">德阳日报</span></a>
+<a class="card" href="https://www.hrnewspaper.com/electronic/hr" target="_blank" rel="noopener"><span class="name">人力资源报</span></a>
+<a class="card" href="http://szb.mshw.net/" target="_blank" rel="noopener"><span class="name">眉山日报</span></a>
+<a class="card" href="http://dzb.51grb.com/" target="_blank" rel="noopener"><span class="name">四川工人日报</span></a>
+<a class="card" href="http://epaper.scjjrb.com/" target="_blank" rel="noopener"><span class="name">四川经济日报</span></a>
+<a class="card" href="https://lsrb.ls666.com/" target="_blank" rel="noopener"><span class="name">凉山日报</span></a>
+<a class="card" href="http://lzby.lzep.cn:8088/lzrb/" target="_blank" rel="noopener"><span class="name">泸州日报</span></a>
+<a class="card" href="http://lzby.lzep.cn:8088/cjdsb/" target="_blank" rel="noopener"><span class="name">川江都市报</span></a>
+<a class="card" href="http://pzhrb.pzhkai.com/" target="_blank" rel="noopener"><span class="name">攀枝花日报</span></a>
+<a class="card" href="http://paper.kbcmw.com/" target="_blank" rel="noopener"><span class="name">甘孜日报</span></a>
+<a class="card" href="http://pdb.pdrmtzx.com/" target="_blank" rel="noopener"><span class="name">郫都报</span></a>
+<a class="card" href="http://paper.zyrb.com.cn/" target="_blank" rel="noopener"><span class="name">资阳日报</span></a>
+<a class="card" href="https://flv.dzxw.net/" target="_blank" rel="noopener"><span class="name">达州日报</span></a>
+<a class="card" href="http://xncrb.cnncw.cn/" target="_blank" rel="noopener"><span class="name">南充日报</span></a>
+<a class="card" href="http://xncwb.cnncw.cn/" target="_blank" rel="noopener"><span class="name">南充晚报</span></a>
+<a class="card" href="http://epaper.scnjnews.com/" target="_blank" rel="noopener"><span class="name">内江日报</span></a>
+<a class="card" href="http://paper.dzjkb.org.cn/" target="_blank" rel="noopener"><span class="name">大众健康报</span></a>
+<a class="card" href="http://kjb.sckjw.com.cn/" target="_blank" rel="noopener"><span class="name">四川科技报</span></a>
+<a class="card" href="http://epaper.mrjjxw.com/" target="_blank" rel="noopener"><span class="name">每日经济新闻</span></a>
+<a class="card" href="http://www.duzhebao.cn/dydz/web/home/readers" target="_blank" rel="noopener"><span class="name">读者报</span></a>
+<a class="card" href="http://scsyb.ihwrm.com/" target="_blank" rel="noopener"><span class="name">四川石油报</span></a></div></div>
+<div class="prov"><h3>贵州 <span class="cnt">11</span></h3><div class="grid"><a class="card" href="http://szb.eyesnews.cn/" target="_blank" rel="noopener"><span class="name">贵州日报</span></a>
+<a class="card" href="http://ddgz.eyesnews.cn/#/home/index" target="_blank" rel="noopener"><span class="name">当代贵州</span></a>
+<a class="card" href="http://szb.fzshb.cn/" target="_blank" rel="noopener"><span class="name">贵州法治报</span></a>
+<a class="card" href="https://www.qxnrb.com/" target="_blank" rel="noopener"><span class="name">黔西南日报</span></a>
+<a class="card" href="http://zyrb.zunyiol.cn/" target="_blank" rel="noopener"><span class="name">遵义日报</span></a>
+<a class="card" href="http://zywb.zunyiol.cn/" target="_blank" rel="noopener"><span class="name">遵义晚报</span></a>
+<a class="card" href="https://rb.gywb.cn/" target="_blank" rel="noopener"><span class="name">贵阳日报</span></a>
+<a class="card" href="https://wb.gywb.cn/" target="_blank" rel="noopener"><span class="name">贵阳晚报</span></a>
+<a class="card" href="http://dzb.qdnrbs.cn/" target="_blank" rel="noopener"><span class="name">黔东南日报</span></a>
+<a class="card" href="http://rb.bjsyqw.com/" target="_blank" rel="noopener"><span class="name">毕节日报</span></a>
+<a class="card" href="http://szb.tongren.gov.cn/trrb/" target="_blank" rel="noopener"><span class="name">铜仁日报</span></a></div></div>
+<div class="prov"><h3>云南 <span class="cnt">18</span></h3><div class="grid"><a class="card" href="https://yndaily.yunnan.cn/" target="_blank" rel="noopener"><span class="name">云南日报</span></a>
+<a class="card" href="https://ccwb.yunnan.cn/" target="_blank" rel="noopener"><span class="name">春城晚报</span></a>
+<a class="card" href="http://www.ynfzb.cn/Column.aspx?ColId=353" target="_blank" rel="noopener"><span class="name">云南法制报</span></a>
+<a class="card" href="https://mzsb.yunnan.cn/" target="_blank" rel="noopener"><span class="name">民族时报</span></a>
+<a class="card" href="http://epaper.qjrb.cn/" target="_blank" rel="noopener"><span class="name">曲靖日报</span></a>
+<a class="card" href="http://bsrb.xepaper.com/epaper/" target="_blank" rel="noopener"><span class="name">保山日报</span></a>
+<a class="card" href="http://www.dhtjb.com/" target="_blank" rel="noopener"><span class="name">德宏团结报</span></a>
+<a class="card" href="https://www.ynxxb.com/" target="_blank" rel="noopener"><span class="name">云南信息报</span></a>
+<a class="card" href="http://epaper.hh.cn/" target="_blank" rel="noopener"><span class="name">红河日报</span></a>
+<a class="card" href="https://dalidaily.dlzrm.cn/" target="_blank" rel="noopener"><span class="name">大理日报</span></a>
+<a class="card" href="https://www.lcdaily.cn/" target="_blank" rel="noopener"><span class="name">临沧日报</span></a>
+<a class="card" href="http://times.clzg.cn/" target="_blank" rel="noopener"><span class="name">都市时报</span></a>
+<a class="card" href="http://www.puernews.com/perb/" target="_blank" rel="noopener"><span class="name">普洱日报</span></a>
+<a class="card" href="http://www.xgll.com.cn/epaper/pc/" target="_blank" rel="noopener"><span class="name">迪庆日报</span></a>
+<a class="card" href="http://szb.lijiang.cn/" target="_blank" rel="noopener"><span class="name">丽江日报</span></a>
+<a class="card" href="https://szb.xsbnw.cn/" target="_blank" rel="noopener"><span class="name">西双版纳报</span></a>
+<a class="card" href="https://zwb.nujiang.cn/" target="_blank" rel="noopener"><span class="name">怒江日报</span></a>
+<a class="card" href="http://daily.clzg.cn/" target="_blank" rel="noopener"><span class="name">昆明日报</span></a></div></div>
+<div class="prov"><h3>西藏 <span class="cnt">5</span></h3><div class="grid"><a class="card" href="https://e.xzxw.com/xzrb/" target="_blank" rel="noopener"><span class="name">西藏日报</span></a>
+<a class="card" href="http://sz.cdbao.cn/cdb/" target="_blank" rel="noopener"><span class="name">昌都报</span></a>
+<a class="card" href="http://www.xzsnw.com/channel/25482.html" target="_blank" rel="noopener"><span class="name">山南报</span></a>
+<a class="card" href="http://www.linzhinews.com/portal/#/list?siteId=445057712832581&amp;catalogId=477181547507781" target="_blank" rel="noopener"><span class="name">林芝报</span></a>
+<a class="card" href="http://www.xzqnb.cn/" target="_blank" rel="noopener"><span class="name">西藏青年报</span></a></div></div></section>
+<section class="region" id="r-东北"><h2>东北 <span class="cnt">21</span></h2><div class="prov"><h3>辽宁 <span class="cnt">8</span></h3><div class="grid"><a class="card" href="http://epaper.lnd.com.cn/lnrbindex.html" target="_blank" rel="noopener"><span class="name">辽宁日报</span></a>
+<a class="card" href="http://epaper.lnd.com.cn/lswbindex.html" target="_blank" rel="noopener"><span class="name">辽沈晚报</span></a>
+<a class="card" href="http://www.ykd.com.cn/" target="_blank" rel="noopener"><span class="name">营口日报</span></a>
+<a class="card" href="http://szb.dltv.cn/epaper/dlrb/pc/layout/" target="_blank" rel="noopener"><span class="name">大连日报</span></a>
+<a class="card" href="https://www.newsansteel.cn/" target="_blank" rel="noopener"><span class="name">鞍钢日报</span></a>
+<a class="card" href="https://epaper.syd.com.cn/syrb/paperindex.htm" target="_blank" rel="noopener"><span class="name">沈阳日报</span></a>
+<a class="card" href="https://epaper.syd.com.cn/sywb/paperindex.htm" target="_blank" rel="noopener"><span class="name">沈阳晚报</span></a>
+<a class="card" href="http://ep.bdcb.cn/" target="_blank" rel="noopener"><span class="name">半岛晨报</span></a></div></div>
+<div class="prov"><h3>吉林 <span class="cnt">5</span></h3><div class="grid"><a class="card" href="http://ipaper.ybrbnews.cn/" target="_blank" rel="noopener"><span class="name">延边日报</span></a>
+<a class="card" href="http://szb.syxww.cn/" target="_blank" rel="noopener"><span class="name">松原日报</span></a>
+<a class="card" href="http://www.spxww.com/" target="_blank" rel="noopener"><span class="name">四平日报</span></a>
+<a class="card" href="http://www.cswbszb.com/cswb/" target="_blank" rel="noopener"><span class="name">城市晚报</span></a>
+<a class="card" href="http://www.jlncb.cn/jlncb/" target="_blank" rel="noopener"><span class="name">吉林农村报</span></a></div></div>
+<div class="prov"><h3>黑龙江 <span class="cnt">8</span></h3><div class="grid"><a class="card" href="http://epaper.hljnews.cn/hljrb/pc/layout/index.html" target="_blank" rel="noopener"><span class="name">黑龙江日报</span></a>
+<a class="card" href="http://epaper.hljnews.cn/shb/pc/layout/index.html" target="_blank" rel="noopener"><span class="name">生活报</span></a>
+<a class="card" href="http://epaper.hljnews.cn/lnrb/pc/layout/index.html" target="_blank" rel="noopener"><span class="name">老年日报</span></a>
+<a class="card" href="http://epaper.hljnews.cn/cwb/pc/layout/index.html" target="_blank" rel="noopener"><span class="name">朝文报</span></a>
+<a class="card" href="http://epaper.hljnews.cn/hebxqb/pc/layout/index.html" target="_blank" rel="noopener"><span class="name">哈尔滨新区报</span></a>
+<a class="card" href="http://harbin.joyhua.cn/" target="_blank" rel="noopener"><span class="name">哈尔滨日报</span></a>
+<a class="card" href="http://xwb.joyhua.cn/" target="_blank" rel="noopener"><span class="name">新晚报</span></a>
+<a class="card" href="http://www.dxalrb.org.cn/" target="_blank" rel="noopener"><span class="name">大兴安岭日报</span></a></div></div></section>
+<section class="region" id="r-华中"><h2>华中 <span class="cnt">92</span></h2><div class="prov"><h3>河南 <span class="cnt">42</span></h3><div class="grid"><a class="card" href="http://www.zhld.com/szb/wbpc/layout/" target="_blank" rel="noopener"><span class="name">周口晚报</span></a>
+<a class="card" href="http://h5.newaircloud.com/epaper?sid=pdsmk" target="_blank" rel="noopener"><span class="name">中国平煤神马报</span></a>
+<a class="card" href="http://www.yywsb.com/html/" target="_blank" rel="noopener"><span class="name">医药卫生报</span></a>
+<a class="card" href="http://ribao.xyxww.com.cn/" target="_blank" rel="noopener"><span class="name">信阳日报</span></a>
+<a class="card" href="http://wanbao.xyxww.com.cn/" target="_blank" rel="noopener"><span class="name">信阳晚报</span></a>
+<a class="card" href="http://rb.xxrb.com.cn/" target="_blank" rel="noopener"><span class="name">新乡日报</span></a>
+<a class="card" href="http://wb.xxrb.com.cn/" target="_blank" rel="noopener"><span class="name">平原晚报</span></a>
+<a class="card" href="http://zmdrb.zmdnews.cn/" target="_blank" rel="noopener"><span class="name">驻马店日报</span></a>
+<a class="card" href="http://tzwb.zmdnews.cn/" target="_blank" rel="noopener"><span class="name">天中晚报</span></a>
+<a class="card" href="https://epaper.sqrb.com.cn/" target="_blank" rel="noopener"><span class="name">商丘日报</span></a>
+<a class="card" href="https://epaper.sqrb.com.cn/jjwb/" target="_blank" rel="noopener"><span class="name">京九晚报</span></a>
+<a class="card" href="http://szb.ismx.cn/xbcf/" target="_blank" rel="noopener"><span class="name">西部晨风</span></a>
+<a class="card" href="http://szb.ismx.cn/smxrb/" target="_blank" rel="noopener"><span class="name">三门峡日报</span></a>
+<a class="card" href="http://pyrb.pyxww.com/" target="_blank" rel="noopener"><span class="name">濮阳日报</span></a>
+<a class="card" href="https://www.pyxww.com/ztlm/dangdaiyang/" target="_blank" rel="noopener"><span class="name">当代濮阳</span></a>
+<a class="card" href="http://rb.lhrb.com.cn/" target="_blank" rel="noopener"><span class="name">漯河日报</span></a>
+<a class="card" href="http://epaper.jyrb.cn/" target="_blank" rel="noopener"><span class="name">济源日报</span></a>
+<a class="card" href="http://newpaper.dahe.cn/hnrbncb/" target="_blank" rel="noopener"><span class="name">河南日报农村版</span></a>
+<a class="card" href="https://dzb.zyjjw.cn/" target="_blank" rel="noopener"><span class="name">河南经济报</span></a>
+<a class="card" href="https://epaper.kf.cn/" target="_blank" rel="noopener"><span class="name">开封日报</span></a>
+<a class="card" href="https://epaper.kf.cn/blwb" target="_blank" rel="noopener"><span class="name">汴梁晚报</span></a>
+<a class="card" href="https://www.ayrbs.com/szb/" target="_blank" rel="noopener"><span class="name">安阳日报</span></a>
+<a class="card" href="http://epaper.01ny.cn/http_rb/paperindex.htm" target="_blank" rel="noopener"><span class="name">南阳日报</span></a>
+<a class="card" href="http://epaper.01ny.cn/http_wb/paperindex.htm" target="_blank" rel="noopener"><span class="name">南阳晚报</span></a>
+<a class="card" href="http://epaper.01ny.cn/http_cb/paperindex.htm" target="_blank" rel="noopener"><span class="name">南都晨报</span></a>
+<a class="card" href="http://szb.21xc.com/xcrb/" target="_blank" rel="noopener"><span class="name">许昌日报</span></a>
+<a class="card" href="http://szb.21xc.com/xccb/" target="_blank" rel="noopener"><span class="name">许昌晨报</span></a>
+<a class="card" href="http://lyrb.lyd.com.cn/" target="_blank" rel="noopener"><span class="name">洛阳日报</span></a>
+<a class="card" href="http://lywb.lyd.com.cn/" target="_blank" rel="noopener"><span class="name">洛阳晚报</span></a>
+<a class="card" href="https://zzrb.zynews.cn/" target="_blank" rel="noopener"><span class="name">郑州日报</span></a>
+<a class="card" href="http://www.hngrrb.cn/paper/" target="_blank" rel="noopener"><span class="name">河南工人日报</span></a>
+<a class="card" href="https://hbrb.hebiw.com/" target="_blank" rel="noopener"><span class="name">鹤壁日报</span></a>
+<a class="card" href="http://newpaper.dahe.cn/dhjkb/" target="_blank" rel="noopener"><span class="name">大河健康报</span></a>
+<a class="card" href="http://newpaper.dahe.cn/jrxf/" target="_blank" rel="noopener"><span class="name">今日消费</span></a>
+<a class="card" href="http://www.zhld.com/szb/pc/layout/" target="_blank" rel="noopener"><span class="name">周口日报</span></a>
+<a class="card" href="http://epaper.routeryun.com/jzrb" target="_blank" rel="noopener"><span class="name">焦作日报</span></a>
+<a class="card" href="http://epaper.routeryun.com/jzwb" target="_blank" rel="noopener"><span class="name">焦作晚报</span></a>
+<a class="card" href="http://newpaper.dahe.cn/hnsb/" target="_blank" rel="noopener"><span class="name">河南商报</span></a>
+<a class="card" href="http://newpaper.dahe.cn/dhb/" target="_blank" rel="noopener"><span class="name">大河报</span></a>
+<a class="card" href="http://epaper.pdsxww.com/pdsrb/" target="_blank" rel="noopener"><span class="name">平顶山日报</span></a>
+<a class="card" href="http://epaper.pdsxww.com/pdswb/" target="_blank" rel="noopener"><span class="name">平顶山晚报</span></a>
+<a class="card" href="http://epaper.hnfzb.com:8080/epaper/uniflows/hnfzb/default.htm" target="_blank" rel="noopener"><span class="name">河南法制报</span></a></div></div>
+<div class="prov"><h3>湖北 <span class="cnt">23</span></h3><div class="grid"><a class="card" href="http://cjrb.cjn.cn/" target="_blank" rel="noopener"><span class="name">长江日报</span></a>
+<a class="card" href="http://whwb.cjn.cn/" target="_blank" rel="noopener"><span class="name">武汉晚报</span></a>
+<a class="card" href="https://epaper.hubeidaily.net/" target="_blank" rel="noopener"><span class="name">湖北日报</span></a>
+<a class="card" href="https://ctdsbepaper.hubeidaily.net/" target="_blank" rel="noopener"><span class="name">楚天都市报</span></a>
+<a class="card" href="https://ncxbepaper.hubeidaily.net/" target="_blank" rel="noopener"><span class="name">农村新报</span></a>
+<a class="card" href="http://paper.jmnews.cn/jmrb/" target="_blank" rel="noopener"><span class="name">荆门日报</span></a>
+<a class="card" href="http://paper.jmnews.cn/jmwb/" target="_blank" rel="noopener"><span class="name">荆门晚报</span></a>
+<a class="card" href="http://epaper.cn3x.com.cn/sxrb/column/index.html" target="_blank" rel="noopener"><span class="name">三峡日报</span></a>
+<a class="card" href="http://epaper.cn3x.com.cn/sxsb/column/index.html" target="_blank" rel="noopener"><span class="name">三峡商报</span></a>
+<a class="card" href="http://www.changjiangtimes.com/szb/" target="_blank" rel="noopener"><span class="name">长江商报</span></a>
+<a class="card" href="http://kj.kexing100.com/" target="_blank" rel="noopener"><span class="name">武汉科技报</span></a>
+<a class="card" href="http://szb.xnnews.com.cn/xnrb/" target="_blank" rel="noopener"><span class="name">咸宁日报</span></a>
+<a class="card" href="http://szb.xnnews.com.cn/newb/" target="_blank" rel="noopener"><span class="name">香城都市报</span></a>
+<a class="card" href="https://paper.hgdaily.com.cn/hgrb/pc/index.html" target="_blank" rel="noopener"><span class="name">黄冈日报</span></a>
+<a class="card" href="https://paper.hgdaily.com.cn/edwb/pc/index.html" target="_blank" rel="noopener"><span class="name">鄂东晚报</span></a>
+<a class="card" href="http://szb.enshi.cn/eswb/" target="_blank" rel="noopener"><span class="name">恩施晚报</span></a>
+<a class="card" href="http://szb.enshi.cn/esrb/" target="_blank" rel="noopener"><span class="name">恩施日报</span></a>
+<a class="card" href="http://epaper.6537777.com/hsrb/" target="_blank" rel="noopener"><span class="name">黄石日报</span></a>
+<a class="card" href="http://epaper.6537777.com/dcwb/" target="_blank" rel="noopener"><span class="name">东楚晚报</span></a>
+<a class="card" href="https://xyrb.hj.cn/" target="_blank" rel="noopener"><span class="name">襄阳日报</span></a>
+<a class="card" href="https://xywb.hj.cn/" target="_blank" rel="noopener"><span class="name">襄阳晚报</span></a>
+<a class="card" href="http://epaper.zgsyb.com/" target="_blank" rel="noopener"><span class="name">中国水运报</span></a>
+<a class="card" href="http://www.hbgdby.cn/hubeiguangbodianshibaozhuanlan/" target="_blank" rel="noopener"><span class="name">湖北广播电视报</span></a></div></div>
+<div class="prov"><h3>湖南 <span class="cnt">27</span></h3><div class="grid"><a class="card" href="https://epaper.voc.com.cn/hnrb/paperindex.htm" target="_blank" rel="noopener"><span class="name">湖南日报</span></a>
+<a class="card" href="https://epaper.voc.com.cn/sxdsb/" target="_blank" rel="noopener"><span class="name">三湘都市报</span></a>
+<a class="card" href="https://epaper.voc.com.cn/dzwsb/paperindex.htm" target="_blank" rel="noopener"><span class="name">大众卫生报</span></a>
+<a class="card" href="https://epaper.voc.com.cn/wcb/paperindex.htm" target="_blank" rel="noopener"><span class="name">文萃报</span></a>
+<a class="card" href="https://epaper.voc.com.cn/kjxb/paperindex.htm" target="_blank" rel="noopener"><span class="name">科教新报</span></a>
+<a class="card" href="http://epaper.voc.com.cn/fzzb/paperindex.htm" target="_blank" rel="noopener"><span class="name">湖南法治报</span></a>
+<a class="card" href="https://www.icswb.com/newspaper-gen_one-15.html" target="_blank" rel="noopener"><span class="name">长沙晚报</span></a>
+<a class="card" href="http://jrnb.fengone.com/" target="_blank" rel="noopener"><span class="name">今日女报</span></a>
+<a class="card" href="http://dzb.eliuyang.cn/index.shtml" target="_blank" rel="noopener"><span class="name">浏阳日报</span></a>
+<a class="card" href="http://www.ttplus.cn/newspaper.html" target="_blank" rel="noopener"><span class="name">体坛周报</span></a>
+<a class="card" href="http://www.ttplus.cn/newspaper.html" target="_blank" rel="noopener"><span class="name">足球周刊</span></a>
+<a class="card" href="http://epaper.hyqss.cn/" target="_blank" rel="noopener"><span class="name">衡阳日报</span></a>
+<a class="card" href="http://epaper.hyqss.cn/hywb/" target="_blank" rel="noopener"><span class="name">衡阳晚报</span></a>
+<a class="card" href="https://szb.shaoyangnews.net/syrb/pc/index.html" target="_blank" rel="noopener"><span class="name">邵阳日报</span></a>
+<a class="card" href="https://szb.shaoyangnews.net/sywb/pc/column/index.html" target="_blank" rel="noopener"><span class="name">邵阳晚报</span></a>
+<a class="card" href="http://cdrb.cdyee.com/" target="_blank" rel="noopener"><span class="name">常德日报</span></a>
+<a class="card" href="http://cdwb.cdyee.com/" target="_blank" rel="noopener"><span class="name">常德晚报</span></a>
+<a class="card" href="https://epaper.yyrb.cn/" target="_blank" rel="noopener"><span class="name">益阳日报</span></a>
+<a class="card" href="http://e.czxww.cn/" target="_blank" rel="noopener"><span class="name">郴州日报</span></a>
+<a class="card" href="https://zzrb.zznews.gov.cn/" target="_blank" rel="noopener"><span class="name">株洲日报</span></a>
+<a class="card" href="http://paper.0745news.cn/hhrbpc" target="_blank" rel="noopener"><span class="name">怀化日报</span></a>
+<a class="card" href="http://paper.0745news.cn/bcwbpc" target="_blank" rel="noopener"><span class="name">边城晚报</span></a>
+<a class="card" href="http://xtrb.xtol.cn/" target="_blank" rel="noopener"><span class="name">湘潭日报</span></a>
+<a class="card" href="https://epaper.hnmsw.com/" target="_blank" rel="noopener"><span class="name">人才就业社保信息报</span></a>
+<a class="card" href="http://paper.0746news.com/" target="_blank" rel="noopener"><span class="name">永州日报</span></a>
+<a class="card" href="http://www.ldgdb.com/" target="_blank" rel="noopener"><span class="name">娄底广播电视报</span></a>
+<a class="card" href="https://papers.803.com.cn/yyrb/" target="_blank" rel="noopener"><span class="name">岳阳日报</span></a></div></div></section>
+<section class="region" id="r-华南"><h2>华南 <span class="cnt">59</span></h2><div class="prov"><h3>广东 <span class="cnt">33</span></h3><div class="grid"><a class="card" href="https://yjdaily.yjrb.com.cn/" target="_blank" rel="noopener"><span class="name">阳江日报</span></a>
+<a class="card" href="http://sztqb.sznews.com/" target="_blank" rel="noopener"><span class="name">深圳特区报</span></a>
+<a class="card" href="http://szsb.sznews.com/" target="_blank" rel="noopener"><span class="name">深圳商报</span></a>
+<a class="card" href="http://wb.sznews.com/" target="_blank" rel="noopener"><span class="name">深圳晚报</span></a>
+<a class="card" href="http://jb.sznews.com/" target="_blank" rel="noopener"><span class="name">晶报</span></a>
+<a class="card" href="http://szjy.sznews.com/" target="_blank" rel="noopener"><span class="name">南方教育时报</span></a>
+<a class="card" href="http://barb.sznews.com/" target="_blank" rel="noopener"><span class="name">宝安日报</span></a>
+<a class="card" href="http://dzb.jmrb.com:8080/" target="_blank" rel="noopener"><span class="name">江门日报</span></a>
+<a class="card" href="http://e.hznews.com/hzrb/pc/" target="_blank" rel="noopener"><span class="name">惠州日报</span></a>
+<a class="card" href="http://epaper.hyrbnews.cn/" target="_blank" rel="noopener"><span class="name">河源日报</span></a>
+<a class="card" href="https://www.chaozhoudaily.com/upload/index.html" target="_blank" rel="noopener"><span class="name">潮州日报</span></a>
+<a class="card" href="https://strb.strtv.cn/" target="_blank" rel="noopener"><span class="name">汕头日报</span></a>
+<a class="card" href="http://epaper.southcn.com/" target="_blank" rel="noopener"><span class="name">南方日报</span></a>
+<a class="card" href="https://epaper.oeeee.com/" target="_blank" rel="noopener"><span class="name">南方都市报</span></a>
+<a class="card" href="http://epaper.nfncb.cn/" target="_blank" rel="noopener"><span class="name">南方农村报</span></a>
+<a class="card" href="http://jyrb.jynews.net/" target="_blank" rel="noopener"><span class="name">揭阳日报</span></a>
+<a class="card" href="http://ep.ycwb.com/epaper/ycwb/" target="_blank" rel="noopener"><span class="name">羊城晚报</span></a>
+<a class="card" href="https://epaper.xkb.com.cn/" target="_blank" rel="noopener"><span class="name">新快报</span></a>
+<a class="card" href="http://ep.ycwb.com/epaper/klsh/" target="_blank" rel="noopener"><span class="name">可乐生活</span></a>
+<a class="card" href="http://ep.ycwb.com/epaper/gdjs/" target="_blank" rel="noopener"><span class="name">广东建设报</span></a>
+<a class="card" href="http://epaper.xxsb.com/" target="_blank" rel="noopener"><span class="name">信息时报</span></a>
+<a class="card" href="https://epaper.timedg.com/" target="_blank" rel="noopener"><span class="name">东莞日报</span></a>
+<a class="card" href="http://epaper.yunfudaily.com/" target="_blank" rel="noopener"><span class="name">云浮日报</span></a>
+<a class="card" href="https://www.mm111.net/mpaper/" target="_blank" rel="noopener"><span class="name">茂名日报</span></a>
+<a class="card" href="https://www.mm111.net/mmwb/" target="_blank" rel="noopener"><span class="name">茂名晚报</span></a>
+<a class="card" href="http://epaper.zsnews.cn/epaper/zsrb/" target="_blank" rel="noopener"><span class="name">中山日报</span></a>
+<a class="card" href="https://mzrb.meizhou.cn/" target="_blank" rel="noopener"><span class="name">梅州日报</span></a>
+<a class="card" href="http://epaper.fsonline.com.cn/fsrb/" target="_blank" rel="noopener"><span class="name">佛山日报</span></a>
+<a class="card" href="http://zhuhaidaily.hizh.cn/" target="_blank" rel="noopener"><span class="name">珠海特区报</span></a>
+<a class="card" href="http://zjwb.hizh.cn/" target="_blank" rel="noopener"><span class="name">珠江晚报</span></a>
+<a class="card" href="https://epaper.gdkjb.com/" target="_blank" rel="noopener"><span class="name">广东科技报</span></a>
+<a class="card" href="https://www.csg.cn/epaper/epaper/nfdwb/" target="_blank" rel="noopener"><span class="name">南方电网报</span></a>
+<a class="card" href="https://21cnyd.menet.com.cn/" target="_blank" rel="noopener"><span class="name">21世纪药店报</span></a></div></div>
+<div class="prov"><h3>广西 <span class="cnt">19</span></h3><div class="grid"><a class="card" href="http://szb.gxcznews.com.cn:8088/" target="_blank" rel="noopener"><span class="name">左江日报</span></a>
+<a class="card" href="https://www.gxylnews.com/ylrb/PC/" target="_blank" rel="noopener"><span class="name">玉林日报</span></a>
+<a class="card" href="http://wzrb.wzljl.cn/" target="_blank" rel="noopener"><span class="name">梧州日报</span></a>
+<a class="card" href="https://qzrb.gxqzxw.com/" target="_blank" rel="noopener"><span class="name">钦州日报</span></a>
+<a class="card" href="http://nnrb.nnnews.net:8080/pcindex.jsp" target="_blank" rel="noopener"><span class="name">南宁日报</span></a>
+<a class="card" href="http://nnwb.nnnews.net:8080/pcindex.jsp" target="_blank" rel="noopener"><span class="name">南宁晚报</span></a>
+<a class="card" href="https://app5.lzxinwenwang.com/app/szb/lzrb/PC/layout/" target="_blank" rel="noopener"><span class="name">柳州日报</span></a>
+<a class="card" href="https://app5.lzxinwenwang.com/app/szb/lzwb/PC/layout/" target="_blank" rel="noopener"><span class="name">柳州晚报</span></a>
+<a class="card" href="http://epaper.lbnews.com.cn/" target="_blank" rel="noopener"><span class="name">来宾日报</span></a>
+<a class="card" href="http://gxrb.gxrb.com.cn/" target="_blank" rel="noopener"><span class="name">广西日报</span></a>
+<a class="card" href="http://www.gxzxbxwzx.com.cn/dzszb/zxbszb/index.html" target="_blank" rel="noopener"><span class="name">广西政协报</span></a>
+<a class="card" href="http://www.hscbw.com/dianzibao/huashengchenbao/" target="_blank" rel="noopener"><span class="name">华声晨报</span></a>
+<a class="card" href="http://ipaper.pagx.cn/bz/html/index.html" target="_blank" rel="noopener"><span class="name">广西法治日报</span></a>
+<a class="card" href="http://epaper.guilinlife.com/glrbpc/" target="_blank" rel="noopener"><span class="name">桂林日报</span></a>
+<a class="card" href="http://epaper.guilinlife.com/glwbpc/" target="_blank" rel="noopener"><span class="name">桂林晚报</span></a>
+<a class="card" href="https://epaper.gxbhxww.cn/bhrb" target="_blank" rel="noopener"><span class="name">北海日报</span></a>
+<a class="card" href="https://data.gxtv.cn/web/paper/paper.html" target="_blank" rel="noopener"><span class="name">广西广播电视报</span></a>
+<a class="card" href="http://ggrb.ggnews.com.cn/" target="_blank" rel="noopener"><span class="name">贵港日报</span></a>
+<a class="card" href="http://szbh5.hcwang.cn/" target="_blank" rel="noopener"><span class="name">河池日报</span></a></div></div>
+<div class="prov"><h3>海南 <span class="cnt">7</span></h3><div class="grid"><a class="card" href="http://paper.hndnews.com/" target="_blank" rel="noopener"><span class="name">国际旅游岛商报</span></a>
+<a class="card" href="http://www.hntqb.com/" target="_blank" rel="noopener"><span class="name">海南特区报</span></a>
+<a class="card" href="http://www.hkwb.net/" target="_blank" rel="noopener"><span class="name">海口日报</span></a>
+<a class="card" href="http://news.zqdb.com.cn/" target="_blank" rel="noopener"><span class="name">证券导报</span></a>
+<a class="card" href="http://news.hndaily.cn/" target="_blank" rel="noopener"><span class="name">海南日报</span></a>
+<a class="card" href="http://szb.ngdsb.cn/" target="_blank" rel="noopener"><span class="name">南国都市报</span></a>
+<a class="card" href="http://szb.hnfazhi.com/" target="_blank" rel="noopener"><span class="name">法治时报</span></a></div></div></section>
+<section class="region" id="r-西北"><h2>西北 <span class="cnt">75</span></h2><div class="prov"><h3>陕西 <span class="cnt">27</span></h3><div class="grid"><a class="card" href="http://ehsb.hspress.net/" target="_blank" rel="noopener"><span class="name">华商报</span></a>
+<a class="card" href="http://www.whysb.org/" target="_blank" rel="noopener"><span class="name">文化艺术报</span></a>
+<a class="card" href="http://www.yangguangbao.com/《阳光报》的前身是创刊于1987年的中国国防军工及教学科研领域的权威媒体《军工报》（后曾改名为《经济新报》）" target="_blank" rel="noopener"><span class="name">阳光报</span></a>
+<a class="card" href="http://epaper.xbxxb.com/" target="_blank" rel="noopener"><span class="name">西北信息报</span></a>
+<a class="card" href="http://epaper.xiancn.com/newxarb/" target="_blank" rel="noopener"><span class="name">西安日报</span></a>
+<a class="card" href="http://epaper.xiancn.com/newxawb/" target="_blank" rel="noopener"><span class="name">西安晚报</span></a>
+<a class="card" href="http://epaper.xiancn.com/csjjdb/" target="_blank" rel="noopener"><span class="name">城市经济导报</span></a>
+<a class="card" href="http://eb.nkb.com.cn/" target="_blank" rel="noopener"><span class="name">农业科技报</span></a>
+<a class="card" href="http://bjrb.joyhua.cn/" target="_blank" rel="noopener"><span class="name">宝鸡日报</span></a>
+<a class="card" href="https://epaper.sanqin.com/" target="_blank" rel="noopener"><span class="name">三秦都市报</span></a>
+<a class="card" href="http://sxncb.joyhua.cn/" target="_blank" rel="noopener"><span class="name">陕西农村报</span></a>
+<a class="card" href="http://szb.snkjb.com/" target="_blank" rel="noopener"><span class="name">陕西科技报</span></a>
+<a class="card" href="http://paper.sxworker.com/xpaper/" target="_blank" rel="noopener"><span class="name">陕西工人报</span></a>
+<a class="card" href="http://eslrb.slrbs.com/《商洛日报》系中共商洛市委（原中共商洛地委）的机关报" target="_blank" rel="noopener"><span class="name">商洛日报</span></a>
+<a class="card" href="https://epaper.xiancn.com/xdbjb/" target="_blank" rel="noopener"><span class="name">现代保健报</span></a>
+<a class="card" href="http://epaper.csjrw.cn/《城市金融报》为国内外公开发行的金融类专业报纸" target="_blank" rel="noopener"><span class="name">城市金融报</span></a>
+<a class="card" href="http://szb.ylrb.com/" target="_blank" rel="noopener"><span class="name">榆林日报</span></a>
+<a class="card" href="http://szb.jsjnews.cn/" target="_blank" rel="noopener"><span class="name">渭南日报</span></a>
+<a class="card" href="http://sjk.akxw.cn/" target="_blank" rel="noopener"><span class="name">安康日报</span></a>
+<a class="card" href="http://paper.yanews.cn/" target="_blank" rel="noopener"><span class="name">延安日报</span></a>
+<a class="card" href="http://epaper.sxxynews.com/" target="_blank" rel="noopener"><span class="name">咸阳日报</span></a>
+<a class="card" href="http://epaper.hanzhongnews.cn/" target="_blank" rel="noopener"><span class="name">汉中日报</span></a>
+<a class="card" href="https://szb.tcsrm.cn/" target="_blank" rel="noopener"><span class="name">铜川日报</span></a>
+<a class="card" href="http://epaper.sxjybk.com/his_paper_list/list1.html" target="_blank" rel="noopener"><span class="name">教师报</span></a>
+<a class="card" href="http://zxksb.sxjybk.com/" target="_blank" rel="noopener"><span class="name">自学考试报</span></a>
+<a class="card" href="http://esb.xbfzb.com/" target="_blank" rel="noopener"><span class="name">西部法制报</span></a>
+<a class="card" href="https://baokan.laodongwang.cn/" target="_blank" rel="noopener"><span class="name">劳动者报</span></a></div></div>
+<div class="prov"><h3>甘肃 <span class="cnt">19</span></h3><div class="grid"><a class="card" href="http://szb.gansudaily.com.cn/gsrb/" target="_blank" rel="noopener"><span class="name">甘肃日报</span></a>
+<a class="card" href="http://szb.gansudaily.com.cn/gsjjrb/" target="_blank" rel="noopener"><span class="name">甘肃经济日报</span></a>
+<a class="card" href="http://szb.gansudaily.com.cn/gsnmb/" target="_blank" rel="noopener"><span class="name">甘肃农民报</span></a>
+<a class="card" href="http://szb.gansudaily.com.cn/gsfzb/" target="_blank" rel="noopener"><span class="name">甘肃法制报</span></a>
+<a class="card" href="http://szb.gansudaily.com.cn/lzxqb/" target="_blank" rel="noopener"><span class="name">兰州新区报</span></a>
+<a class="card" href="http://szb.gansudaily.com.cn/gsgrb/" target="_blank" rel="noopener"><span class="name">甘肃工人报</span></a>
+<a class="card" href="http://www.zyrb.com/" target="_blank" rel="noopener"><span class="name">张掖日报</span></a>
+<a class="card" href="http://www.jinchangdaily.com/" target="_blank" rel="noopener"><span class="name">金昌日报</span></a>
+<a class="card" href="http://60.165.100.97:9999/epaper/htm/tsrb/content/paperindex.htm" target="_blank" rel="noopener"><span class="name">天水日报</span></a>
+<a class="card" href="http://60.165.100.97:9999/epaper/htm/tswb/content/paperindex.htm" target="_blank" rel="noopener"><span class="name">天水晚报</span></a>
+<a class="card" href="http://paper.qingyangwang.com.cn/" target="_blank" rel="noopener"><span class="name">陇东报</span></a>
+<a class="card" href="http://lzrb.lzbs.com.cn/" target="_blank" rel="noopener"><span class="name">兰州日报</span></a>
+<a class="card" href="http://lzwb.lzbs.com.cn/" target="_blank" rel="noopener"><span class="name">兰州晚报</span></a>
+<a class="card" href="http://szb.gansudaily.com.cn/lnrb/" target="_blank" rel="noopener"><span class="name">陇南日报</span></a>
+<a class="card" href="http://szb.chinalxnet.com/" target="_blank" rel="noopener"><span class="name">民族日报</span></a>
+<a class="card" href="http://www.chinajiuquan.com/" target="_blank" rel="noopener"><span class="name">酒泉日报</span></a>
+<a class="card" href="https://szb.gansudaily.com.cn/gsfzb/" target="_blank" rel="noopener"><span class="name">甘肃法治报</span></a>
+<a class="card" href="http://www.gsast.org.cn/" target="_blank" rel="noopener"><span class="name">甘肃科技报</span></a>
+<a class="card" href="http://szb.mzxsb.com/" target="_blank" rel="noopener"><span class="name">民主协商报</span></a></div></div>
+<div class="prov"><h3>青海 <span class="cnt">7</span></h3><div class="grid"><a class="card" href="https://epaper.tibet3.com/qhrb/" target="_blank" rel="noopener"><span class="name">青海日报</span></a>
+<a class="card" href="https://epaper.tibet3.com/qhzwb/" target="_blank" rel="noopener"><span class="name">青海藏文报</span></a>
+<a class="card" href="https://epaper.tibet3.com/xhdsb/" target="_blank" rel="noopener"><span class="name">西海都市报</span></a>
+<a class="card" href="http://epaper.hnznews.com/" target="_blank" rel="noopener"><span class="name">海南报</span></a>
+<a class="card" href="http://www.cdmrb.com.cn/" target="_blank" rel="noopener"><span class="name">柴达木日报</span></a>
+<a class="card" href="http://www.geermurb.com/" target="_blank" rel="noopener"><span class="name">格尔木日报</span></a>
+<a class="card" href="http://www.founderfx.cn/elecPublish/index.html#/paperContent?id=1204" target="_blank" rel="noopener"><span class="name">祁连山报</span></a></div></div>
+<div class="prov"><h3>宁夏 <span class="cnt">9</span></h3><div class="grid"><a class="card" href="https://szb.nxrb.cn/" target="_blank" rel="noopener"><span class="name">宁夏日报</span></a>
+<a class="card" href="https://szb.nxrb.cn/xxxb/" target="_blank" rel="noopener"><span class="name">新消息报</span></a>
+<a class="card" href="https://szb.nxrb.cn/nxfzb/" target="_blank" rel="noopener"><span class="name">宁夏法治报</span></a>
+<a class="card" href="https://szb.ycfbapp.com/ycwb/pc/layout/" target="_blank" rel="noopener"><span class="name">银川晚报</span></a>
+<a class="card" href="https://szb.ycfbapp.com/ycrb/pc/layout/" target="_blank" rel="noopener"><span class="name">银川日报</span></a>
+<a class="card" href="http://www.hxsbs.com/" target="_blank" rel="noopener"><span class="name">华兴时报</span></a>
+<a class="card" href="http://www.nxzwnews.net/" target="_blank" rel="noopener"><span class="name">中卫日报</span></a>
+<a class="card" href="https://jrszs.szsnews.com/application/press/epaper-pc/#/manage" target="_blank" rel="noopener"><span class="name">石嘴山日报</span></a>
+<a class="card" href="http://szb.gyxww.net/" target="_blank" rel="noopener"><span class="name">固原日报</span></a></div></div>
+<div class="prov"><h3>新疆 <span class="cnt">13</span></h3><div class="grid"><a class="card" href="https://xjrb.ts.cn/" target="_blank" rel="noopener"><span class="name">新疆日报</span></a>
+<a class="card" href="https://www.ylxw.com.cn/epaper/" target="_blank" rel="noopener"><span class="name">伊犁日报</span></a>
+<a class="card" href="https://alt-szb.xjmty.com/" target="_blank" rel="noopener"><span class="name">阿勒泰日报</span></a>
+<a class="card" href="http://wlmqszb.womob.cn/" target="_blank" rel="noopener"><span class="name">乌鲁木齐晚报</span></a>
+<a class="card" href="http://www.aksrb.cn/" target="_blank" rel="noopener"><span class="name">阿克苏日报</span></a>
+<a class="card" href="http://epaper.bingtuannet.com/" target="_blank" rel="noopener"><span class="name">兵团日报</span></a>
+<a class="card" href="http://shwb.bingtuannet.com/" target="_blank" rel="noopener"><span class="name">生活晚报</span></a>
+<a class="card" href="http://pcepaper.cjxww.cn/" target="_blank" rel="noopener"><span class="name">昌吉日报</span></a>
+<a class="card" href="http://appepaper.tlfw.net:8080/epaper/cn-pc/" target="_blank" rel="noopener"><span class="name">吐鲁番日报</span></a>
+<a class="card" href="http://epaper.kelamayi.com.cn/" target="_blank" rel="noopener"><span class="name">克拉玛依日报</span></a>
+<a class="card" href="http://bz.shznews.com:8001/szb/" target="_blank" rel="noopener"><span class="name">石河子日报</span></a>
+<a class="card" href="http://htrb.xjmty.com/" target="_blank" rel="noopener"><span class="name">和田日报</span></a>
+<a class="card" href="https://www.tsjsb.net/" target="_blank" rel="noopener"><span class="name">天山建设报</span></a></div></div></section>
+</main>
+
+<footer>数据来源：nez.cn 入口页正文抓取 · 链接均指向各报官方数字版站点</footer>
+
+<button class="to-top" id="toTop" title="返回顶部" aria-label="返回顶部">↑</button>
+
+<script>
+(function () {
+  /* ================= 时间显示 ================= */
+  var clockEl = document.getElementById('clock');
+  var WEEK = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function tick() {
+    var d = new Date();
+    clockEl.textContent = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日 '
+      + WEEK[d.getDay()] + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  /* ================= 8 个主题切换 ================= */
+  var THEMES = [
+    { id: 'ocean',   color: '#2a5298', name: '海洋蓝' },
+    { id: 'crimson', color: '#c0392b', name: '中国红' },
+    { id: 'forest',  color: '#2e8b57', name: '森林绿' },
+    { id: 'violet',  color: '#7d4fb5', name: '典雅紫' },
+    { id: 'sunset',  color: '#d2691e', name: '日落橙' },
+    { id: 'teal',    color: '#1493a3', name: '青碧' },
+    { id: 'sakura',  color: '#d1718f', name: '樱花粉' },
+    { id: 'dark',    color: '#3a4553', name: '深色' }
+  ];
+  var themesWrap = document.getElementById('themes');
+  var STORAGE_KEY = 'paper-nav-theme';
+
+  THEMES.forEach(function (t) {
+    var btn = document.createElement('button');
+    btn.className = 'theme-dot';
+    btn.type = 'button';
+    btn.title = t.name;
+    btn.setAttribute('aria-label', '切换到' + t.name + '主题');
+    btn.dataset.theme = t.id;
+    btn.style.background = t.color;
+    btn.addEventListener('click', function () { applyTheme(t.id); });
+    themesWrap.appendChild(btn);
+  });
+
+  function applyTheme(id) {
+    if (id === 'ocean') {
+      document.body.removeAttribute('data-theme');
+    } else {
+      document.body.setAttribute('data-theme', id);
+    }
+    var dots = themesWrap.querySelectorAll('.theme-dot');
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('active', dots[i].dataset.theme === id);
+    }
+    try { localStorage.setItem(STORAGE_KEY, id); } catch (e) {}
+  }
+
+  var saved = 'ocean';
+  try { saved = localStorage.getItem(STORAGE_KEY) || 'ocean'; } catch (e) {}
+  if (!THEMES.some(function (t) { return t.id === saved; })) saved = 'ocean';
+  applyTheme(saved);
+
+  /* ================= 搜索过滤 ================= */
+  var searchInput  = document.getElementById('search');
+  var searchBox    = document.getElementById('searchBox');
+  var clearBtn     = document.getElementById('clearSearch');
+  var statusEl     = document.getElementById('searchStatus');
+  var cards        = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var provs        = Array.prototype.slice.call(document.querySelectorAll('.prov'));
+  var regions      = Array.prototype.slice.call(document.querySelectorAll('.region'));
+
+  cards.forEach(function (c) {
+    var nameEl = c.querySelector('.name');
+    var prov = c.closest('.prov');
+    var provName = '';
+    if (prov) {
+      var h3 = prov.querySelector('h3');
+      if (h3 && h3.childNodes[0]) provName = h3.childNodes[0].nodeValue || '';
+    }
+    c.dataset.search = ((nameEl ? nameEl.textContent : '') + ' ' + provName).toLowerCase();
+  });
+
+  function applyFilter() {
+    var raw = searchInput.value.trim();
+    var q = raw.toLowerCase();
+    var total = 0;
+
+    cards.forEach(function (c) {
+      var hit = !q || c.dataset.search.indexOf(q) !== -1;
+      c.classList.toggle('is-hidden', !hit);
+      if (hit) total++;
+    });
+
+    provs.forEach(function (p) {
+      var vis = p.querySelectorAll('.card:not(.is-hidden)').length;
+      p.classList.toggle('is-hidden', vis === 0);
+      var cnt = p.querySelector('h3 .cnt');
+      if (cnt) cnt.textContent = vis;
+    });
+
+    regions.forEach(function (r) {
+      var vis = r.querySelectorAll('.card:not(.is-hidden)').length;
+      r.classList.toggle('is-hidden', vis === 0);
+      var cnt = r.querySelector('h2 .cnt');
+      if (cnt) cnt.textContent = vis;
+    });
+
+    searchBox.classList.toggle('has-value', raw.length > 0);
+
+    if (q) {
+      statusEl.classList.add('on');
+      statusEl.textContent = total
+        ? '🔍 找到 ' + total + ' 份与「' + raw + '」相关的报纸'
+        : '😕 没有找到与「' + raw + '」相关的报纸，换个关键词试试';
+    } else {
+      statusEl.classList.remove('on');
+      statusEl.textContent = '';
+    }
+  }
+
+  searchInput.addEventListener('input', applyFilter);
+  clearBtn.addEventListener('click', function () {
+    searchInput.value = '';
+    applyFilter();
+    searchInput.focus();
+  });
+  searchInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      applyFilter();
+    }
+  });
+
+  /* ================= 一键回顶部 ================= */
+  var toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', function () {
+    toTop.classList.toggle('show', window.scrollY > 400);
+  }, { passive: true });
+
+  toTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
 </script>
 </body>
 </html>
