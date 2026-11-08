@@ -74,6 +74,10 @@ const categories=[
 ];
 const directory=document.getElementById('directory'),input=document.getElementById('searchInput'),clearButton=document.getElementById('clearSearch'),empty=document.getElementById('emptyState'),status=document.getElementById('resultStatus'),totalInfo=document.getElementById('totalInfo');
 const esc=t=>t.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+// 每个板块内按报纸名拼音 A-Z 自动排序
+const pinyinCollator = new Intl.Collator('zh-Hans-CN-u-co-pinyin', { sensitivity:'base', numeric:true });
+categories.forEach(c => c.items.sort((a,b) => pinyinCollator.compare(a[0], b[0])));
+
 function render(){
   directory.innerHTML=categories.map((category,index)=>`<section class="category" data-category="${index}"><div class="category-head"><h2 class="category-title">${esc(category.name)}</h2><span class="category-count">${category.items.length} 家</span></div><div class="grid">${category.items.map(([name,url])=>url?`<a class="media-btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-name="${esc(name)}" data-url="${esc(url)}">${esc(name)}</a>`:`<span class="media-btn disabled" data-name="${esc(name)}">${esc(name)}<span class="unavailable-note">暂无电子版入口</span></span>`).join('')}</div></section>`).join('');
 }
