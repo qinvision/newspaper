@@ -971,6 +971,25 @@
   var provs        = Array.prototype.slice.call(document.querySelectorAll('.prov'));
   var regions      = Array.prototype.slice.call(document.querySelectorAll('.region'));
 
+  /* ================= 版块内按拼音排序 ================= */
+  var collator = new Intl.Collator('zh-Hans-CN', { sensitivity: 'base', numeric: true });
+  function sortGroup(container) {
+    var grid = container.querySelector('.grid');
+    if (!grid) return;
+    var items = Array.prototype.slice.call(grid.querySelectorAll('.card'));
+    items.sort(function (a, b) {
+      var na = (a.querySelector('.name') || a).textContent.trim();
+      var nb = (b.querySelector('.name') || b).textContent.trim();
+      return collator.compare(na, nb);
+    });
+    items.forEach(function (c) { grid.appendChild(c); });
+  }
+  provs.forEach(sortGroup);
+  regions.forEach(function (r) {
+    // 中央级等无 .prov 的版块, 直接排序其网格
+    if (!r.querySelector('.prov')) sortGroup(r);
+  });
+
   cards.forEach(function (c) {
     var nameEl = c.querySelector('.name');
     var prov = c.closest('.prov');
